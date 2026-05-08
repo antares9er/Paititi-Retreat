@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paititi Retreats — Sacred Luxury Wellness</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C58A2A;
+            --gold-light: #E7C98F;
+            --lavender: #B9A1C9;
+            --lavender-light: #DCCEE5;
+            --pink: #E8B7BE;
+            --ivory: #F7F3EE;
+            --brown: #5E4B4B;
+            --brown-subtle: #8A7A7A;
+            --white: #FFFFFF;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow-soft: 0 8px 40px rgba(197, 138, 42, 0.08);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--ivory);
+            color: var(--brown);
+            font-family: var(--font-body);
+            font-weight: 300;
+            line-height: 1.75;
+            overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-heading);
+            color: var(--gold);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        h1 { font-size: clamp(3.5rem, 8vw, 7rem); letter-spacing: 0.18em; }
+        h2 { font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: 0.1em; }
+        h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); letter-spacing: 0.06em; }
+        h4 { font-size: 1.15rem; letter-spacing: 0.05em; }
+        p { color: var(--brown); font-size: 1rem; line-height: 1.9; }
+
+        .section-label {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--brown-subtle);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .container-narrow { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 7rem 0; }
+
+        /* Dividers */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            margin: 1.75rem auto;
+        }
+        .divider-line {
+            height: 1px;
+            width: 70px;
+            background: linear-gradient(90deg, transparent, var(--gold-light));
+        }
+        .divider-line.right { background: linear-gradient(90deg, var(--gold-light), transparent); }
+        .divider-diamond { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); }
+        .glow-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 8px var(--gold-light); }
+
+        /* Buttons */
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--lavender);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(197,138,42,0.2); }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--gold);
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid var(--gold);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-secondary:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+        nav.scrolled {
+            background: rgba(247,243,238,0.96);
+            backdrop-filter: blur(12px);
+            padding: 1rem 2.5rem;
+            box-shadow: 0 4px 30px rgba(94,75,75,0.06);
+        }
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 400;
+            letter-spacing: 0.22em;
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+        .nav-links a {
+            font-size: 0.68rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--brown);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px; left: 0;
+            width: 0; height: 1px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta {
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--white);
+            background: var(--lavender);
+            text-decoration: none;
+            padding: 0.65rem 1.5rem;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+        .nav-cta:hover { background: var(--gold); }
+        .nav-mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .nav-mobile-toggle span { display: block; width: 24px; height: 1px; background: var(--brown); }
+
+        /* Hero */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            padding: 0;
+            background: radial-gradient(ellipse at 60% 35%, #DCCEE5 0%, #F7F3EE 45%, #F7F3EE 100%);
+        }
+        .hero-mandala {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(680px, 90vw);
+            height: min(680px, 90vw);
+            opacity: 0.065;
+            animation: slowRotate 120s linear infinite;
+        }
+        @keyframes slowRotate {
+            from { transform: translate(-50%,-50%) rotate(0deg); }
+            to   { transform: translate(-50%,-50%) rotate(360deg); }
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 860px; padding: 2rem; }
+        .hero-label { font-size: 0.62rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--brown-subtle); margin-bottom: 1.5rem; display: block; }
+        .hero-title { font-weight: 300; color: var(--gold); text-transform: uppercase; line-height: 1.0; margin-bottom: 0.75rem; }
+        .hero-subtitle { font-family: var(--font-heading); font-size: clamp(1.1rem,2.5vw,1.8rem); font-weight: 300; font-style: italic; color: var(--lavender); letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+        .hero-description { font-size: 1rem; color: var(--brown-subtle); max-width: 540px; margin: 0 auto 3rem; line-height: 1.9; }
+        .hero-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+        .hero-scroll {
+            position: absolute;
+            bottom: 2.5rem; left: 50%;
+            transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            z-index: 2;
+            animation: fadeInUp 2s ease 1.5s both;
+        }
+        .hero-scroll span { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--brown-subtle); }
+        .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--gold-light), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+        @keyframes scrollPulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+        @keyframes fadeInUp {
+            from { opacity:0; transform: translateX(-50%) translateY(20px); }
+            to   { opacity:1; transform: translateX(-50%) translateY(0); }
+        }
+        .hero-bottom-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 180px; background: linear-gradient(to bottom,transparent,var(--ivory)); z-index: 1; }
+
+        /* Section header */
+        .section-header { text-align: center; margin-bottom: 5rem; }
+        .section-header .section-label { display: block; margin-bottom: 1rem; }
+        .section-header h2 { margin-bottom: 1.5rem; }
+        .section-header > p { max-width: 540px; margin: 0 auto; color: var(--brown-subtle); }
+
+        /* About */
+        #about { background: var(--white); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+        .about-image-wrapper { position: relative; }
+        .about-image-frame { position: relative; border-radius: 4px; overflow: hidden; }
+        .about-image-frame img { width: 100%; height: 580px; object-fit: cover; border-radius: 4px; }
+        .about-image-placeholder {
+            width: 100%; height: 580px;
+            background: linear-gradient(135deg, var(--lavender-light), var(--pink), var(--gold-light));
+            border-radius: 4px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .about-image-border {
+            position: absolute;
+            top: 1.5rem; left: 1.5rem; right: -1.5rem; bottom: -1.5rem;
+            border: 1px solid var(--gold-light);
+            border-radius: 4px;
+            z-index: -1;
+        }
+        .about-text .section-label { display: block; margin-bottom: 1rem; }
+        .about-text h2 { margin-bottom: 1.5rem; }
+        .about-text p { margin-bottom: 1.5rem; }
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--lavender-light);
+        }
+        .stat-item { text-align: center; }
+        .stat-number { font-family: var(--font-heading); font-size: 2.4rem; font-weight: 300; color: var(--gold); letter-spacing: 0.05em; display: block; }
+        .stat-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brown-subtle); }
+
+        /* Experience */
+        #experience { background: var(--ivory); }
+        .experience-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+        .experience-card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-soft); transition: var(--transition); }
+        .experience-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(197,138,42,0.12); }
+        .card-image { height: 230px; position: relative; overflow: hidden; }
+        .card-image-placeholder { width: 100%; height: 100%; }
+        .card-image-placeholder.lotus    { background: linear-gradient(135deg, #DCCEE5 0%, #B9A1C9 60%, rgba(197,138,42,0.15) 100%); }
+        .card-image-placeholder.jungle   { background: linear-gradient(135deg, rgba(197,138,42,0.12) 0%, #E7C98F 60%, #DCCEE5 100%); }
+        .card-image-placeholder.celestial{ background: linear-gradient(135deg, #E8B7BE 0%, #DCCEE5 60%, #B9A1C9 100%); }
+        .card-tag { position: absolute; top: 1.2rem; left: 1.2rem; font-size: 0.58rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--white); background: var(--lavender); padding: 0.3rem 0.9rem; border-radius: 50px; }
+        .card-body { padding: 2rem; }
+        .card-body h3 { font-size: 1.45rem; margin-bottom: 0.75rem; }
+        .card-body > p { font-size: 0.88rem; color: var(--brown-subtle); margin-bottom: 1.5rem; }
+        .card-details { display: flex; gap: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--lavender-light); }
+        .card-detail { display: flex; flex-direction: column; }
+        .card-detail-label { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brown-subtle); }
+        .card-detail-value { font-family: var(--font-heading); font-size: 1rem; color: var(--gold); }
+
+        /* Practices */
+        #practices { background: var(--white); }
+        .practices-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3rem 4rem; margin-top: 4rem; }
+        .practice-item { text-align: center; }
+        .practice-icon {
+            width: 70px; height: 70px;
+            border: 1px solid var(--gold-light);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--gold);
+            transition: var(--transition);
+        }
+        .practice-item:hover .practice-icon { background: linear-gradient(135deg, var(--gold-light), var(--lavender-light)); border-color: transparent; box-shadow: 0 8px 24px rgba(197,138,42,0.15); }
+        .practice-icon svg { width: 26px; height: 26px; }
+        .practice-item h4 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 400; color: var(--brown); margin-bottom: 0.5rem; letter-spacing: 0.04em; }
+        .practice-item p { font-size: 0.875rem; color: var(--brown-subtle); line-height: 1.75; }
+
+        /* Journey */
+        #journey {
+            background: linear-gradient(135deg, #C58A2A, #E7C98F, #DCCEE5);
+            position: relative; overflow: hidden;
+        }
+        #journey::before { content:''; position:absolute; inset:0; background: rgba(247,243,238,0.87); }
+        .journey-content { position: relative; z-index: 1; }
+        .journey-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; margin-top: 4rem; position: relative; }
+        .journey-steps::before {
+            content:''; position:absolute;
+            top: 2.4rem; left: 12%; right: 12%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-light), var(--gold-light), transparent);
+        }
+        .journey-step { text-align: center; }
+        .step-number {
+            width: 4.8rem; height: 4.8rem; border-radius: 50%;
+            background: var(--ivory); border: 1px solid var(--gold-light);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-family: var(--font-heading); font-size: 1.4rem; color: var(--gold);
+            position: relative; z-index: 1;
+            box-shadow: 0 4px 20px rgba(197,138,42,0.1);
+        }
+        .journey-step h4 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 400; color: var(--gold); margin-bottom: 0.5rem; }
+        .journey-step p { font-size: 0.875rem; color: var(--brown-subtle); line-height: 1.75; }
+
+        /* Testimonials */
+        #testimonials { background: var(--ivory); }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 4rem; }
+        .testimonial-card { background: var(--white); border-radius: 8px; padding: 2.5rem; box-shadow: var(--shadow-soft); }
+        .testimonial-quote { font-family: var(--font-heading); font-size: 4rem; color: var(--gold-light); line-height: 1; margin-bottom: 0.75rem; display: block; }
+        .testimonial-text { font-family: var(--font-heading); font-style: italic; font-size: 1.05rem; color: var(--brown); line-height: 1.75; margin-bottom: 2rem; }
+        .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+        .author-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--lavender-light), var(--pink)); flex-shrink: 0; }
+        .author-name { font-size: 0.85rem; font-weight: 500; color: var(--brown); }
+        .author-location { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--brown-subtle); }
+        .stars { display: flex; gap: 3px; margin-bottom: 1rem; }
+        .star { color: var(--gold); font-size: 0.8rem; }
+
+        /* Gallery */
+        #gallery { background: var(--white); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 4rem; }
+        .gallery-item { overflow: hidden; position: relative; aspect-ratio: 1; cursor: pointer; }
+        .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+        .gallery-placeholder { width: 100%; height: 200px; transition: transform 0.6s ease; }
+        .gallery-item:nth-child(1) .gallery-placeholder { height: 100%; min-height: 400px; }
+        .gallery-item:hover .gallery-placeholder { transform: scale(1.05); }
+        .gallery-placeholder.g1 { background: linear-gradient(135deg, #DCCEE5, #B9A1C9); }
+        .gallery-placeholder.g2 { background: linear-gradient(135deg, #E7C98F, rgba(197,138,42,0.2)); }
+        .gallery-placeholder.g3 { background: linear-gradient(135deg, #E8B7BE, #DCCEE5); }
+        .gallery-placeholder.g4 { background: linear-gradient(135deg, #B9A1C9, #E8B7BE); }
+        .gallery-placeholder.g5 { background: linear-gradient(135deg, rgba(197,138,42,0.15), #E7C98F); }
+        .gallery-placeholder.g6 { background: linear-gradient(135deg, #DCCEE5, #E8B7BE); }
+        .gallery-placeholder.g7 { background: linear-gradient(135deg, #E8B7BE, #B9A1C9); }
+        .gallery-item-overlay { position:absolute; inset:0; background: linear-gradient(to top, rgba(94,75,75,0.35), transparent); opacity:0; transition: var(--transition); display:flex; align-items:flex-end; padding:1.2rem; }
+        .gallery-item:hover .gallery-item-overlay { opacity:1; }
+        .gallery-item-label { font-size:0.62rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--white); }
+
+        /* FAQ */
+        #faq { background: var(--ivory); }
+        .faq-list { margin-top: 3rem; }
+        .faq-item { border-bottom: 1px solid var(--lavender-light); }
+        .faq-question { display:flex; justify-content:space-between; align-items:center; padding:1.75rem 0; cursor:pointer; gap:2rem; }
+        .faq-question h4 { font-family: var(--font-heading); font-size:1.1rem; font-weight:400; color:var(--brown); letter-spacing:0.02em; }
+        .faq-icon { width:28px; height:28px; border:1px solid var(--gold-light); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gold); transition:var(--transition); }
+        .faq-item.open .faq-icon { background:var(--gold); color:var(--white); transform:rotate(45deg); }
+        .faq-answer { max-height:0; overflow:hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+        .faq-item.open .faq-answer { max-height:300px; padding-bottom:1.75rem; }
+        .faq-answer p { font-size:0.9rem; color:var(--brown-subtle); line-height:1.85; }
+
+        /* Contact */
+        #contact { background: var(--white); }
+        .contact-wrapper { display:grid; grid-template-columns:1fr 1.2fr; gap:6rem; align-items:start; }
+        .contact-info .section-label { display:block; margin-bottom:1rem; }
+        .contact-info h2 { margin-bottom:1.5rem; }
+        .contact-info > p { color:var(--brown-subtle); margin-bottom:2.5rem; }
+        .contact-details { display:flex; flex-direction:column; gap:1.25rem; }
+        .contact-detail { display:flex; gap:1rem; align-items:flex-start; }
+        .contact-detail-icon { width:40px; height:40px; border:1px solid var(--lavender-light); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--lavender); }
+        .contact-detail-icon svg { width:16px; height:16px; }
+        .contact-detail-text span { display:block; font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--brown-subtle); margin-bottom:0.2rem; }
+        .contact-detail-text a, .contact-detail-text p { font-size:0.88rem; color:var(--brown); text-decoration:none; line-height:1.5; }
+        .contact-form { background:var(--ivory); border-radius:12px; padding:3rem; }
+        .form-group { margin-bottom:1.4rem; }
+        .form-label { display:block; font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--brown-subtle); margin-bottom:0.5rem; }
+        .form-input, .form-select, .form-textarea {
+            width:100%; padding:0.9rem 1.2rem;
+            background:var(--white); border:1px solid var(--lavender-light); border-radius:8px;
+            font-family:var(--font-body); font-size:0.9rem; color:var(--brown);
+            outline:none; transition:var(--transition); appearance:none;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { border-color:var(--gold-light); box-shadow:0 0 0 3px rgba(197,138,42,0.07); }
+        .form-input::placeholder, .form-textarea::placeholder { color:var(--brown-subtle); opacity:0.6; }
+        .form-textarea { min-height:120px; resize:vertical; }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+        .form-submit { width:100%; padding:1rem; background:var(--lavender); color:var(--white); font-family:var(--font-body); font-size:0.72rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; border:none; border-radius:8px; cursor:pointer; transition:var(--transition); margin-top:0.5rem; }
+        .form-submit:hover { background:var(--gold); box-shadow:0 8px 24px rgba(197,138,42,0.2); }
+
+        /* Footer */
+        footer { background:var(--ivory); padding:4rem 0; border-top:1px solid var(--lavender-light); }
+        .footer-inner { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:4rem; margin-bottom:3rem; }
+        .footer-brand p { font-size:0.85rem; color:var(--brown-subtle); max-width:240px; line-height:1.7; margin-top:0.75rem; }
+        .footer-social { display:flex; gap:0.75rem; margin-top:1.5rem; }
+        .social-link { width:36px; height:36px; border:1px solid var(--lavender-light); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--brown-subtle); text-decoration:none; transition:var(--transition); }
+        .social-link:hover { border-color:var(--gold-light); color:var(--gold); }
+        .social-link svg { width:14px; height:14px; }
+        .footer-col h5 { font-family:var(--font-body); font-size:0.62rem; font-weight:500; letter-spacing:0.25em; text-transform:uppercase; color:var(--brown); margin-bottom:1.25rem; }
+        .footer-links { list-style:none; display:flex; flex-direction:column; gap:0.75rem; }
+        .footer-links a { font-size:0.85rem; color:var(--brown-subtle); text-decoration:none; transition:var(--transition); }
+        .footer-links a:hover { color:var(--gold); }
+        .footer-bottom { padding-top:2rem; border-top:1px solid var(--lavender-light); display:flex; justify-content:space-between; align-items:center; }
+        .footer-bottom p { font-size:0.75rem; color:var(--brown-subtle); }
+        .footer-bottom-links { display:flex; gap:2rem; }
+        .footer-bottom-links a { font-size:0.75rem; color:var(--brown-subtle); text-decoration:none; transition:var(--transition); }
+        .footer-bottom-links a:hover { color:var(--gold); }
+
+        /* Scroll animations */
+        .fade-in { opacity:0; transform:translateY(28px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity:1; transform:translateY(0); }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-grid { grid-template-columns:1fr; gap:4rem; }
+            .about-image-frame img, .about-image-placeholder { height:420px; }
+            .experience-grid { grid-template-columns:repeat(2,1fr); }
+            .footer-inner { grid-template-columns:1fr 1fr; gap:3rem; }
+            .journey-steps { grid-template-columns:repeat(2,1fr); }
+            .journey-steps::before { display:none; }
+        }
+        @media (max-width: 768px) {
+            section { padding:5rem 0; }
+            .nav-links, .nav-cta { display:none; }
+            .nav-mobile-toggle { display:flex; }
+            .experience-grid, .testimonials-grid, .practices-grid { grid-template-columns:1fr; }
+            .gallery-grid { grid-template-columns:repeat(2,1fr); }
+            .gallery-item:nth-child(1) { grid-column:span 2; }
+            .contact-wrapper { grid-template-columns:1fr; gap:3rem; }
+            .footer-inner { grid-template-columns:1fr; gap:2.5rem; }
+            .footer-bottom { flex-direction:column; gap:1rem; text-align:center; }
+            .form-row { grid-template-columns:1fr; }
+            .contact-form { padding:2rem; }
+        }
+        @media (max-width: 480px) {
+            .journey-steps { grid-template-columns:1fr; }
+            .gallery-grid { grid-template-columns:1fr; }
+            .gallery-item:nth-child(1) { grid-column:span 1; }
+            .about-stats { grid-template-columns:repeat(3,1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <a href="#hero" class="nav-logo">Paititi</a>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Retreats</a></li>
+        <li><a href="#practices">Practices</a></li>
+        <li><a href="#testimonials">Stories</a></li>
+        <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Book a Retreat</a>
+    <div class="nav-mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+    <svg class="hero-mandala" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#C58A2A" stroke-width="0.6">
+            <circle cx="250" cy="250" r="238"/><circle cx="250" cy="250" r="198"/>
+            <circle cx="250" cy="250" r="158"/><circle cx="250" cy="250" r="118"/>
+            <circle cx="250" cy="250" r="78"/><circle cx="250" cy="250" r="38"/>
+            <line x1="250" y1="12" x2="250" y2="488"/>
+            <line x1="12" y1="250" x2="488" y2="250"/>
+            <line x1="82" y1="82" x2="418" y2="418"/>
+            <line x1="418" y1="82" x2="82" y2="418"/>
+            <line x1="165" y1="22" x2="335" y2="478"/>
+            <line x1="335" y1="22" x2="165" y2="478"/>
+            <line x1="22" y1="165" x2="478" y2="335"/>
+            <line x1="22" y1="335" x2="478" y2="165"/>
+            <path d="M250,132 Q308,190 250,250 Q192,190 250,132 Z"/>
+            <path d="M250,368 Q308,310 250,250 Q192,310 250,368 Z"/>
+            <path d="M132,250 Q190,308 250,250 Q190,192 132,250 Z"/>
+            <path d="M368,250 Q310,192 250,250 Q310,308 368,250 Z"/>
+            <path d="M250,52 Q328,130 250,172 Q172,130 250,52 Z"/>
+            <path d="M250,448 Q328,370 250,328 Q172,370 250,448 Z"/>
+            <path d="M52,250 Q130,328 172,250 Q130,172 52,250 Z"/>
+            <path d="M448,250 Q370,172 328,250 Q370,328 448,250 Z"/>
+            <path d="M110,110 Q188,150 190,190 Q150,192 110,110 Z"/>
+            <path d="M390,110 Q350,188 310,190 Q312,150 390,110 Z"/>
+            <path d="M110,390 Q150,312 190,310 Q188,350 110,390 Z"/>
+            <path d="M390,390 Q312,350 310,310 Q350,312 390,390 Z"/>
+            <polygon points="250,162 308,212 308,288 250,338 192,288 192,212"/>
+            <polygon points="250,338 192,288 192,212 250,162 308,212 308,288" transform="rotate(30,250,250)"/>
+            <circle cx="250" cy="250" r="7" fill="#C58A2A" opacity="0.25"/>
+            <circle cx="250" cy="250" r="3" fill="#C58A2A" opacity="0.55"/>
+        </g>
+    </svg>
+
+    <div class="hero-content">
+        <span class="hero-label">Sacred Luxury Wellness</span>
+        <h1 class="hero-title">Paititi<br>Retreats</h1>
+        <p class="hero-subtitle">Where the Sacred Meets the Self</p>
+        <div class="divider">
+            <div class="divider-line"></div>
+            <div class="divider-diamond"></div>
+            <div class="glow-dot"></div>
+            <div class="divider-diamond"></div>
+            <div class="divider-line right"></div>
+        </div>
+        <p class="hero-description">Journey into transformational luxury retreat experiences designed to awaken your highest self — held within sacred spaces where ancient wisdom and divine femininity meet.</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn-primary">Begin Your Journey</a>
+            <a href="#experience" class="btn-secondary">Explore Retreats</a>
+        </div>
+    </div>
+
+    <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+    </div>
+    <div class="hero-bottom-fade"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-image-wrapper fade-in">
+                <div class="about-image-frame">
+                    <img
+                        src="brand_assets/paititi_retreats_no_gender_symbols.jpg"
+                        alt="Paititi Retreats"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="about-image-placeholder" style="display:none">
+                        <svg viewBox="0 0 160 160" width="90" xmlns="http://www.w3.org/2000/svg">
+                            <g fill="none" stroke="rgba(197,138,42,0.35)" stroke-width="1.2">
+                                <circle cx="80" cy="80" r="74"/><circle cx="80" cy="80" r="50"/>
+                                <path d="M80,30 Q110,55 80,80 Q50,55 80,30 Z"/>
+                                <path d="M80,130 Q110,105 80,80 Q50,105 80,130 Z"/>
+                                <path d="M30,80 Q55,110 80,80 Q55,50 30,80 Z"/>
+                                <path d="M130,80 Q105,50 80,80 Q105,110 130,80 Z"/>
+                                <circle cx="80" cy="80" r="10"/>
+                                <circle cx="80" cy="80" r="4" fill="rgba(197,138,42,0.4)"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="about-image-border"></div>
+            </div>
+
+            <div class="about-text fade-in delay-2">
+                <span class="section-label">Our Story</span>
+                <h2>A Temple of<br><em>Sacred Transformation</em></h2>
+                <div class="divider" style="justify-content:flex-start;margin:1.5rem 0;">
+                    <div class="divider-line" style="width:50px;"></div>
+                    <div class="divider-diamond"></div>
+                </div>
+                <p>Paititi Retreats was born from a deep calling — to create sanctuaries where the soul can rest, expand, and remember its true nature. Inspired by the mythical golden city of Paititi, we craft retreat experiences as rare and precious as the legend itself.</p>
+                <p>We believe every woman carries within her an innate wisdom — an ancient, luminous knowing that deepens with stillness. Our retreats honour that sacred space within you.</p>
+                <p>From ceremonial practices rooted in ancestral traditions to luxurious healing modalities, each experience gently guides you back to yourself.</p>
+                <a href="#experience" class="btn-secondary" style="margin-top:1rem;">Discover Our Retreats</a>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">200+</span>
+                        <span class="stat-label">Lives Transformed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">Sacred Programs</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">Years of Practice</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RETREAT EXPERIENCE -->
+<section id="experience">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">Curated Offerings</span>
+            <h2>The Retreat Experience</h2>
+            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
+            <p>Each retreat is a carefully crafted journey — a sacred container held with the highest intention, designed to carry you from where you are to where you are meant to be.</p>
+        </div>
+        <div class="experience-grid">
+            <div class="experience-card fade-in delay-1">
+                <div class="card-image">
+                    <div class="card-image-placeholder lotus"></div>
+                    <span class="card-tag">Signature</span>
+                </div>
+                <div class="card-body">
+                    <h3>The Lotus Awakening</h3>
+                    <p>A 7-day immersive journey into sacred feminine wisdom, ceremonial healing, and deep restoration in a luxury jungle sanctuary.</p>
+                    <div class="card-details">
+                        <div class="card-detail"><span class="card-detail-label">Duration</span><span class="card-detail-value">7 Days</span></div>
+                        <div class="card-detail"><span class="card-detail-label">Group Size</span><span class="card-detail-value">8 Women</span></div>
+                        <div class="card-detail"><span class="card-detail-label">From</span><span class="card-detail-value">$4,200</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="experience-card fade-in delay-2">
+                <div class="card-image">
+                    <div class="card-image-placeholder jungle"></div>
+                    <span class="card-tag">New</span>
+                </div>
+                <div class="card-body">
+                    <h3>The Golden Temple</h3>
+                    <p>A 5-day luxury retreat blending ancient ceremony, somatic healing, and meditative practices within a sacred mountain setting.</p>
+                    <div class="card-details">
+                        <div class="card-detail"><span class="card-detail-label">Duration</span><span class="card-detail-value">5 Days</span></div>
+                        <div class="card-detail"><span class="card-detail-label">Group Size</span><span class="card-detail-value">6 Women</span></div>
+                        <div class="card-detail"><span class="card-detail-label">From</span><span class="card-detail-value">$3,100</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="experience-card fade-in delay-3">
+                <div class="card-image">
+                    <div class="card-image-placeholder celestial"></div>
+                    <span class="card-tag">Exclusive</span>
+                </div>
+                <div class="card-body">
+                    <h3>The Celestial Immersion</h3>
+                    <p>A 10-day private transformational experience offering the deepest level of healing, ceremony, and sacred practice available.</p>
+                    <div class="card-details">
+                        <div class="card-detail"><span class="card-detail-label">Duration</span><span class="card-detail-value">10 Days</span></div>
+                        <div class="card-detail"><span class="card-detail-label">Group Size</span><span class="card-detail-value">4 Women</span></div>
+                        <div class="card-detail"><span class="card-detail-label">From</span><span class="card-detail-value">$7,500</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SACRED PRACTICES -->
+<section id="practices">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">What We Offer</span>
+            <h2>Sacred Practices</h2>
+            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
+            <p>Ancient wisdom traditions woven with modern healing modalities, held within luxurious sacred spaces crafted for your deepest transformation.</p>
+        </div>
+        <div class="practices-grid">
+            <div class="practice-item fade-in delay-1">
+                <div class="practice-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12,6 Q17,9 12,12 Q7,9 12,6 Z"/>
+                        <path d="M12,18 Q17,15 12,12 Q7,15 12,18 Z"/>
+                        <path d="M6,12 Q9,17 12,12 Q9,7 6,12 Z"/>
+                        <path d="M18,12 Q15,7 12,12 Q15,17 18,12 Z"/>
+                    </svg>
+                </div>
+                <h4>Sacred Ceremony</h4>
+                <p>Ancient ceremonial practices drawn from indigenous traditions, designed to open and purify the heart.</p>
+            </div>
+            <div class="practice-item fade-in delay-2">
+                <div class="practice-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <ellipse cx="12" cy="12" rx="10" ry="4"/>
+                        <path d="M2,12 Q12,22 22,12"/>
+                        <path d="M2,12 Q12,2 22,12"/>
+                        <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                </div>
+                <h4>Sound Healing</h4>
+                <p>Crystal singing bowls, Tibetan instruments, and vocal toning that attune the body to its natural vibrational state.</p>
+            </div>
+            <div class="practice-item fade-in delay-3">
+                <div class="practice-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>
+                        <line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
+                    </svg>
+                </div>
+                <h4>Meditation & Breathwork</h4>
+                <p>Guided meditation journeys and conscious breathwork to still the mind and awaken inner awareness.</p>
+            </div>
+            <div class="practice-item fade-in delay-1">
+                <div class="practice-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+                <h4>Somatic Healing</h4>
+                <p>Body-centred practices and therapeutic touch that release stored tension and restore the body's innate wisdom.</p>
+            </div>
+            <div class="practice-item fade-in delay-2">
+                <div class="practice-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <h4>Sacred Astrology</h4>
+                <p>Celestial readings and moon ceremonies that align your journey with the rhythms of the cosmos.</p>
+            </div>
+            <div class="practice-item fade-in delay-3">
+                <div class="practice-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <h4>Plant Medicine Integration</h4>
+                <p>Guided ceremonies with sacred plant allies, held within carefully intentional and supported containers.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TRANSFORMATION JOURNEY -->
+<section id="journey">
+    <div class="container journey-content">
+        <div class="section-header fade-in">
+            <span class="section-label">Your Path</span>
+            <h2>The Transformation Journey</h2>
+            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
+            <p>Every Paititi retreat follows a carefully crafted arc — from the moment you enquire to long after you return home transformed.</p>
+        </div>
+        <div class="journey-steps">
+            <div class="journey-step fade-in delay-1">
+                <div class="step-number">I</div>
+                <h4>The Calling</h4>
+                <p>You feel the pull. Something within you knows it is time. We hold a sacred discovery call to meet you where you are.</p>
+            </div>
+            <div class="journey-step fade-in delay-2">
+                <div class="step-number">II</div>
+                <h4>The Preparation</h4>
+                <p>Receive your personalised pre-retreat guide — gentle practices, sacred intentions, and ceremonies to help you arrive fully open.</p>
+            </div>
+            <div class="journey-step fade-in delay-3">
+                <div class="step-number">III</div>
+                <h4>The Immersion</h4>
+                <p>Step fully into the sacred container. Be held, witnessed, guided, and loved as you journey through profound transformation.</p>
+            </div>
+            <div class="journey-step fade-in delay-4">
+                <div class="step-number">IV</div>
+                <h4>The Integration</h4>
+                <p>Return home with a 30-day integration support programme to anchor your transformation into lasting, embodied change.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">Sacred Stories</span>
+            <h2>What Women Say</h2>
+            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-in delay-1">
+                <span class="testimonial-quote">"</span>
+                <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                <p class="testimonial-text">Paititi was the most sacred and transformational experience of my life. I arrived depleted and disconnected — I returned home as the woman I always knew I was meant to be.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div>
+                        <p class="author-name">Sofia M.</p>
+                        <span class="author-location">London, UK</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in delay-2">
+                <span class="testimonial-quote">"</span>
+                <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                <p class="testimonial-text">The space held at Paititi is unlike anything I have experienced. Every detail — from the ceremonies to the food to the love of the guides — was exquisitely tended to.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar" style="background:linear-gradient(135deg,#E7C98F,#B9A1C9)"></div>
+                    <div>
+                        <p class="author-name">Camille R.</p>
+                        <span class="author-location">Paris, France</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in delay-3">
+                <span class="testimonial-quote">"</span>
+                <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                <p class="testimonial-text">I have attended many retreats. None come close to the depth, the care, and the magic of Paititi. I am still integrating the gifts three months later. Forever grateful.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar" style="background:linear-gradient(135deg,#E8B7BE,rgba(197,138,42,0.3))"></div>
+                    <div>
+                        <p class="author-name">Amara T.</p>
+                        <span class="author-location">New York, USA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">Sacred Spaces</span>
+            <h2>A Glimpse Within</h2>
+            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
+        </div>
+    </div>
+    <div class="gallery-grid fade-in" style="margin-top:4rem;">
+        <div class="gallery-item">
+            <div class="gallery-placeholder g1" style="min-height:400px;display:flex;align-items:center;justify-content:center;">
+                <svg viewBox="0 0 100 100" width="55" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" stroke="rgba(197,138,42,0.3)" stroke-width="1">
+                        <circle cx="50" cy="50" r="44"/><circle cx="50" cy="50" r="28"/>
+                        <path d="M50,8 Q74,30 50,50 Q26,30 50,8 Z"/>
+                        <path d="M50,92 Q74,70 50,50 Q26,70 50,92 Z"/>
+                        <path d="M8,50 Q30,74 50,50 Q30,26 8,50 Z"/>
+                        <path d="M92,50 Q70,26 50,50 Q70,74 92,50 Z"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Sacred Ceremony Space</span></div>
+        </div>
+        <div class="gallery-item">
+            <div class="gallery-placeholder g2"></div>
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Healing Gardens</span></div>
+        </div>
+        <div class="gallery-item">
+            <div class="gallery-placeholder g3"></div>
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Private Suites</span></div>
+        </div>
+        <div class="gallery-item">
+            <div class="gallery-placeholder g4"></div>
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Sound Temple</span></div>
+        </div>
+        <div class="gallery-item">
+            <div class="gallery-placeholder g5"></div>
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Sacred Dining</span></div>
+        </div>
+        <div class="gallery-item">
+            <div class="gallery-placeholder g6"></div>
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Meditation Pools</span></div>
+        </div>
+        <div class="gallery-item">
+            <div class="gallery-placeholder g7"></div>
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Jungle Canopy</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+    <div class="container-narrow">
+        <div class="section-header fade-in">
+            <span class="section-label">Questions</span>
+            <h2>Frequently Asked</h2>
+            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
+        </div>
+        <div class="faq-list fade-in">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Who are Paititi Retreats for?</h4>
+                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-answer"><p>Our retreats are crafted for women who are ready for a deep and sacred transformation — whether you are new to the spiritual path or a seasoned practitioner. All you need is an open heart and a genuine readiness to meet yourself fully.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Where are the retreats held?</h4>
+                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-answer"><p>Our retreats take place in carefully selected luxury sanctuary spaces — from lush jungle settings to serene mountain escapes. All locations are shared upon application to ensure the right fit for each group.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>What does the investment include?</h4>
+                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-answer"><p>Your investment includes all luxury accommodation, all plant-based meals and ceremonial teas, all guided ceremonies and healing sessions, your pre-retreat preparation materials, and 30 days of post-retreat integration support. International flights are not included.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>How do I know if this retreat is right for me?</h4>
+                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-answer"><p>We offer a complimentary sacred discovery call for all prospective guests. This is a beautiful space for us to connect, understand your intentions, answer questions, and discern together whether this retreat is your next step. There is no pressure — only genuine care for your highest good.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Are payment plans available?</h4>
+                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-answer"><p>Yes. We believe a genuine calling should never be limited by financial constraint alone. We offer flexible, interest-free payment plans for all retreat programmes. Please mention this during your discovery call and we will create something that works beautifully for you.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>What is your cancellation policy?</h4>
+                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-answer"><p>Deposits are non-refundable and secure your place. Full payments made more than 60 days in advance are 75% refundable. Within 60 days we offer a credit to a future retreat. In cases of genuine emergency, each situation is handled with compassion and care.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container">
+        <div class="contact-wrapper">
+            <div class="contact-info fade-in">
+                <span class="section-label">Reach Us</span>
+                <h2>Begin Your Sacred Journey</h2>
+                <div class="divider" style="justify-content:flex-start;margin:1.5rem 0;">
+                    <div class="divider-line" style="width:50px;"></div>
+                    <div class="divider-diamond"></div>
+                </div>
+                <p>Whether you are ready to book, have questions, or simply feel the calling — we would love to hear from you. Every conversation begins with a listening heart.</p>
+                <div class="contact-details">
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div class="contact-detail-text">
+                            <span>Email</span>
+                            <a href="mailto:hello@paititiretreats.com">hello@paititiretreats.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div class="contact-detail-text">
+                            <span>Location</span>
+                            <p style="margin:0;">Sacred Retreats Worldwide<br>Details shared on application</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        </div>
+                        <div class="contact-detail-text">
+                            <span>Discovery Calls</span>
+                            <p style="margin:0;">Available by appointment<br>Mon – Fri, 9am – 5pm GMT</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form fade-in delay-2">
+                <h3 style="margin-bottom:0.5rem;">Reserve Your Place</h3>
+                <p style="margin-bottom:2rem;font-size:0.85rem;color:var(--brown-subtle);">Complete the form below and we will be in touch within 48 hours to schedule your complimentary discovery call.</p>
+                <form id="enquiryForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-input" placeholder="Your first name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-input" placeholder="Your last name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Which Retreat Calls to You?</label>
+                        <select class="form-select">
+                            <option value="" disabled selected>Select a retreat</option>
+                            <option>The Lotus Awakening — 7 Days</option>
+                            <option>The Golden Temple — 5 Days</option>
+                            <option>The Celestial Immersion — 10 Days</option>
+                            <option>Not sure yet — I would love guidance</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tell Us About Your Journey</label>
+                        <textarea class="form-textarea" placeholder="What brings you to Paititi? What are you seeking?"></textarea>
+                    </div>
+                    <button type="submit" class="form-submit" id="submitBtn">Send My Enquiry</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="#hero" class="nav-logo">Paititi Retreats</a>
+                <p>Sacred luxury retreat experiences for women ready to meet their highest selves.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Email">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Retreats</h5>
+                <ul class="footer-links">
+                    <li><a href="#experience">The Lotus Awakening</a></li>
+                    <li><a href="#experience">The Golden Temple</a></li>
+                    <li><a href="#experience">The Celestial Immersion</a></li>
+                    <li><a href="#contact">Private Retreats</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Explore</h5>
+                <ul class="footer-links">
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#practices">Sacred Practices</a></li>
+                    <li><a href="#testimonials">Sacred Stories</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Connect</h5>
+                <ul class="footer-links">
+                    <li><a href="#contact">Book a Discovery Call</a></li>
+                    <li><a href="#contact">Send an Enquiry</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                    <li><a href="#">Affiliate Programme</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="divider" style="margin:0 0 2rem;">
+            <div class="divider-line" style="flex:1;background:linear-gradient(90deg,transparent,var(--gold-light));"></div>
+            <div class="divider-diamond"></div>
+            <svg viewBox="0 0 40 40" width="28" style="opacity:0.25;">
+                <g fill="none" stroke="#C58A2A" stroke-width="1">
+                    <circle cx="20" cy="20" r="17"/>
+                    <path d="M20,5 Q29,13 20,20 Q11,13 20,5 Z"/>
+                    <path d="M20,35 Q29,27 20,20 Q11,27 20,35 Z"/>
+                    <path d="M5,20 Q13,29 20,20 Q13,11 5,20 Z"/>
+                    <path d="M35,20 Q27,11 20,20 Q27,29 35,20 Z"/>
+                </g>
+            </svg>
+            <div class="divider-diamond"></div>
+            <div class="divider-line" style="flex:1;background:linear-gradient(90deg,var(--gold-light),transparent);"></div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Paititi Retreats. All rights reserved. Crafted with sacred intention.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Nav scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.querySelector('.faq-question').addEventListener('click', () => {
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+
+    // Form submit
+    document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.textContent = 'Thank You — We Will Be In Touch';
+        btn.style.background = 'var(--gold)';
+        btn.disabled = true;
+    });
+</script>
+</body>
+</html>
