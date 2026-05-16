@@ -140,7 +140,11 @@
             color: var(--gold);
             text-decoration: none;
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
         }
+        .nav-logo img { height: 48px; width: auto; display: block; transition: var(--transition); }
+        nav.scrolled .nav-logo img { height: 38px; }
         .nav-links { display: flex; list-style: none; gap: 2.5rem; }
         .nav-links a {
             font-size: 0.68rem;
@@ -195,20 +199,30 @@
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: min(680px, 90vw);
-            height: min(680px, 90vw);
-            opacity: 0.065;
-            animation: slowRotate 120s linear infinite;
+            width: min(960px, 115vw);
+            height: min(960px, 115vw);
+            opacity: 0.28;
+            animation: slowRotate 90s linear infinite, mandalaPulse 8s ease-in-out infinite;
         }
         @keyframes slowRotate {
             from { transform: translate(-50%,-50%) rotate(0deg); }
             to   { transform: translate(-50%,-50%) rotate(360deg); }
         }
+        @keyframes mandalaPulse {
+            0%,100% { opacity: 0.22; }
+            50%      { opacity: 0.38; }
+        }
         .hero-content { position: relative; z-index: 2; max-width: 860px; padding: 2rem; }
-        .hero-label { font-size: 0.62rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--brown-subtle); margin-bottom: 1.5rem; display: block; }
-        .hero-title { font-weight: 300; color: var(--gold); text-transform: uppercase; line-height: 1.0; margin-bottom: 0.75rem; }
-        .hero-subtitle { font-family: var(--font-heading); font-size: clamp(1.1rem,2.5vw,1.8rem); font-weight: 300; font-style: italic; color: var(--lavender); letter-spacing: 0.06em; margin-bottom: 1.5rem; }
-        .hero-description { font-size: 1rem; color: var(--brown-subtle); max-width: 540px; margin: 0 auto 3rem; line-height: 1.9; }
+        .hero-label { font-size: 0.62rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--brown-subtle); margin-bottom: 1.5rem; display: block; animation: heroReveal 1s ease 0.2s both; }
+        .hero-title { font-weight: 300; color: var(--gold); text-transform: uppercase; line-height: 1.0; margin-bottom: 0.75rem; animation: heroReveal 1.2s ease 0.5s both; }
+        .hero-subtitle { font-family: var(--font-heading); font-size: clamp(1.1rem,2.5vw,1.8rem); font-weight: 300; font-style: italic; color: var(--lavender); letter-spacing: 0.06em; margin-bottom: 1.5rem; animation: heroReveal 1s ease 0.85s both; }
+        #hero .divider { animation: heroReveal 1s ease 1.0s both; }
+        .hero-description { font-size: 1rem; color: var(--brown-subtle); max-width: 540px; margin: 0 auto 3rem; line-height: 1.9; animation: heroReveal 1s ease 1.15s both; }
+        .hero-buttons { animation: heroReveal 1s ease 1.4s both; }
+        @keyframes heroReveal {
+            from { opacity: 0; transform: translateY(36px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
         .hero-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
         .hero-scroll {
             position: absolute;
@@ -245,7 +259,7 @@
             border-radius: 4px;
             display: flex; align-items: center; justify-content: center;
         }
-        .about-image-border {
+.about-image-border {
             position: absolute;
             top: 1.5rem; left: 1.5rem; right: -1.5rem; bottom: -1.5rem;
             border: 1px solid var(--gold-light);
@@ -272,8 +286,10 @@
         .experience-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
         .experience-card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-soft); transition: var(--transition); }
         .experience-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(197,138,42,0.12); }
-        .card-image { height: 230px; position: relative; overflow: hidden; }
+        .card-image { height: 300px; position: relative; overflow: hidden; }
         .card-image-placeholder { width: 100%; height: 100%; }
+        .card-image img { width: 100%; height: 100%; object-fit: cover; object-position: center center; transition: transform 0.6s ease; }
+        .experience-card:hover .card-image img { transform: scale(1.04); }
         .card-image-placeholder.lotus    { background: linear-gradient(135deg, #DCCEE5 0%, #B9A1C9 60%, rgba(197,138,42,0.15) 100%); }
         .card-image-placeholder.jungle   { background: linear-gradient(135deg, rgba(197,138,42,0.12) 0%, #E7C98F 60%, #DCCEE5 100%); }
         .card-image-placeholder.celestial{ background: linear-gradient(135deg, #E8B7BE 0%, #DCCEE5 60%, #B9A1C9 100%); }
@@ -303,6 +319,60 @@
         .practice-icon svg { width: 26px; height: 26px; }
         .practice-item h4 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 400; color: var(--brown); margin-bottom: 0.5rem; letter-spacing: 0.04em; }
         .practice-item p { font-size: 0.875rem; color: var(--brown-subtle); line-height: 1.75; }
+
+        /* Guides */
+        #guides { background: var(--ivory); }
+        .guides-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2.5rem; margin-top: 4rem; }
+        .guide-card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-soft); transition: var(--transition); }
+        .guide-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(197,138,42,0.12); }
+        .guide-avatar { height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .guide-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; transition: transform 0.6s ease; }
+        .guide-avatar.serina img { object-position: center 22%; }
+        .guide-avatar.daniel img { object-position: center 28%; }
+        .guide-avatar.ibu img { object-position: center 8%; }
+        .guide-card:hover .guide-avatar img { transform: scale(1.04); }
+        .guide-avatar.serina { background: linear-gradient(135deg, #DCCEE5 0%, #B9A1C9 60%, rgba(197,138,42,0.15) 100%); }
+        .guide-avatar.daniel { background: linear-gradient(135deg, rgba(197,138,42,0.12) 0%, #E7C98F 60%, #DCCEE5 100%); }
+        .guide-avatar.ibu    { background: linear-gradient(135deg, #E8B7BE 0%, #DCCEE5 60%, #B9A1C9 100%); }
+        .guide-body { padding: 2rem; }
+        .guide-body .section-label { display: block; margin-bottom: 0.5rem; }
+        .guide-body h3 { font-size: 1.45rem; margin-bottom: 1rem; }
+        .guide-body > p { font-size: 0.875rem; color: var(--brown-subtle); line-height: 1.8; margin-bottom: 1.5rem; }
+        .guide-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; padding-top: 1.25rem; border-top: 1px solid var(--lavender-light); }
+        .guide-tag { font-size: 0.58rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--lavender); background: var(--lavender-light); padding: 0.3rem 0.8rem; border-radius: 50px; }
+
+        /* Accommodation */
+        #accommodation { background: var(--ivory); }
+        .accommodation-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 4rem; }
+        .accommodation-card { position: relative; border-radius: 8px; overflow: hidden; height: 400px; cursor: pointer; }
+        .accommodation-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .accommodation-card:hover img { transform: scale(1.04); }
+        .accommodation-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(94,75,75,0.85) 0%, rgba(94,75,75,0.15) 55%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; }
+        .accommodation-overlay .section-label { color: var(--gold-light); margin-bottom: 0.5rem; display: block; }
+        .accommodation-overlay h3 { color: var(--white); font-size: 1.5rem; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+        .accommodation-overlay p { color: rgba(247,243,238,0.85); font-size: 0.82rem; line-height: 1.7; }
+        .accommodation-card::after { content: 'View Gallery'; position:absolute; top:1.2rem; right:1.2rem; font-family:var(--font-body); font-size:0.58rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--white); background:rgba(20,15,15,0.45); backdrop-filter:blur(6px); padding:0.4rem 1rem; border-radius:50px; border:1px solid rgba(255,255,255,0.25); opacity:0; transition:opacity 0.3s; }
+        .accommodation-card:hover::after { opacity:1; }
+
+        /* Lightbox */
+        .lightbox { display:none; position:fixed; inset:0; z-index:2000; background:rgba(15,10,10,0.96); flex-direction:column; align-items:center; justify-content:center; }
+        .lightbox.active { display:flex; }
+        .lightbox-close { position:absolute; top:1.5rem; right:2rem; background:none; border:none; color:rgba(255,255,255,0.6); font-size:2.8rem; line-height:1; cursor:pointer; transition:color 0.3s; z-index:10; padding:0; }
+        .lightbox-close:hover { color:var(--gold-light); }
+        .lightbox-nav { position:absolute; top:50%; transform:translateY(-50%); background:none; border:1px solid rgba(255,255,255,0.18); color:rgba(255,255,255,0.65); font-size:2rem; width:52px; height:52px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s; z-index:10; }
+        .lightbox-nav:hover { border-color:var(--gold-light); color:var(--gold-light); }
+        .lightbox-prev { left:1.5rem; }
+        .lightbox-next { right:1.5rem; }
+        .lightbox-img-wrap { display:flex; align-items:center; justify-content:center; max-width:88vw; max-height:68vh; }
+        .lightbox-img-wrap img { max-width:88vw; max-height:68vh; object-fit:contain; border-radius:4px; }
+        .lightbox-caption { display:flex; justify-content:space-between; align-items:center; width:88vw; margin-top:0.9rem; }
+        .lightbox-caption-title { font-family:var(--font-heading); font-size:1rem; color:var(--gold-light); letter-spacing:0.1em; }
+        .lightbox-caption-counter { font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(247,243,238,0.45); }
+        .lightbox-thumbs { display:flex; gap:0.4rem; margin-top:1.2rem; overflow-x:auto; max-width:88vw; padding:0.4rem 0; scrollbar-width:none; }
+        .lightbox-thumbs::-webkit-scrollbar { display:none; }
+        .lightbox-thumb { width:56px; height:56px; object-fit:cover; border-radius:4px; cursor:pointer; opacity:0.4; border:2px solid transparent; transition:all 0.25s; flex-shrink:0; }
+        .lightbox-thumb.active { opacity:1; border-color:var(--gold); }
+        .lightbox-thumb:hover { opacity:0.75; }
 
         /* Journey */
         #journey {
@@ -434,6 +504,7 @@
             .about-grid { grid-template-columns:1fr; gap:4rem; }
             .about-image-frame img, .about-image-placeholder { height:420px; }
             .experience-grid { grid-template-columns:repeat(2,1fr); }
+            .guides-grid { grid-template-columns:repeat(2,1fr); }
             .footer-inner { grid-template-columns:1fr 1fr; gap:3rem; }
             .journey-steps { grid-template-columns:repeat(2,1fr); }
             .journey-steps::before { display:none; }
@@ -442,7 +513,7 @@
             section { padding:5rem 0; }
             .nav-links, .nav-cta { display:none; }
             .nav-mobile-toggle { display:flex; }
-            .experience-grid, .testimonials-grid, .practices-grid { grid-template-columns:1fr; }
+            .experience-grid, .testimonials-grid, .practices-grid, .guides-grid, .accommodation-grid { grid-template-columns:1fr; }
             .gallery-grid { grid-template-columns:repeat(2,1fr); }
             .gallery-item:nth-child(1) { grid-column:span 2; }
             .contact-wrapper { grid-template-columns:1fr; gap:3rem; }
@@ -457,62 +528,113 @@
             .gallery-item:nth-child(1) { grid-column:span 1; }
             .about-stats { grid-template-columns:repeat(3,1fr); }
         }
+        /* PROGRAM */
+        #program { padding: 6rem 0; background: linear-gradient(180deg, var(--ivory) 0%, #ede8f3 100%); }
+        .program-intro-note { max-width: 720px; margin: 0 auto 1rem; text-align: center; font-size: 0.85rem; color: var(--brown-subtle); font-style: italic; line-height: 1.8; }
+        .program-timeline { max-width: 880px; margin: 3.5rem auto 0; }
+        .program-day { display: grid; grid-template-columns: 80px 1fr; gap: 2.5rem; padding: 2.5rem 0; border-bottom: 1px solid var(--gold-light); align-items: start; }
+        .program-day:last-child { border-bottom: none; }
+        .program-day-marker { text-align: center; padding-top: 0.2rem; }
+        .program-day-num { display: block; font-family: var(--font-heading); font-size: 3.6rem; font-weight: 300; color: var(--gold); line-height: 1; }
+        .program-day-label { font-size: 0.55rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--brown-subtle); }
+        .program-day-title { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 400; color: var(--brown); margin-bottom: 0.65rem; }
+        .program-day-desc { font-size: 0.875rem; color: var(--brown-subtle); line-height: 1.85; margin-bottom: 1rem; }
+        .program-highlights { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem 0.55rem; }
+        .program-highlights li { font-size: 0.7rem; letter-spacing: 0.05em; color: var(--brown); padding: 0.28rem 0.85rem; border: 1px solid var(--gold-light); background: rgba(197,138,42,0.05); }
+        .program-disclaimer { max-width: 880px; margin: 4rem auto 0; padding: 2rem 2.5rem; border: 1px solid var(--gold-light); background: rgba(197,138,42,0.03); font-size: 0.8rem; color: var(--brown-subtle); line-height: 1.9; }
+        .program-disclaimer h4 { font-family: var(--font-heading); font-size: 1rem; font-weight: 400; color: var(--brown); margin-bottom: 1rem; letter-spacing: 0.06em; }
+        .program-disclaimer ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+        .program-disclaimer li::before { content: "·"; margin-right: 0.6rem; color: var(--gold); }
+        @media (max-width: 600px) {
+            .program-day { grid-template-columns: 58px 1fr; gap: 1.25rem; }
+            .program-day-num { font-size: 2.5rem; }
+            .program-day-title { font-size: 1.15rem; }
+        }
     </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="navbar">
-    <a href="#hero" class="nav-logo">Paititi</a>
+    <a href="#hero" class="nav-logo">
+        <img src="brand_assets/Paititi-Logo.jpeg" alt="Paititi Retreats">
+    </a>
     <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#experience">Retreats</a></li>
+        <li><a href="#experience">The Retreat</a></li>
+        <li><a href="#guides">Guides</a></li>
         <li><a href="#practices">Practices</a></li>
-        <li><a href="#testimonials">Stories</a></li>
+        <li><a href="#accommodation">Sanctuary</a></li>
+        <li><a href="#program">Program</a></li>
         <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Book a Retreat</a>
+    <a href="#contact" class="nav-cta">Reserve Your Place</a>
     <div class="nav-mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
     <svg class="hero-mandala" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-        <g fill="none" stroke="#C58A2A" stroke-width="0.6">
-            <circle cx="250" cy="250" r="238"/><circle cx="250" cy="250" r="198"/>
-            <circle cx="250" cy="250" r="158"/><circle cx="250" cy="250" r="118"/>
-            <circle cx="250" cy="250" r="78"/><circle cx="250" cy="250" r="38"/>
-            <line x1="250" y1="12" x2="250" y2="488"/>
-            <line x1="12" y1="250" x2="488" y2="250"/>
-            <line x1="82" y1="82" x2="418" y2="418"/>
-            <line x1="418" y1="82" x2="82" y2="418"/>
-            <line x1="165" y1="22" x2="335" y2="478"/>
-            <line x1="335" y1="22" x2="165" y2="478"/>
-            <line x1="22" y1="165" x2="478" y2="335"/>
-            <line x1="22" y1="335" x2="478" y2="165"/>
-            <path d="M250,132 Q308,190 250,250 Q192,190 250,132 Z"/>
-            <path d="M250,368 Q308,310 250,250 Q192,310 250,368 Z"/>
-            <path d="M132,250 Q190,308 250,250 Q190,192 132,250 Z"/>
-            <path d="M368,250 Q310,192 250,250 Q310,308 368,250 Z"/>
-            <path d="M250,52 Q328,130 250,172 Q172,130 250,52 Z"/>
-            <path d="M250,448 Q328,370 250,328 Q172,370 250,448 Z"/>
-            <path d="M52,250 Q130,328 172,250 Q130,172 52,250 Z"/>
-            <path d="M448,250 Q370,172 328,250 Q370,328 448,250 Z"/>
-            <path d="M110,110 Q188,150 190,190 Q150,192 110,110 Z"/>
-            <path d="M390,110 Q350,188 310,190 Q312,150 390,110 Z"/>
-            <path d="M110,390 Q150,312 190,310 Q188,350 110,390 Z"/>
-            <path d="M390,390 Q312,350 310,310 Q350,312 390,390 Z"/>
-            <polygon points="250,162 308,212 308,288 250,338 192,288 192,212"/>
-            <polygon points="250,338 192,288 192,212 250,162 308,212 308,288" transform="rotate(30,250,250)"/>
-            <circle cx="250" cy="250" r="7" fill="#C58A2A" opacity="0.25"/>
-            <circle cx="250" cy="250" r="3" fill="#C58A2A" opacity="0.55"/>
+        <g fill="none" stroke="#C58A2A" stroke-width="0.55">
+            <!-- Metatron's Cube — 78 connecting lines between all 13 circle centres -->
+            <!-- From C(250,250) -->
+            <line x1="250" y1="250" x2="325" y2="250"/><line x1="250" y1="250" x2="288" y2="315"/><line x1="250" y1="250" x2="213" y2="315"/>
+            <line x1="250" y1="250" x2="175" y2="250"/><line x1="250" y1="250" x2="213" y2="185"/><line x1="250" y1="250" x2="288" y2="185"/>
+            <line x1="250" y1="250" x2="400" y2="250"/><line x1="250" y1="250" x2="325" y2="380"/><line x1="250" y1="250" x2="175" y2="380"/>
+            <line x1="250" y1="250" x2="100" y2="250"/><line x1="250" y1="250" x2="175" y2="120"/><line x1="250" y1="250" x2="325" y2="120"/>
+            <!-- From I1(325,250) -->
+            <line x1="325" y1="250" x2="288" y2="315"/><line x1="325" y1="250" x2="213" y2="315"/><line x1="325" y1="250" x2="175" y2="250"/>
+            <line x1="325" y1="250" x2="213" y2="185"/><line x1="325" y1="250" x2="288" y2="185"/><line x1="325" y1="250" x2="400" y2="250"/>
+            <line x1="325" y1="250" x2="325" y2="380"/><line x1="325" y1="250" x2="175" y2="380"/><line x1="325" y1="250" x2="100" y2="250"/>
+            <line x1="325" y1="250" x2="175" y2="120"/><line x1="325" y1="250" x2="325" y2="120"/>
+            <!-- From I2(288,315) -->
+            <line x1="288" y1="315" x2="213" y2="315"/><line x1="288" y1="315" x2="175" y2="250"/><line x1="288" y1="315" x2="213" y2="185"/>
+            <line x1="288" y1="315" x2="288" y2="185"/><line x1="288" y1="315" x2="400" y2="250"/><line x1="288" y1="315" x2="325" y2="380"/>
+            <line x1="288" y1="315" x2="175" y2="380"/><line x1="288" y1="315" x2="100" y2="250"/><line x1="288" y1="315" x2="175" y2="120"/>
+            <line x1="288" y1="315" x2="325" y2="120"/>
+            <!-- From I3(213,315) -->
+            <line x1="213" y1="315" x2="175" y2="250"/><line x1="213" y1="315" x2="213" y2="185"/><line x1="213" y1="315" x2="288" y2="185"/>
+            <line x1="213" y1="315" x2="400" y2="250"/><line x1="213" y1="315" x2="325" y2="380"/><line x1="213" y1="315" x2="175" y2="380"/>
+            <line x1="213" y1="315" x2="100" y2="250"/><line x1="213" y1="315" x2="175" y2="120"/><line x1="213" y1="315" x2="325" y2="120"/>
+            <!-- From I4(175,250) -->
+            <line x1="175" y1="250" x2="213" y2="185"/><line x1="175" y1="250" x2="288" y2="185"/><line x1="175" y1="250" x2="400" y2="250"/>
+            <line x1="175" y1="250" x2="325" y2="380"/><line x1="175" y1="250" x2="175" y2="380"/><line x1="175" y1="250" x2="100" y2="250"/>
+            <line x1="175" y1="250" x2="175" y2="120"/><line x1="175" y1="250" x2="325" y2="120"/>
+            <!-- From I5(213,185) -->
+            <line x1="213" y1="185" x2="288" y2="185"/><line x1="213" y1="185" x2="400" y2="250"/><line x1="213" y1="185" x2="325" y2="380"/>
+            <line x1="213" y1="185" x2="175" y2="380"/><line x1="213" y1="185" x2="100" y2="250"/><line x1="213" y1="185" x2="175" y2="120"/>
+            <line x1="213" y1="185" x2="325" y2="120"/>
+            <!-- From I6(288,185) -->
+            <line x1="288" y1="185" x2="400" y2="250"/><line x1="288" y1="185" x2="325" y2="380"/><line x1="288" y1="185" x2="175" y2="380"/>
+            <line x1="288" y1="185" x2="100" y2="250"/><line x1="288" y1="185" x2="175" y2="120"/><line x1="288" y1="185" x2="325" y2="120"/>
+            <!-- From O1(400,250) -->
+            <line x1="400" y1="250" x2="325" y2="380"/><line x1="400" y1="250" x2="175" y2="380"/><line x1="400" y1="250" x2="100" y2="250"/>
+            <line x1="400" y1="250" x2="175" y2="120"/><line x1="400" y1="250" x2="325" y2="120"/>
+            <!-- From O2(325,380) -->
+            <line x1="325" y1="380" x2="175" y2="380"/><line x1="325" y1="380" x2="100" y2="250"/><line x1="325" y1="380" x2="175" y2="120"/>
+            <line x1="325" y1="380" x2="325" y2="120"/>
+            <!-- From O3(175,380) -->
+            <line x1="175" y1="380" x2="100" y2="250"/><line x1="175" y1="380" x2="175" y2="120"/><line x1="175" y1="380" x2="325" y2="120"/>
+            <!-- From O4(100,250) -->
+            <line x1="100" y1="250" x2="175" y2="120"/><line x1="100" y1="250" x2="325" y2="120"/>
+            <!-- O5–O6 -->
+            <line x1="175" y1="120" x2="325" y2="120"/>
+            <!-- 13 Circles of the Fruit of Life -->
+            <circle cx="250" cy="250" r="75"/>
+            <circle cx="325" cy="250" r="75"/><circle cx="288" cy="315" r="75"/><circle cx="213" cy="315" r="75"/>
+            <circle cx="175" cy="250" r="75"/><circle cx="213" cy="185" r="75"/><circle cx="288" cy="185" r="75"/>
+            <circle cx="400" cy="250" r="75"/><circle cx="325" cy="380" r="75"/><circle cx="175" cy="380" r="75"/>
+            <circle cx="100" cy="250" r="75"/><circle cx="175" cy="120" r="75"/><circle cx="325" cy="120" r="75"/>
+            <!-- Centre accent -->
+            <circle cx="250" cy="250" r="6" fill="#C58A2A" opacity="0.3"/>
+            <circle cx="250" cy="250" r="2.5" fill="#C58A2A" opacity="0.6"/>
         </g>
     </svg>
 
     <div class="hero-content">
         <span class="hero-label">Sacred Luxury Wellness</span>
         <h1 class="hero-title">Paititi<br>Retreats</h1>
-        <p class="hero-subtitle">Where the Sacred Meets the Self</p>
+        <p class="hero-subtitle">Awaken &middot; Connect &middot; Remember</p>
         <div class="divider">
             <div class="divider-line"></div>
             <div class="divider-diamond"></div>
@@ -520,10 +642,10 @@
             <div class="divider-diamond"></div>
             <div class="divider-line right"></div>
         </div>
-        <p class="hero-description">Journey into transformational luxury retreat experiences designed to awaken your highest self — held within sacred spaces where ancient wisdom and divine femininity meet.</p>
+        <p class="hero-description">An 8-day sacred journey in Ubud, Bali — where ancestral Inka wisdom and ancient Balinese spiritual traditions unite for the very first time. 12–19 July 2026.</p>
         <div class="hero-buttons">
-            <a href="#contact" class="btn-primary">Begin Your Journey</a>
-            <a href="#experience" class="btn-secondary">Explore Retreats</a>
+            <a href="#contact" class="btn-primary">Reserve Your Place</a>
+            <a href="#experience" class="btn-secondary">Explore the Retreat</a>
         </div>
     </div>
 
@@ -534,56 +656,58 @@
     <div class="hero-bottom-fade"></div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
+<!-- RETREAT EXPERIENCE -->
+<section id="experience">
     <div class="container">
-        <div class="about-grid">
-            <div class="about-image-wrapper fade-in">
-                <div class="about-image-frame">
-                    <img
-                        src="brand_assets/paititi_retreats_no_gender_symbols.jpg"
-                        alt="Paititi Retreats"
-                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                    <div class="about-image-placeholder" style="display:none">
-                        <svg viewBox="0 0 160 160" width="90" xmlns="http://www.w3.org/2000/svg">
-                            <g fill="none" stroke="rgba(197,138,42,0.35)" stroke-width="1.2">
-                                <circle cx="80" cy="80" r="74"/><circle cx="80" cy="80" r="50"/>
-                                <path d="M80,30 Q110,55 80,80 Q50,55 80,30 Z"/>
-                                <path d="M80,130 Q110,105 80,80 Q50,105 80,130 Z"/>
-                                <path d="M30,80 Q55,110 80,80 Q55,50 30,80 Z"/>
-                                <path d="M130,80 Q105,50 80,80 Q105,110 130,80 Z"/>
-                                <circle cx="80" cy="80" r="10"/>
-                                <circle cx="80" cy="80" r="4" fill="rgba(197,138,42,0.4)"/>
-                            </g>
-                        </svg>
+        <div class="section-header fade-in">
+            <span class="section-label">July 2026 &middot; Ubud, Bali</span>
+            <h2>The Retreat Experience</h2>
+            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
+            <p>An 8-day, 7-night sacred journey — the first retreat to weave ancestral Inka wisdom and ancient Balinese spiritual traditions into one living ceremonial experience. Three signature moments among many.</p>
+        </div>
+        <div class="experience-grid">
+            <div class="experience-card fade-in delay-1">
+                <div class="card-image">
+                    <img src="photos_videos_Paititi%20Retreat_Antares/Sacred%20Cacao%20Journey.webp" alt="Sacred Cacao Journey">
+                    <span class="card-tag">Signature</span>
+                </div>
+                <div class="card-body">
+                    <h3>Sacred Cacao Journey</h3>
+                    <p>From an organic cacao plantation in Tabanan to a fireside roasting ritual and an original Inka Cacao Ceremony — a profound heart-opening journey guided by Daniel into the spirit of cacao.</p>
+                    <div class="card-details">
+                        <div class="card-detail"><span class="card-detail-label">Days</span><span class="card-detail-value">2 &amp; 3</span></div>
+                        <div class="card-detail"><span class="card-detail-label">Focus</span><span class="card-detail-value">Heart Opening</span></div>
+                        <div class="card-detail"><span class="card-detail-label">Tradition</span><span class="card-detail-value">Inka</span></div>
                     </div>
                 </div>
-                <div class="about-image-border"></div>
             </div>
-
-            <div class="about-text fade-in delay-2">
-                <span class="section-label">Our Story</span>
-                <h2>A Temple of<br><em>Sacred Transformation</em></h2>
-                <div class="divider" style="justify-content:flex-start;margin:1.5rem 0;">
-                    <div class="divider-line" style="width:50px;"></div>
-                    <div class="divider-diamond"></div>
+            <div class="experience-card fade-in delay-2">
+                <div class="card-image">
+                    <img src="photos_videos_Paititi%20Retreat_Antares/Sacred-Water%20Ceremonies.jpg" alt="Sacred Water Ceremonies">
+                    <span class="card-tag">Ancient</span>
                 </div>
-                <p>Paititi Retreats was born from a deep calling — to create sanctuaries where the soul can rest, expand, and remember its true nature. Inspired by the mythical golden city of Paititi, we craft retreat experiences as rare and precious as the legend itself.</p>
-                <p>We believe every woman carries within her an innate wisdom — an ancient, luminous knowing that deepens with stillness. Our retreats honour that sacred space within you.</p>
-                <p>From ceremonial practices rooted in ancestral traditions to luxurious healing modalities, each experience gently guides you back to yourself.</p>
-                <a href="#experience" class="btn-secondary" style="margin-top:1rem;">Discover Our Retreats</a>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">200+</span>
-                        <span class="stat-label">Lives Transformed</span>
+                <div class="card-body">
+                    <h3>Sacred Water Ceremonies</h3>
+                    <p>Journey before sunrise to Tirta Empul for a Balinese purification ritual (Melukat), and later to the hidden Tirta Taman Pechampuhan water temple for a deeply transformative rebirth ceremony guided by Ibu Jero Baba.</p>
+                    <div class="card-details">
+                        <div class="card-detail"><span class="card-detail-label">Days</span><span class="card-detail-value">2 &amp; 5</span></div>
+                        <div class="card-detail"><span class="card-detail-label">Focus</span><span class="card-detail-value">Purification</span></div>
+                        <div class="card-detail"><span class="card-detail-label">Tradition</span><span class="card-detail-value">Balinese</span></div>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">12</span>
-                        <span class="stat-label">Sacred Programs</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">8</span>
-                        <span class="stat-label">Years of Practice</span>
+                </div>
+            </div>
+            <div class="experience-card fade-in delay-3">
+                <div class="card-image">
+                    <img src="photos_videos_Paititi%20Retreat_Antares/Self-Love%20Marriage%20Ceremony.jpeg" alt="Self-Love Marriage Ceremony" style="object-position: 65% 20%;">
+                    <span class="card-tag">Exclusive</span>
+                </div>
+                <div class="card-body">
+                    <h3>Self-Love Marriage Ceremony</h3>
+                    <p>At sunrise on a breathtaking East Bali beach, wearing a silver ring crafted by your own hands the day before in a traditional Ubud silver workshop, you enter a sacred ceremony of commitment to your own soul.</p>
+                    <div class="card-details">
+                        <div class="card-detail"><span class="card-detail-label">Day</span><span class="card-detail-value">6</span></div>
+                        <div class="card-detail"><span class="card-detail-label">Location</span><span class="card-detail-value">East Bali</span></div>
+                        <div class="card-detail"><span class="card-detail-label">Guides</span><span class="card-detail-value">All Three</span></div>
                     </div>
                 </div>
             </div>
@@ -591,58 +715,107 @@
     </div>
 </section>
 
-<!-- RETREAT EXPERIENCE -->
-<section id="experience">
+<!-- ACCOMMODATION -->
+<section id="accommodation">
     <div class="container">
         <div class="section-header fade-in">
-            <span class="section-label">Curated Offerings</span>
-            <h2>The Retreat Experience</h2>
+            <span class="section-label">Where You Will Stay</span>
+            <h2>The Sacred Sanctuary</h2>
             <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
-            <p>Each retreat is a carefully crafted journey — a sacred container held with the highest intention, designed to carry you from where you are to where you are meant to be.</p>
+            <p>Hidden within two hectares of sacred Balinese jungle — the Naya Veda Vastu eco-village is your home for transformation, rest, and deep reconnection.</p>
         </div>
-        <div class="experience-grid">
-            <div class="experience-card fade-in delay-1">
-                <div class="card-image">
-                    <div class="card-image-placeholder lotus"></div>
-                    <span class="card-tag">Signature</span>
+        <div class="accommodation-grid">
+            <div class="accommodation-card fade-in delay-1" data-gallery="ensuite">
+                <img src="Luxury%20ensuite%20room/ensuite-room.jpg" alt="Luxury Ensuite Rooms">
+                <div class="accommodation-overlay">
+                    <span class="section-label">Private Accommodation</span>
+                    <h3>Luxury Ensuite Rooms</h3>
+                    <p>Private ensuite rooms with bamboo architecture and luxurious amenities — a personal sanctuary to rest and integrate after each day's sacred ceremonies.</p>
                 </div>
-                <div class="card-body">
-                    <h3>The Lotus Awakening</h3>
-                    <p>A 7-day immersive journey into sacred feminine wisdom, ceremonial healing, and deep restoration in a luxury jungle sanctuary.</p>
-                    <div class="card-details">
-                        <div class="card-detail"><span class="card-detail-label">Duration</span><span class="card-detail-value">7 Days</span></div>
-                        <div class="card-detail"><span class="card-detail-label">Group Size</span><span class="card-detail-value">8 Women</span></div>
-                        <div class="card-detail"><span class="card-detail-label">From</span><span class="card-detail-value">$4,200</span></div>
+            </div>
+            <div class="accommodation-card fade-in delay-2" data-gallery="bamboo">
+                <img src="Open-bamboo-rooms/open-bamboo.jpg" alt="Open Bamboo Sky Suites">
+                <div class="accommodation-overlay">
+                    <span class="section-label">Open-Air Suites</span>
+                    <h3>Open Bamboo Sky Suites</h3>
+                    <p>Open-air bamboo sky suites immersed in the jungle canopy — falling asleep to the sounds of nature, waking to panoramic jungle views and birdsong.</p>
+                </div>
+            </div>
+            <div class="accommodation-card fade-in delay-3" data-gallery="outdoor">
+                <img src="Naya%20Veda%20Vastu%20Outdoor/sky_villa_pool.jpeg" alt="Sacred Gardens and Pool">
+                <div class="accommodation-overlay">
+                    <span class="section-label">Grounds &amp; Gardens</span>
+                    <h3>Sacred Gardens &amp; Infinity Pool</h3>
+                    <p>Organic gardens, aquaponic systems, a walking meditation maze, and a 12-metre infinity pool overlooking the lush Balinese jungle.</p>
+                </div>
+            </div>
+            <div class="accommodation-card fade-in delay-4" data-gallery="restaurant">
+                <img src="Maleika%20Restaurant/DSC07462.jpg" alt="Maleika Restaurant">
+                <div class="accommodation-overlay">
+                    <span class="section-label">Sacred Nourishment</span>
+                    <h3>Maleika Restaurant</h3>
+                    <p>Plant-based meals and ceremonial teas crafted with love and organic ingredients — nourishment for body, soul, and transformation, included in your retreat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SACRED GUIDES -->
+<section id="guides">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">Your Facilitators</span>
+            <h2>The Sacred Guides</h2>
+            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
+            <p>Three deeply experienced facilitators from Peru, Bali, and Europe — each carrying unique gifts, ancient traditions, and healing arts to weave together this profound shared journey.</p>
+        </div>
+        <div class="guides-grid">
+            <div class="guide-card fade-in delay-1">
+                <div class="guide-avatar serina">
+                    <img src="photos_videos_Paititi%20Retreat_Antares/G.%20Serina.jpeg" alt="G. Serina Neuner">
+                </div>
+                <div class="guide-body">
+                    <span class="section-label">Cosmic Guide &amp; Organiser</span>
+                    <h3>G. Serina Neuner</h3>
+                    <p>Originally from Austria and living in Bali for over 10 years, Serina is the founder of <a href="https://www.montessori-erdkinder-bali.com/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-light);">PT. Montessori Erdkinder Bali</a> — a holistic Montessori school near Ubud — and the organiser of Paititi Retreats. Her path encompasses geomancy, Sound Healing, Reiki, Cranio-Sacral Balance, and Heart Meditation. In 2026 she was spiritually initiated into the frequency of Paititi in Peru. Her vision is the awakening of the Cosmic Human — the embodiment of the divine soul within human life.</p>
+                    <div class="guide-tags">
+                        <span class="guide-tag">Meditation</span>
+                        <span class="guide-tag">Sound Healing</span>
+                        <span class="guide-tag">Ceremony</span>
+                        <span class="guide-tag">Geomancy</span>
                     </div>
                 </div>
             </div>
-            <div class="experience-card fade-in delay-2">
-                <div class="card-image">
-                    <div class="card-image-placeholder jungle"></div>
-                    <span class="card-tag">New</span>
+            <div class="guide-card fade-in delay-2">
+                <div class="guide-avatar daniel">
+                    <img src="photos_videos_Paititi%20Retreat_Antares/Daniel.jpeg" alt="Daniel Guti&#233;rrez">
                 </div>
-                <div class="card-body">
-                    <h3>The Golden Temple</h3>
-                    <p>A 5-day luxury retreat blending ancient ceremony, somatic healing, and meditative practices within a sacred mountain setting.</p>
-                    <div class="card-details">
-                        <div class="card-detail"><span class="card-detail-label">Duration</span><span class="card-detail-value">5 Days</span></div>
-                        <div class="card-detail"><span class="card-detail-label">Group Size</span><span class="card-detail-value">6 Women</span></div>
-                        <div class="card-detail"><span class="card-detail-label">From</span><span class="card-detail-value">$3,100</span></div>
+                <div class="guide-body">
+                    <span class="section-label">Inka Wisdom Keeper</span>
+                    <h3>Daniel Guti&#233;rrez</h3>
+                    <p>Daniel carries an ancestral path through three generations, rooted near the sacred Inka sanctuary of Choquequirao. Returning consciously to his path at Machu Picchu 18 years ago, he developed a heart-centred approach to shamanism that fuses Andean and Amazonian wisdom. His work is deeply connected to the spiritual wisdom of Paititi — the Golden City of Light and Consciousness.</p>
+                    <div class="guide-tags">
+                        <span class="guide-tag">Cacao Ceremony</span>
+                        <span class="guide-tag">Fire &amp; Earth Rituals</span>
+                        <span class="guide-tag">Crystal Healing</span>
+                        <span class="guide-tag">Heart Activations</span>
                     </div>
                 </div>
             </div>
-            <div class="experience-card fade-in delay-3">
-                <div class="card-image">
-                    <div class="card-image-placeholder celestial"></div>
-                    <span class="card-tag">Exclusive</span>
+            <div class="guide-card fade-in delay-3">
+                <div class="guide-avatar ibu">
+                    <img src="photos_videos_Paititi%20Retreat_Antares/Ibu%20jero%20baba.jpeg" alt="Ibu Jero Baba">
                 </div>
-                <div class="card-body">
-                    <h3>The Celestial Immersion</h3>
-                    <p>A 10-day private transformational experience offering the deepest level of healing, ceremony, and sacred practice available.</p>
-                    <div class="card-details">
-                        <div class="card-detail"><span class="card-detail-label">Duration</span><span class="card-detail-value">10 Days</span></div>
-                        <div class="card-detail"><span class="card-detail-label">Group Size</span><span class="card-detail-value">4 Women</span></div>
-                        <div class="card-detail"><span class="card-detail-label">From</span><span class="card-detail-value">$7,500</span></div>
+                <div class="guide-body">
+                    <span class="section-label">Balinese Priestess &amp; Healer</span>
+                    <h3>Ibu Jero Baba</h3>
+                    <p>Gifted with clairvoyant abilities since childhood, Ibu Jero Baba was trained by her grandfather — the internationally revered Balinese healer and priest Jero Nyoman Manku Lasye. She begins her work for participants even before the retreat opens, entering deep prayer and meditation to reconnect fragmented soul aspects. Each participant receives an individual healing massage and the sacred Otonan Ceremony with her guidance.</p>
+                    <div class="guide-tags">
+                        <span class="guide-tag">Balinese Healing</span>
+                        <span class="guide-tag">Water Ceremonies</span>
+                        <span class="guide-tag">Otonan Ceremony</span>
+                        <span class="guide-tag">Healing Massage</span>
                     </div>
                 </div>
             </div>
@@ -657,7 +830,7 @@
             <span class="section-label">What We Offer</span>
             <h2>Sacred Practices</h2>
             <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
-            <p>Ancient wisdom traditions woven with modern healing modalities, held within luxurious sacred spaces crafted for your deepest transformation.</p>
+            <p>Ancient ceremonial practices from Bali and Peru, woven together within the sacred landscape of Ubud — each element carefully chosen to support remembrance, healing, and authentic transformation.</p>
         </div>
         <div class="practices-grid">
             <div class="practice-item fade-in delay-1">
@@ -671,7 +844,7 @@
                     </svg>
                 </div>
                 <h4>Sacred Ceremony</h4>
-                <p>Ancient ceremonial practices drawn from indigenous traditions, designed to open and purify the heart.</p>
+                <p>Balinese and Inka ceremonial practices — from water purification at sacred temples to Andean Earth rituals rooted in ancestral wisdom traditions.</p>
             </div>
             <div class="practice-item fade-in delay-2">
                 <div class="practice-icon">
@@ -683,7 +856,7 @@
                     </svg>
                 </div>
                 <h4>Sound Healing</h4>
-                <p>Crystal singing bowls, Tibetan instruments, and vocal toning that attune the body to its natural vibrational state.</p>
+                <p>Crystal singing bowls, Tibetan instruments, and guided meditation journeys that attune the body to its natural vibrational state and open the heart to inner stillness.</p>
             </div>
             <div class="practice-item fade-in delay-3">
                 <div class="practice-icon">
@@ -694,8 +867,8 @@
                         <line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
                     </svg>
                 </div>
-                <h4>Meditation & Breathwork</h4>
-                <p>Guided meditation journeys and conscious breathwork to still the mind and awaken inner awareness.</p>
+                <h4>Yoga &amp; Breathwork</h4>
+                <p>Morning yoga sessions and breath awareness practices to ground the body, awaken presence, and prepare the being for deep ceremonial work each day.</p>
             </div>
             <div class="practice-item fade-in delay-1">
                 <div class="practice-icon">
@@ -703,8 +876,8 @@
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                     </svg>
                 </div>
-                <h4>Somatic Healing</h4>
-                <p>Body-centred practices and therapeutic touch that release stored tension and restore the body's innate wisdom.</p>
+                <h4>Crystal Healing</h4>
+                <p>Shamanic crystal healing practices with Daniel — designed to support emotional release, energetic cleansing, inner clarity, and the activation of the Cosmic Human.</p>
             </div>
             <div class="practice-item fade-in delay-2">
                 <div class="practice-icon">
@@ -712,8 +885,8 @@
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                     </svg>
                 </div>
-                <h4>Sacred Astrology</h4>
-                <p>Celestial readings and moon ceremonies that align your journey with the rhythms of the cosmos.</p>
+                <h4>Earth &amp; Fire Rituals</h4>
+                <p>The creation of sacred Andean Pacha Mama offerings and a Shamanic Fire Ceremony — releasing old patterns, fears, and limitations into the transforming power of fire.</p>
             </div>
             <div class="practice-item fade-in delay-3">
                 <div class="practice-icon">
@@ -721,8 +894,52 @@
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                     </svg>
                 </div>
-                <h4>Plant Medicine Integration</h4>
-                <p>Guided ceremonies with sacred plant allies, held within carefully intentional and supported containers.</p>
+                <h4>Shadow Work &amp; Integration</h4>
+                <p>Deep transformational shadow work and daily integration circles — anchoring insights, healing emotional wounds, and returning to your authentic self.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-image-wrapper fade-in">
+                <div class="about-image-frame" style="background:linear-gradient(135deg,var(--lavender-light),var(--ivory),var(--gold-light));display:flex;align-items:center;justify-content:center;">
+                    <img
+                        src="brand_assets/Paititi-Logo.jpeg"
+                        alt="Paititi Retreats"
+                        style="width:100%;height:100%;object-fit:contain;padding:2.5rem;">
+                </div>
+                <div class="about-image-border"></div>
+            </div>
+
+            <div class="about-text fade-in delay-2">
+                <span class="section-label">Our Story</span>
+                <h2>A Temple of<br><em>Sacred Transformation</em></h2>
+                <div class="divider" style="justify-content:flex-start;margin:1.5rem 0;">
+                    <div class="divider-line" style="width:50px;"></div>
+                    <div class="divider-diamond"></div>
+                </div>
+                <p>Paititi Retreats was born from a sacred calling — to build a bridge between ancient wisdom traditions and the deeper truth within each soul. Inspired by Paititi, the legendary Golden City of Light from the ancestral Inka traditions of the Andes and the Amazon, we craft retreat experiences as rare and precious as the legend itself.</p>
+                <p>For the very first time, ancestral Inka wisdom and ancient Balinese spiritual traditions come together in one unique retreat experience — a sacred fusion of worlds, cultures, and consciousness held within the lush jungle sanctuary of Ubud, Bali.</p>
+                <p>Through ceremony, shadow work, meditation, yoga, sacred cacao, crystal healing, and deep inner processes, each participant is guided step by step toward remembrance, healing, and authentic transformation.</p>
+                <a href="#experience" class="btn-secondary" style="margin-top:1rem;">Discover the Retreat</a>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">Days of Transformation</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Sacred Guides</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Ancient Traditions</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -741,71 +958,22 @@
             <div class="journey-step fade-in delay-1">
                 <div class="step-number">I</div>
                 <h4>The Calling</h4>
-                <p>You feel the pull. Something within you knows it is time. We hold a sacred discovery call to meet you where you are.</p>
+                <p>You feel the pull toward something deeper. We hold a sacred discovery call to meet you where you are and explore the retreat together.</p>
             </div>
             <div class="journey-step fade-in delay-2">
                 <div class="step-number">II</div>
                 <h4>The Preparation</h4>
-                <p>Receive your personalised pre-retreat guide — gentle practices, sacred intentions, and ceremonies to help you arrive fully open.</p>
+                <p>Receive your personalised pre-retreat guide — gentle practices, sacred intentions, and rituals to help you arrive in Ubud fully open and aligned.</p>
             </div>
             <div class="journey-step fade-in delay-3">
                 <div class="step-number">III</div>
                 <h4>The Immersion</h4>
-                <p>Step fully into the sacred container. Be held, witnessed, guided, and loved as you journey through profound transformation.</p>
+                <p>Enter the sacred container of the Jungle Eco Village. Be held by three experienced guides across 8 days of ceremony, healing, and deep transformation.</p>
             </div>
             <div class="journey-step fade-in delay-4">
                 <div class="step-number">IV</div>
                 <h4>The Integration</h4>
-                <p>Return home with a 30-day integration support programme to anchor your transformation into lasting, embodied change.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-    <div class="container">
-        <div class="section-header fade-in">
-            <span class="section-label">Sacred Stories</span>
-            <h2>What Women Say</h2>
-            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card fade-in delay-1">
-                <span class="testimonial-quote">"</span>
-                <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <p class="testimonial-text">Paititi was the most sacred and transformational experience of my life. I arrived depleted and disconnected — I returned home as the woman I always knew I was meant to be.</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar"></div>
-                    <div>
-                        <p class="author-name">Sofia M.</p>
-                        <span class="author-location">London, UK</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card fade-in delay-2">
-                <span class="testimonial-quote">"</span>
-                <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <p class="testimonial-text">The space held at Paititi is unlike anything I have experienced. Every detail — from the ceremonies to the food to the love of the guides — was exquisitely tended to.</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar" style="background:linear-gradient(135deg,#E7C98F,#B9A1C9)"></div>
-                    <div>
-                        <p class="author-name">Camille R.</p>
-                        <span class="author-location">Paris, France</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card fade-in delay-3">
-                <span class="testimonial-quote">"</span>
-                <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <p class="testimonial-text">I have attended many retreats. None come close to the depth, the care, and the magic of Paititi. I am still integrating the gifts three months later. Forever grateful.</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar" style="background:linear-gradient(135deg,#E8B7BE,rgba(197,138,42,0.3))"></div>
-                    <div>
-                        <p class="author-name">Amara T.</p>
-                        <span class="author-location">New York, USA</span>
-                    </div>
-                </div>
+                <p>Return home with a 30-day integration support programme — anchoring your transformation into lasting, embodied change in everyday life.</p>
             </div>
         </div>
     </div>
@@ -837,27 +1005,27 @@
         </div>
         <div class="gallery-item">
             <div class="gallery-placeholder g2"></div>
-            <div class="gallery-item-overlay"><span class="gallery-item-label">Healing Gardens</span></div>
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Jungle Eco Village</span></div>
         </div>
         <div class="gallery-item">
             <div class="gallery-placeholder g3"></div>
-            <div class="gallery-item-overlay"><span class="gallery-item-label">Private Suites</span></div>
+            <div class="gallery-item-overlay"><span class="gallery-item-label">SKY Villa Suites</span></div>
         </div>
         <div class="gallery-item">
             <div class="gallery-placeholder g4"></div>
-            <div class="gallery-item-overlay"><span class="gallery-item-label">Sound Temple</span></div>
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Infinity Pool</span></div>
         </div>
         <div class="gallery-item">
             <div class="gallery-placeholder g5"></div>
-            <div class="gallery-item-overlay"><span class="gallery-item-label">Sacred Dining</span></div>
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Sacred Temple Waters</span></div>
         </div>
         <div class="gallery-item">
             <div class="gallery-placeholder g6"></div>
-            <div class="gallery-item-overlay"><span class="gallery-item-label">Meditation Pools</span></div>
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Yoga Shala &amp; Sound Dome</span></div>
         </div>
         <div class="gallery-item">
             <div class="gallery-placeholder g7"></div>
-            <div class="gallery-item-overlay"><span class="gallery-item-label">Jungle Canopy</span></div>
+            <div class="gallery-item-overlay"><span class="gallery-item-label">East Bali Ceremony Beach</span></div>
         </div>
     </div>
 </section>
@@ -873,38 +1041,38 @@
         <div class="faq-list fade-in">
             <div class="faq-item">
                 <div class="faq-question">
-                    <h4>Who are Paititi Retreats for?</h4>
+                    <h4>Who is this retreat for?</h4>
                     <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
                 </div>
-                <div class="faq-answer"><p>Our retreats are crafted for women who are ready for a deep and sacred transformation — whether you are new to the spiritual path or a seasoned practitioner. All you need is an open heart and a genuine readiness to meet yourself fully.</p></div>
+                <div class="faq-answer"><p>This retreat is for souls who feel called toward authentic transformation — whether you are at the beginning of your spiritual path or have walked this journey for many years. No previous spiritual experience is needed. Only an open heart and the genuine willingness to meet yourself fully.</p></div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
-                    <h4>Where are the retreats held?</h4>
+                    <h4>Where is the retreat held?</h4>
                     <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
                 </div>
-                <div class="faq-answer"><p>Our retreats take place in carefully selected luxury sanctuary spaces — from lush jungle settings to serene mountain escapes. All locations are shared upon application to ensure the right fit for each group.</p></div>
+                <div class="faq-answer"><p>The retreat takes place at a Jungle Eco Village in Pejeng, just outside Ubud, Bali — 15 to 20 minutes from central Ubud. Participants stay in the breathtaking SKY Villa, a bamboo architectural masterpiece with a 12-metre infinity pool and panoramic jungle views. The eco-village spans two hectares and includes organic gardens, a yoga shala, a sound dome, and walking meditation paths.</p></div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
                     <h4>What does the investment include?</h4>
                     <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
                 </div>
-                <div class="faq-answer"><p>Your investment includes all luxury accommodation, all plant-based meals and ceremonial teas, all guided ceremonies and healing sessions, your pre-retreat preparation materials, and 30 days of post-retreat integration support. International flights are not included.</p></div>
+                <div class="faq-answer"><p>Your investment includes all accommodation in the SKY Villa, all plant-based meals and ceremonial teas, all guided ceremonies and healing sessions, a visit to an organic cacao plantation and chocolate factory, a traditional Balinese silver workshop, one individual healing massage with Ibu Jero Baba, the sacred Otonan Ceremony, pre-retreat preparation materials, and 30 days of post-retreat integration support. International flights are not included.</p></div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
                     <h4>How do I know if this retreat is right for me?</h4>
                     <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
                 </div>
-                <div class="faq-answer"><p>We offer a complimentary sacred discovery call for all prospective guests. This is a beautiful space for us to connect, understand your intentions, answer questions, and discern together whether this retreat is your next step. There is no pressure — only genuine care for your highest good.</p></div>
+                <div class="faq-answer"><p>We offer a complimentary sacred discovery call for all prospective participants. This is a beautiful space for us to connect, understand your intentions, answer questions, and discern together whether this retreat is your next step. There is no pressure — only genuine care for your highest good.</p></div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
                     <h4>Are payment plans available?</h4>
                     <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
                 </div>
-                <div class="faq-answer"><p>Yes. We believe a genuine calling should never be limited by financial constraint alone. We offer flexible, interest-free payment plans for all retreat programmes. Please mention this during your discovery call and we will create something that works beautifully for you.</p></div>
+                <div class="faq-answer"><p>Yes. We believe a genuine calling should never be limited by financial constraint alone. We offer flexible, interest-free payment plans. Please mention this during your discovery call and we will create something that works beautifully for you.</p></div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
@@ -936,7 +1104,7 @@
                         </div>
                         <div class="contact-detail-text">
                             <span>Email</span>
-                            <a href="mailto:hello@paititiretreats.com">hello@paititiretreats.com</a>
+                            <a href="mailto:admin@erdkinder-bali.com">admin@erdkinder-bali.com</a>
                         </div>
                     </div>
                     <div class="contact-detail">
@@ -945,7 +1113,7 @@
                         </div>
                         <div class="contact-detail-text">
                             <span>Location</span>
-                            <p style="margin:0;">Sacred Retreats Worldwide<br>Details shared on application</p>
+                            <p style="margin:0;">Jungle Eco Village, Pejeng<br>Ubud, Bali &mdash; 12&ndash;19 July 2026</p>
                         </div>
                     </div>
                     <div class="contact-detail">
@@ -954,7 +1122,7 @@
                         </div>
                         <div class="contact-detail-text">
                             <span>Discovery Calls</span>
-                            <p style="margin:0;">Available by appointment<br>Mon – Fri, 9am – 5pm GMT</p>
+                            <p style="margin:0;">Available by appointment<br>Mon &ndash; Fri, 9am &ndash; 5pm GMT</p>
                         </div>
                     </div>
                 </div>
@@ -979,13 +1147,11 @@
                         <input type="email" class="form-input" placeholder="your@email.com">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Which Retreat Calls to You?</label>
+                        <label class="form-label">Which Experience Calls to You?</label>
                         <select class="form-select">
-                            <option value="" disabled selected>Select a retreat</option>
-                            <option>The Lotus Awakening — 7 Days</option>
-                            <option>The Golden Temple — 5 Days</option>
-                            <option>The Celestial Immersion — 10 Days</option>
-                            <option>Not sure yet — I would love guidance</option>
+                            <option value="" disabled selected>Select an experience</option>
+                            <option>The Paititi Retreat &mdash; Full 8-Day Program</option>
+                            <option>I would love guidance on what is right for me</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -999,13 +1165,183 @@
     </div>
 </section>
 
+<!-- PROGRAM -->
+<section id="program">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">12–19 July 2026 · 8 Days · 7 Nights</span>
+            <h2>The Full Retreat Program</h2>
+            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
+            <p>A day-by-day journey — from arrival to farewell, each day carefully designed to guide you deeper into healing, remembrance, and authentic transformation.</p>
+        </div>
+        <p class="program-intro-note fade-in">Each participant receives one individual 1-hour healing massage with Ibu Jero Baba, included in the retreat package. Additional sessions may be available.</p>
+        <div class="program-timeline">
+
+            <div class="program-day fade-in">
+                <div class="program-day-marker">
+                    <span class="program-day-num">01</span>
+                    <span class="program-day-label">Day</span>
+                </div>
+                <div>
+                    <h3 class="program-day-title">Arrival &amp; Opening the Sacred Space</h3>
+                    <p class="program-day-desc">Your journey begins in the peaceful jungle sanctuary of Naya Veda Vastu eco-village near Ubud. After settling into the beautiful SKY Villa surrounded by lush tropical nature, the group gathers for the official opening circle — entering the sacred field through meditation, introductions, energetic alignment, and an opening transmission for the journey ahead. The evening continues with a nourishing dinner and the first healing Balinese massage by Ibu Jero Baba.</p>
+                    <ul class="program-highlights">
+                        <li>Welcome Circle &amp; Introduction</li>
+                        <li>Opening Meditation</li>
+                        <li>Energetic Alignment</li>
+                        <li>Jungle Eco Village Experience</li>
+                        <li>Healing Massage Sessions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="program-day fade-in">
+                <div class="program-day-marker">
+                    <span class="program-day-num">02</span>
+                    <span class="program-day-label">Day</span>
+                </div>
+                <div>
+                    <h3 class="program-day-title">Water Purification &amp; The Spirit of Cacao</h3>
+                    <p class="program-day-desc">Before sunrise, we journey to the sacred water temple of Tirta Empul / Tampaksiring for a powerful Balinese purification (Melukat) and blessing ceremony guided by Ibu Jero Baba — cleansing, renewal, and spiritual rebirth through sacred water. After returning for brunch and rest, the afternoon takes the group to an organic cacao plantation and chocolate factory in Tabanan, revealing the journey from bean to sacred ceremonial chocolate.</p>
+                    <ul class="program-highlights">
+                        <li>Sacred Water Purification Ceremony</li>
+                        <li>Balinese Blessings</li>
+                        <li>Visit to Organic Cacao Plantation</li>
+                        <li>Chocolate Factory Tour</li>
+                        <li>Learning about the Sacred Cacao Process</li>
+                        <li>Healing Massage Sessions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="program-day fade-in">
+                <div class="program-day-marker">
+                    <span class="program-day-num">03</span>
+                    <span class="program-day-label">Day</span>
+                </div>
+                <div>
+                    <h3 class="program-day-title">Sacred Cacao &amp; Heart Opening</h3>
+                    <p class="program-day-desc">Devoted to the spirit of cacao and the awakening of the heart. After morning yoga, meditation, and sound healing, participants enter a meditative ceremonial process with Daniel — learning how cacao beans are traditionally roasted over fire, peeled by hand, and transformed into sacred ceremonial cacao paste. In the afternoon, Daniel guides the group through an original Inka Cacao Ceremony: a profound journey of inner awakening, emotional healing, and expanded consciousness.</p>
+                    <ul class="program-highlights">
+                        <li>Morning Yoga</li>
+                        <li>Meditation &amp; Sound Healing</li>
+                        <li>Traditional Cacao Roasting Ritual</li>
+                        <li>Sacred Preparation of Ceremonial Cacao</li>
+                        <li>Inka Cacao Ceremony with Daniel</li>
+                        <li>Heart Opening &amp; Reflection</li>
+                        <li>Healing Massage Sessions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="program-day fade-in">
+                <div class="program-day-marker">
+                    <span class="program-day-num">04</span>
+                    <span class="program-day-label">Day</span>
+                </div>
+                <div>
+                    <h3 class="program-day-title">Earth Wisdom &amp; Sacred Offerings</h3>
+                    <p class="program-day-desc">This day honours the sacred connection between humanity, nature, spirit, and Mother Earth. Participants learn to create their own traditional Balinese temple offerings and Andean / Peruvian Pacha Mama offerings for sacred ceremonies. In the afternoon, Daniel guides a profound shamanic Earth Ritual rooted in ancient Andean traditions — reconnecting participants with grounding, stability, ancestral wisdom, and the spirit of the Earth.</p>
+                    <ul class="program-highlights">
+                        <li>Create your own Balinese Offerings</li>
+                        <li>Create Andean / Pacha Mama Offerings</li>
+                        <li>Earth Ritual with Daniel</li>
+                        <li>Healing Massage Sessions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="program-day fade-in">
+                <div class="program-day-marker">
+                    <span class="program-day-num">05</span>
+                    <span class="program-day-label">Day</span>
+                </div>
+                <div>
+                    <h3 class="program-day-title">Sacred Rebirth &amp; Inner Union</h3>
+                    <p class="program-day-desc">A deeply transformative day at the hidden water temple of Tirta Taman Pechampuhan — a jungle canyon sanctuary of flowing waterfalls and ancient stone formations. Guided by Ibu Jero Baba, a sacred rebirth ceremony invites participants into a profound process of cleansing, renewal, and energetic rebalancing of the inner masculine and feminine. Later in Ubud, each participant creates their own sacred Self-Love Ring in a traditional silver workshop — in preparation for the ceremony at the ocean the following day.</p>
+                    <ul class="program-highlights">
+                        <li>Sacred Rebirth Ceremony</li>
+                        <li>Silver Workshop in Ubud</li>
+                        <li>Create your own Self-Love Ring</li>
+                        <li>Group Reflection &amp; Meditation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="program-day fade-in">
+                <div class="program-day-marker">
+                    <span class="program-day-num">06</span>
+                    <span class="program-day-label">Day</span>
+                </div>
+                <div>
+                    <h3 class="program-day-title">The Self-Love Marriage Ceremony</h3>
+                    <p class="program-day-desc">One of the most intimate and unforgettable moments of the retreat. Before sunrise, the group journeys to a breathtaking beach in East Bali. Together with all three guides, participants co-create a sacred altar by the ocean before entering the deeply moving Self-Love Marriage Ceremony — a sacred commitment to yourself, your soul, your heart, and your authentic path in life. Guided by G. Serina Neuner, Daniel, and Ibu Jero Baba. After the ceremony, the afternoon is given to celebration, swimming, and joy at the ocean.</p>
+                    <ul class="program-highlights">
+                        <li>Sunrise Beach Ceremony · East Bali</li>
+                        <li>Sacred Ocean Altar Creation</li>
+                        <li>Self-Love Marriage Ceremony</li>
+                        <li>Celebration of Life &amp; Self</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="program-day fade-in">
+                <div class="program-day-marker">
+                    <span class="program-day-num">07</span>
+                    <span class="program-day-label">Day</span>
+                </div>
+                <div>
+                    <h3 class="program-day-title">Crystal Healing &amp; Shamanic Fire Ceremony</h3>
+                    <p class="program-day-desc">A day of transformation, healing, and energetic activation of the Cosmic Human Being. Daniel guides participants through powerful Crystal Healing work and Shamanic practices designed to support emotional release, energetic cleansing, and inner clarity. In the evening, the retreat culminates in a Sacred Shamanic Fire Ritual — a ceremonial space to release old patterns, fears, limitations, and emotional burdens into the transforming power of fire.</p>
+                    <ul class="program-highlights">
+                        <li>Crystal Healing Work with Daniel</li>
+                        <li>Shamanic Healing Practices</li>
+                        <li>Sacred Fire Ceremony</li>
+                        <li>Emotional Release &amp; Renewal</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="program-day fade-in">
+                <div class="program-day-marker">
+                    <span class="program-day-num">08</span>
+                    <span class="program-day-label">Day</span>
+                </div>
+                <div>
+                    <h3 class="program-day-title">Integration &amp; Farewell</h3>
+                    <p class="program-day-desc">The final morning is dedicated to reflection, gratitude, integration, meditation, and sharing. Participants are gently guided through the closing process of the retreat — integrating the experiences, insights, healing, and transformations of the past eight days. The retreat concludes with a heartfelt farewell lunch surrounded by the peaceful energy of the jungle sanctuary. Many participants leave not only rested — but deeply transformed, reconnected with themselves, and inspired to walk life with greater clarity, authenticity, love, and inner alignment.</p>
+                    <ul class="program-highlights">
+                        <li>Final Meditation &amp; Sound Healing</li>
+                        <li>Group Reflection</li>
+                        <li>Integration &amp; Closing Circle</li>
+                        <li>Farewell Lunch</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="program-disclaimer fade-in">
+            <h4>Important Information</h4>
+            <ul>
+                <li>This retreat is designed to support personal growth, spiritual exploration, emotional healing, and inner transformation.</li>
+                <li>The practices, ceremonies, meditations, and spiritual guidance offered are not intended to replace professional medical, psychological, or therapeutic treatment.</li>
+                <li>Participants are fully responsible for their own physical, emotional, and mental well-being throughout the retreat.</li>
+                <li>If you currently experience severe physical or mental health conditions, we recommend consulting a qualified healthcare professional before joining.</li>
+                <li>Program elements may be adjusted when necessary due to weather conditions, local ceremonies, safety considerations, or the natural flow of the retreat experience.</li>
+                <li>The retreat organizers and facilitators are not liable for personal injury, loss, damage, travel disruptions, or unforeseen circumstances beyond their control.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
     <div class="container">
         <div class="footer-inner">
             <div class="footer-brand">
                 <a href="#hero" class="nav-logo">Paititi Retreats</a>
-                <p>Sacred luxury retreat experiences for women ready to meet their highest selves.</p>
+                <p>A sacred 8-day journey in Ubud, Bali — where ancestral Inka wisdom and ancient Balinese traditions unite. 12–19 July 2026.</p>
                 <div class="footer-social">
                     <a href="#" class="social-link" aria-label="Instagram">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
@@ -1019,20 +1355,19 @@
                 </div>
             </div>
             <div class="footer-col">
-                <h5>Retreats</h5>
+                <h5>The Retreat</h5>
                 <ul class="footer-links">
-                    <li><a href="#experience">The Lotus Awakening</a></li>
-                    <li><a href="#experience">The Golden Temple</a></li>
-                    <li><a href="#experience">The Celestial Immersion</a></li>
-                    <li><a href="#contact">Private Retreats</a></li>
+                    <li><a href="#experience">Signature Ceremonies</a></li>
+                    <li><a href="#guides">Sacred Guides</a></li>
+                    <li><a href="#practices">Sacred Practices</a></li>
+                    <li><a href="#contact">Private Enquiries</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h5>Explore</h5>
                 <ul class="footer-links">
                     <li><a href="#about">Our Story</a></li>
-                    <li><a href="#practices">Sacred Practices</a></li>
-                    <li><a href="#testimonials">Sacred Stories</a></li>
+                    <li><a href="#journey">The Journey Arc</a></li>
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
             </div>
@@ -1064,7 +1399,8 @@
         </div>
 
         <div class="footer-bottom">
-            <p>© 2026 Paititi Retreats. All rights reserved. Crafted with sacred intention.</p>
+            <p>&copy; 2026 Paititi Retreats. All rights reserved. Crafted with sacred intention.</p>
+            <p style="font-size:0.72rem;margin-top:0.4rem;opacity:0.65;">Organised by G. Serina Neuner &middot; <a href="https://www.montessori-erdkinder-bali.com/" target="_blank" rel="noopener" style="color:var(--gold-light);text-decoration:none;opacity:1;">PT. Montessori Erdkinder Bali</a></p>
             <div class="footer-bottom-links">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
@@ -1073,6 +1409,21 @@
         </div>
     </div>
 </footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#8249;</button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8250;</button>
+    <div class="lightbox-img-wrap">
+        <img id="lightboxImg" src="" alt="">
+    </div>
+    <div class="lightbox-caption">
+        <span class="lightbox-caption-title" id="lightboxTitle"></span>
+        <span class="lightbox-caption-counter" id="lightboxCounter"></span>
+    </div>
+    <div class="lightbox-thumbs" id="lightboxThumbs"></div>
+</div>
 
 <script>
     // Nav scroll effect
@@ -1102,6 +1453,150 @@
             const target = document.querySelector(this.getAttribute('href'));
             if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
         });
+    });
+
+    // Lightbox
+    const galleries = {
+        ensuite: {
+            title: 'Luxury Ensuite Rooms',
+            images: [
+                'Luxury ensuite room/ensuite-room.jpg',
+                'Luxury ensuite room/ensuite-bathroom.jpg',
+                'Luxury ensuite room/ensuite.jpg',
+                'Luxury ensuite room/luxury room.jpeg',
+                'Luxury ensuite room/own bath.jpeg',
+                'Luxury ensuite room/PHOTO-2026-05-05-10-40-17.jpg',
+                'Luxury ensuite room/PHOTO-2026-05-05-10-40-18.jpg',
+                'Luxury ensuite room/PHOTO-2026-05-05-10-40-20.jpg',
+                'Luxury ensuite room/PHOTO-2026-05-05-10-40-22.jpg',
+                'Luxury ensuite room/PHOTO-2026-05-05-10-40-23.jpg',
+                'Luxury ensuite room/PHOTO-2026-05-05-10-40-50.jpg',
+                'Luxury ensuite room/PHOTO-2026-05-05-10-40-51 2.jpg',
+                'Luxury ensuite room/PHOTO-2026-05-05-10-40-51.jpg',
+                'Luxury ensuite room/PHOTO-2026-05-05-10-41-46.jpg',
+                'Luxury ensuite room/PHOTO-2026-05-05-10-41-47.jpg',
+                'Luxury ensuite room/PHOTO-2026-05-05-10-41-48.jpg',
+                'Luxury ensuite room/PHOTO-2026-05-05-10-41-49.jpg',
+                'Luxury ensuite room/PHOTO-2026-05-05-10-41-50.jpg',
+                'Luxury ensuite room/PHOTO-2026-05-05-10-41-53.jpg',
+                'Luxury ensuite room/WhatsApp Image 2026-05-05 at 10.40.18.jpeg'
+            ]
+        },
+        bamboo: {
+            title: 'Open Bamboo Sky Suites',
+            images: [
+                'Open-bamboo-rooms/open-bamboo.jpg',
+                'Open-bamboo-rooms/open-bamboo-room.jpg',
+                'Open-bamboo-rooms/Bathroom_sinks.jpeg',
+                'Open-bamboo-rooms/sky_bathrooms.jpeg',
+                'Open-bamboo-rooms/PHOTO-2026-05-05-10-40-15.jpg',
+                'Open-bamboo-rooms/PHOTO-2026-05-10-15-38-10.jpg',
+                'Open-bamboo-rooms/PHOTO-2026-05-10-15-38-11.jpg',
+                'Open-bamboo-rooms/PHOTO-2026-05-10-15-38-12.jpg',
+                'Open-bamboo-rooms/PHOTO-2026-05-10-15-38-13 2.jpg',
+                'Open-bamboo-rooms/PHOTO-2026-05-10-15-38-13.jpg',
+                'Open-bamboo-rooms/PHOTO-2026-05-10-15-38-14 2.jpg',
+                'Open-bamboo-rooms/PHOTO-2026-05-10-15-38-14.jpg',
+                'Open-bamboo-rooms/PHOTO-2026-05-10-15-38-15 2.jpg',
+                'Open-bamboo-rooms/PHOTO-2026-05-10-15-38-15.jpg',
+                'Open-bamboo-rooms/PHOTO-2026-05-10-15-38-25 2.jpg',
+                'Open-bamboo-rooms/PHOTO-2026-05-10-15-38-25 3.jpg',
+                'Open-bamboo-rooms/PHOTO-2026-05-10-15-38-26.jpg'
+            ]
+        },
+        outdoor: {
+            title: 'Sacred Gardens & Infinity Pool',
+            images: [
+                'Naya Veda Vastu Outdoor/sky_villa_pool.jpeg',
+                'Naya Veda Vastu Outdoor/Naya_Gardens.webp',
+                'Naya Veda Vastu Outdoor/Naya-gardens2.webp',
+                'Naya Veda Vastu Outdoor/Naya_Mandala_garden.webp',
+                'Naya Veda Vastu Outdoor/Naya-Luftaufnahme.webp',
+                'Naya Veda Vastu Outdoor/Naya.webp',
+                'Naya Veda Vastu Outdoor/mini-baum.jpeg',
+                'Naya Veda Vastu Outdoor/WhatsAppImage2024-10-30at11.39.30AM2.webp'
+            ]
+        },
+        restaurant: {
+            title: 'Maleika Restaurant',
+            images: [
+                'Maleika Restaurant/DSC07462.jpg',
+                'Maleika Restaurant/Naya-Restaurant.webp',
+                'Maleika Restaurant/food-Naya.webp',
+                'Maleika Restaurant/balinese food.webp',
+                'Maleika Restaurant/Meal_Naya.webp',
+                'Maleika Restaurant/dessert.webp',
+                'Maleika Restaurant/Drink_Naya.webp',
+                'Maleika Restaurant/Kuschelecke-Resto_Naya.webp',
+                'Maleika Restaurant/RESTAUTANT-Naya.webp',
+                'Maleika Restaurant/RESTO_Naya.webp',
+                'Maleika Restaurant/Restaurant-gäste.webp',
+                'Maleika Restaurant/ALD09738.jpg',
+                'Maleika Restaurant/ALD09741.jpg',
+                'Maleika Restaurant/DSC04519.jpg',
+                'Maleika Restaurant/DSC04690.jpg',
+                'Maleika Restaurant/DSC04706-3.jpg',
+                'Maleika Restaurant/PHOTO-2026-05-13-17-07-56.jpg'
+            ]
+        }
+    };
+
+    let currentGallery = null;
+    let currentIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    const lightboxThumbs = document.getElementById('lightboxThumbs');
+
+    function renderLightbox() {
+        const images = currentGallery.images;
+        lightboxImg.src = images[currentIndex];
+        lightboxTitle.textContent = currentGallery.title;
+        lightboxCounter.textContent = (currentIndex + 1) + ' / ' + images.length;
+        lightboxThumbs.innerHTML = '';
+        images.forEach((src, i) => {
+            const thumb = document.createElement('img');
+            thumb.src = src;
+            thumb.className = 'lightbox-thumb' + (i === currentIndex ? ' active' : '');
+            thumb.onclick = () => { currentIndex = i; renderLightbox(); };
+            lightboxThumbs.appendChild(thumb);
+        });
+        const active = lightboxThumbs.querySelector('.active');
+        if (active) active.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+    }
+
+    function openLightbox(key) {
+        currentGallery = galleries[key];
+        currentIndex = 0;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        renderLightbox();
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('lightboxClose').onclick = closeLightbox;
+    document.getElementById('lightboxPrev').onclick = () => {
+        currentIndex = (currentIndex - 1 + currentGallery.images.length) % currentGallery.images.length;
+        renderLightbox();
+    };
+    document.getElementById('lightboxNext').onclick = () => {
+        currentIndex = (currentIndex + 1) % currentGallery.images.length;
+        renderLightbox();
+    };
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + currentGallery.images.length) % currentGallery.images.length; renderLightbox(); }
+        if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % currentGallery.images.length; renderLightbox(); }
+    });
+    document.querySelectorAll('.accommodation-card[data-gallery]').forEach(card => {
+        card.addEventListener('click', () => openLightbox(card.dataset.gallery));
     });
 
     // Form submit
