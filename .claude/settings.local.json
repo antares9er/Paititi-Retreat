@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Remove-Item -Path \"c:\\\\Users\\\\PC\\\\Documents\\\\GitHub\\\\Paititi-Retreat\\\\brand_assets\\\\Revelation.mp3\" -Confirm:$false)",
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\PC\\\\Documents\\\\GitHub\\\\Paititi-Retreat\\\\photos_videos_Paititi Retreat_Antares\\\\\" | Where-Object { $_.Extension -match '\\\\.\\(jpg|jpeg|png|webp|gif\\)' } | Select-Object Name | Sort-Object Name)"
+    ]
+  }
+}

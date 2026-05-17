@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserve Your Place — Paititi Retreats</title>
+    <link rel="icon" type="image/jpeg" href="brand_assets/Paititi-Logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C58A2A;
+            --gold-light: #E7C98F;
+            --lavender: #B9A1C9;
+            --lavender-light: #DCCEE5;
+            --pink: #E8B7BE;
+            --ivory: #F7F3EE;
+            --brown: #5E4B4B;
+            --brown-subtle: #8A7A7A;
+            --white: #FFFFFF;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--ivory); color: var(--brown); font-family: var(--font-body); font-weight: 300; line-height: 1.75; }
+
+        /* Nav */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 1.2rem 2.5rem; display: flex; align-items: center; justify-content: space-between;
+            background: rgba(247,243,238,0.96); backdrop-filter: blur(12px);
+            box-shadow: 0 2px 20px rgba(94,75,75,0.06);
+        }
+        .nav-logo img { height: 42px; width: auto; display: block; }
+        .nav-back { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brown-subtle); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: var(--transition); }
+        .nav-back:hover { color: var(--gold); }
+        .nav-back svg { width: 14px; height: 14px; stroke: currentColor; }
+
+        /* Page header */
+        .page-header {
+            padding: 9rem 2rem 4rem;
+            text-align: center;
+            background: radial-gradient(ellipse at 60% 40%, #DCCEE5 0%, #F7F3EE 55%);
+        }
+        .page-header .section-label { font-size: 0.62rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--brown-subtle); display: block; margin-bottom: 1rem; }
+        .page-header h1 { font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--gold); letter-spacing: 0.12em; line-height: 1.1; margin-bottom: 1rem; }
+        .page-header p { color: var(--brown-subtle); max-width: 480px; margin: 0 auto; font-size: 0.95rem; }
+        .divider { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 1.5rem auto; }
+        .divider-line { height: 1px; width: 60px; background: linear-gradient(90deg, transparent, var(--gold-light)); }
+        .divider-line.right { background: linear-gradient(90deg, var(--gold-light), transparent); }
+        .divider-diamond { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); }
+
+        /* Layout */
+        .booking-layout {
+            max-width: 1100px; margin: 0 auto; padding: 4rem 2rem 6rem;
+            display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; align-items: start;
+        }
+
+        /* Room summary card */
+        .room-summary {
+            background: var(--white); border: 1px solid rgba(197,138,42,0.18);
+            border-radius: 6px; overflow: hidden; position: sticky; top: 90px;
+        }
+        .room-summary-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+        .room-summary-glow {
+            position: relative; overflow: hidden;
+        }
+        .room-summary-glow::after {
+            content: ''; position: absolute; inset: 0;
+            box-shadow: inset 0 0 0 2px rgba(197,138,42,0.35), inset 0 -50px 30px rgba(94,75,75,0.25);
+            pointer-events: none;
+        }
+        .room-summary-body { padding: 1.8rem; }
+        .room-summary-label { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--lavender); margin-bottom: 0.4rem; }
+        .room-summary-name { font-family: var(--font-heading); font-size: 1.6rem; color: var(--gold); font-weight: 400; margin-bottom: 0.8rem; }
+        .room-summary-desc { font-size: 0.83rem; color: var(--brown-subtle); line-height: 1.75; margin-bottom: 1.2rem; }
+        .room-summary-amenities { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 1.4rem; }
+        .room-amenity-tag { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brown-subtle); padding: 0.18rem 0.6rem; border: 1px solid rgba(197,138,42,0.22); border-radius: 50px; }
+        .room-summary-pricing { border-top: 1px solid rgba(197,138,42,0.1); padding-top: 1.2rem; }
+        .room-summary-earlybird { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--lavender); margin-bottom: 0.2rem; }
+        .room-summary-price { font-family: var(--font-heading); font-size: 1.8rem; color: var(--gold); font-weight: 300; margin-bottom: 0.15rem; }
+        .room-summary-regular { font-size: 0.76rem; color: var(--brown-subtle); }
+        .room-summary-regular s { opacity: 0.55; }
+        .room-summary-saving { display: inline-block; margin-top: 0.5rem; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--white); background: var(--lavender); padding: 0.18rem 0.7rem; border-radius: 50px; }
+        .room-summary-deposit { margin-top: 1rem; padding: 0.8rem 1rem; background: rgba(197,138,42,0.05); border-left: 2px solid var(--gold-light); font-size: 0.78rem; color: var(--brown-subtle); line-height: 1.6; }
+        .room-summary-deposit strong { color: var(--brown); }
+        .change-room { display: block; text-align: center; margin-top: 1rem; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--brown-subtle); text-decoration: none; transition: var(--transition); }
+        .change-room:hover { color: var(--gold); }
+
+        /* Booking form */
+        .booking-form-wrap { background: var(--white); border: 1px solid rgba(197,138,42,0.12); border-radius: 6px; padding: 2.5rem; }
+        .booking-form-wrap h2 { font-family: var(--font-heading); font-size: 1.8rem; color: var(--gold); font-weight: 400; margin-bottom: 0.4rem; }
+        .booking-form-wrap > p { font-size: 0.85rem; color: var(--brown-subtle); margin-bottom: 2rem; }
+        .form-section-title { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--brown-subtle); margin: 1.8rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(197,138,42,0.12); display: block; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label { display: block; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brown-subtle); margin-bottom: 0.5rem; }
+        .form-input, .form-select, .form-textarea {
+            width: 100%; padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 0.88rem;
+            font-weight: 300; color: var(--brown); background: var(--ivory);
+            border: 1px solid rgba(197,138,42,0.2); border-radius: 3px; outline: none; transition: var(--transition);
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); background: var(--white); box-shadow: 0 0 0 3px rgba(197,138,42,0.08); }
+        .form-textarea { resize: vertical; min-height: 120px; }
+        .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238A7A7A' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer; }
+        .form-checkbox-group { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1.2rem; }
+        .form-checkbox-group input[type="checkbox"] { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; accent-color: var(--gold); cursor: pointer; }
+        .form-checkbox-group label { font-size: 0.8rem; color: var(--brown-subtle); line-height: 1.55; cursor: pointer; }
+        .form-checkbox-group label a { color: var(--gold); text-decoration: none; }
+        .form-submit {
+            width: 100%; padding: 1.1rem; background: var(--gold); color: var(--white);
+            font-family: var(--font-body); font-size: 0.75rem; font-weight: 500;
+            letter-spacing: 0.22em; text-transform: uppercase; border: none;
+            border-radius: 50px; cursor: pointer; transition: var(--transition); margin-top: 0.5rem;
+        }
+        .form-submit:hover:not(:disabled) { background: var(--brown); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(197,138,42,0.25); }
+        .form-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+            .booking-layout { grid-template-columns: 1fr; }
+            .room-summary { position: static; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">
+        <img src="brand_assets/Paititi-Logo.jpeg" alt="Paititi Retreats">
+    </a>
+    <a href="index.html#inclusions" class="nav-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Retreat
+    </a>
+</nav>
+
+<div class="page-header">
+    <span class="section-label">12 – 19 July 2026 · Ubud, Bali</span>
+    <h1>Reserve Your<br>Sacred Place</h1>
+    <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-diamond"></div>
+        <div class="divider-line right"></div>
+    </div>
+    <p>Complete the form below and we will confirm your booking by email within 48 hours.</p>
+</div>
+
+<div class="booking-layout">
+
+    <!-- Room Summary (left) -->
+    <div class="room-summary">
+        <div class="room-summary-glow">
+            <img class="room-summary-img" id="summaryImg" src="" alt="">
+        </div>
+        <div class="room-summary-body">
+            <p class="room-summary-label">Your Selected Room</p>
+            <h2 class="room-summary-name" id="summaryName"></h2>
+            <p class="room-summary-desc" id="summaryDesc"></p>
+            <div class="room-summary-amenities" id="summaryAmenities"></div>
+            <div class="room-summary-pricing">
+                <p class="room-summary-earlybird">Early Bird Price (valid until 11 June 2026)</p>
+                <p class="room-summary-price" id="summaryPrice"></p>
+                <p class="room-summary-eur" id="summaryEur" style="font-size:0.76rem;color:var(--brown-subtle);margin-bottom:0.15rem;"></p>
+                <p class="room-summary-regular" id="summaryRegular"></p>
+                <span class="room-summary-saving" id="summarySaving"></span>
+            </div>
+            <div class="room-summary-deposit">
+                <strong>To confirm:</strong> A 30% non-refundable deposit is due at booking. The remaining balance is due 30 days before the retreat begins.
+            </div>
+            <a href="index.html#inclusions" class="change-room">← Change room selection</a>
+        </div>
+    </div>
+
+    <!-- Booking Form (right) -->
+    <div class="booking-form-wrap">
+        <h2>Your Booking Details</h2>
+        <p>We will reply within 48 hours to confirm your place and share payment instructions.</p>
+
+        <form id="bookingForm">
+            <!-- Hidden field passes selected room to Formspree -->
+            <input type="hidden" name="Selected Room" id="hiddenRoom">
+
+            <span class="form-section-title">Personal Details</span>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">First Name</label>
+                    <input type="text" name="First Name" class="form-input" placeholder="Your first name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" name="Last Name" class="form-input" placeholder="Your last name" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" name="Email" class="form-input" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Country of Residence</label>
+                    <select name="Country" class="form-select">
+                        <option value="">Select your country</option>
+                        <option>Afghanistan</option>
+                        <option>Albania</option>
+                        <option>Algeria</option>
+                        <option>Andorra</option>
+                        <option>Angola</option>
+                        <option>Antigua and Barbuda</option>
+                        <option>Argentina</option>
+                        <option>Armenia</option>
+                        <option>Australia</option>
+                        <option>Austria</option>
+                        <option>Azerbaijan</option>
+                        <option>Bahamas</option>
+                        <option>Bahrain</option>
+                        <option>Bangladesh</option>
+                        <option>Barbados</option>
+                        <option>Belarus</option>
+                        <option>Belgium</option>
+                        <option>Belize</option>
+                        <option>Benin</option>
+                        <option>Bhutan</option>
+                        <option>Bolivia</option>
+                        <option>Bosnia and Herzegovina</option>
+                        <option>Botswana</option>
+                        <option>Brazil</option>
+                        <option>Brunei</option>
+                        <option>Bulgaria</option>
+                        <option>Burkina Faso</option>
+                        <option>Burundi</option>
+                        <option>Cabo Verde</option>
+                        <option>Cambodia</option>
+                        <option>Cameroon</option>
+                        <option>Canada</option>
+                        <option>Central African Republic</option>
+                        <option>Chad</option>
+                        <option>Chile</option>
+                        <option>China</option>
+                        <option>Colombia</option>
+                        <option>Comoros</option>
+                        <option>Congo (Democratic Republic)</option>
+                        <option>Congo (Republic)</option>
+                        <option>Costa Rica</option>
+                        <option>Croatia</option>
+                        <option>Cuba</option>
+                        <option>Cyprus</option>
+                        <option>Czech Republic</option>
+                        <option>Denmark</option>
+                        <option>Djibouti</option>
+                        <option>Dominica</option>
+                        <option>Dominican Republic</option>
+                        <option>Ecuador</option>
+                        <option>Egypt</option>
+                        <option>El Salvador</option>
+                        <option>Equatorial Guinea</option>
+                        <option>Eritrea</option>
+                        <option>Estonia</option>
+                        <option>Eswatini</option>
+                        <option>Ethiopia</option>
+                        <option>Fiji</option>
+                        <option>Finland</option>
+                        <option>France</option>
+                        <option>Gabon</option>
+                        <option>Gambia</option>
+                        <option>Georgia</option>
+                        <option>Germany</option>
+                        <option>Ghana</option>
+                        <option>Greece</option>
+                        <option>Grenada</option>
+                        <option>Guatemala</option>
+                        <option>Guinea</option>
+                        <option>Guinea-Bissau</option>
+                        <option>Guyana</option>
+                        <option>Haiti</option>
+                        <option>Honduras</option>
+                        <option>Hungary</option>
+                        <option>Iceland</option>
+                        <option>India</option>
+                        <option>Indonesia</option>
+                        <option>Iran</option>
+                        <option>Iraq</option>
+                        <option>Ireland</option>
+                        <option>Israel</option>
+                        <option>Italy</option>
+                        <option>Jamaica</option>
+                        <option>Japan</option>
+                        <option>Jordan</option>
+                        <option>Kazakhstan</option>
+                        <option>Kenya</option>
+                        <option>Kiribati</option>
+                        <option>Kuwait</option>
+                        <option>Kyrgyzstan</option>
+                        <option>Laos</option>
+                        <option>Latvia</option>
+                        <option>Lebanon</option>
+                        <option>Lesotho</option>
+                        <option>Liberia</option>
+                        <option>Libya</option>
+                        <option>Liechtenstein</option>
+                        <option>Lithuania</option>
+                        <option>Luxembourg</option>
+                        <option>Madagascar</option>
+                        <option>Malawi</option>
+                        <option>Malaysia</option>
+                        <option>Maldives</option>
+                        <option>Mali</option>
+                        <option>Malta</option>
+                        <option>Marshall Islands</option>
+                        <option>Mauritania</option>
+                        <option>Mauritius</option>
+                        <option>Mexico</option>
+                        <option>Micronesia</option>
+                        <option>Moldova</option>
+                        <option>Monaco</option>
+                        <option>Mongolia</option>
+                        <option>Montenegro</option>
+                        <option>Morocco</option>
+                        <option>Mozambique</option>
+                        <option>Myanmar</option>
+                        <option>Namibia</option>
+                        <option>Nauru</option>
+                        <option>Nepal</option>
+                        <option>Netherlands</option>
+                        <option>New Zealand</option>
+                        <option>Nicaragua</option>
+                        <option>Niger</option>
+                        <option>Nigeria</option>
+                        <option>North Korea</option>
+                        <option>North Macedonia</option>
+                        <option>Norway</option>
+                        <option>Oman</option>
+                        <option>Pakistan</option>
+                        <option>Palau</option>
+                        <option>Palestine</option>
+                        <option>Panama</option>
+                        <option>Papua New Guinea</option>
+                        <option>Paraguay</option>
+                        <option>Peru</option>
+                        <option>Philippines</option>
+                        <option>Poland</option>
+                        <option>Portugal</option>
+                        <option>Qatar</option>
+                        <option>Romania</option>
+                        <option>Russia</option>
+                        <option>Rwanda</option>
+                        <option>Saint Kitts and Nevis</option>
+                        <option>Saint Lucia</option>
+                        <option>Saint Vincent and the Grenadines</option>
+                        <option>Samoa</option>
+                        <option>San Marino</option>
+                        <option>São Tomé and Príncipe</option>
+                        <option>Saudi Arabia</option>
+                        <option>Senegal</option>
+                        <option>Serbia</option>
+                        <option>Seychelles</option>
+                        <option>Sierra Leone</option>
+                        <option>Singapore</option>
+                        <option>Slovakia</option>
+                        <option>Slovenia</option>
+                        <option>Solomon Islands</option>
+                        <option>Somalia</option>
+                        <option>South Africa</option>
+                        <option>South Korea</option>
+                        <option>South Sudan</option>
+                        <option>Spain</option>
+                        <option>Sri Lanka</option>
+                        <option>Sudan</option>
+                        <option>Suriname</option>
+                        <option>Sweden</option>
+                        <option>Switzerland</option>
+                        <option>Syria</option>
+                        <option>Taiwan</option>
+                        <option>Tajikistan</option>
+                        <option>Tanzania</option>
+                        <option>Thailand</option>
+                        <option>Timor-Leste</option>
+                        <option>Togo</option>
+                        <option>Tonga</option>
+                        <option>Trinidad and Tobago</option>
+                        <option>Tunisia</option>
+                        <option>Turkey</option>
+                        <option>Turkmenistan</option>
+                        <option>Tuvalu</option>
+                        <option>Uganda</option>
+                        <option>Ukraine</option>
+                        <option>United Arab Emirates</option>
+                        <option>United Kingdom</option>
+                        <option>United States</option>
+                        <option>Uruguay</option>
+                        <option>Uzbekistan</option>
+                        <option>Vanuatu</option>
+                        <option>Vatican City</option>
+                        <option>Venezuela</option>
+                        <option>Vietnam</option>
+                        <option>Yemen</option>
+                        <option>Zambia</option>
+                        <option>Zimbabwe</option>
+                    </select>
+                </div>
+            </div>
+
+            <span class="form-section-title">Your Room</span>
+            <div class="form-group">
+                <label class="form-label">Room Selection</label>
+                <select name="Room Selection" id="roomSelect" class="form-select" required>
+                    <option value="">Choose your room</option>
+                    <option value="Open Bamboo Room — IDR 24,210,000 (Early Bird)">Open Bamboo Room — IDR 24,210,000 (Early Bird)</option>
+                    <option value="Luxury Ensuite Room — IDR 30,032,100 (Early Bird)">Luxury Ensuite Room — IDR 30,032,100 (Early Bird)</option>
+                    <option value="Retreat Only (No Accommodation) — IDR 19,980,000 (Early Bird)">Retreat Only (No Accommodation) — IDR 19,980,000 (Early Bird)</option>
+                </select>
+            </div>
+
+            <span class="form-section-title">About Your Journey</span>
+            <div class="form-group">
+                <label class="form-label">What brings you to Paititi?</label>
+                <textarea name="Message" class="form-textarea" placeholder="Share a little about what you are seeking or what called you to this retreat…"></textarea>
+            </div>
+
+            <span class="form-section-title">Payment Method</span>
+            <div class="form-group">
+                <label class="form-label">Preferred Payment Method</label>
+                <select name="Payment Method" class="form-select">
+                    <option value="">Select a method</option>
+                    <option value="Credit Card (Stripe)">Credit Card (Stripe)</option>
+                    <option value="PayPal">PayPal</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                </select>
+            </div>
+
+            <span class="form-section-title">Confirmation</span>
+            <div class="form-checkbox-group">
+                <input type="checkbox" id="agreeDeposit" name="Agrees to Deposit Terms" value="Yes" required>
+                <label for="agreeDeposit">I understand that a <strong>30% non-refundable deposit</strong> is required to secure my place and that the remaining balance is due 30 days before the retreat begins.</label>
+            </div>
+            <div class="form-checkbox-group">
+                <input type="checkbox" id="agreeCancel" name="Agrees to Cancellation Policy" value="Yes" required>
+                <label for="agreeCancel">I have read and accept the <strong>cancellation policy</strong>: cancellation &gt;30 days — balance refunded; 14–30 days — 50% refund; &lt;14 days — no refund. Bookings may be transferred to another person.</label>
+            </div>
+            <div class="form-checkbox-group">
+                <input type="checkbox" id="agreeInsurance" name="Acknowledges Travel Insurance" value="Yes">
+                <label for="agreeInsurance">I understand that travel insurance is strongly recommended and that the organizers are not responsible for flights, visas, or personal travel arrangements.</label>
+            </div>
+
+            <button type="submit" class="form-submit" id="submitBtn">Send My Booking Request</button>
+        </form>
+    </div>
+
+</div>
+
+<script>
+    const rooms = {
+        bamboo: {
+            name:     'Private Open Bamboo Room',
+            img:      'Open-bamboo-rooms/open-bamboo.jpg',
+            desc:     'A private bamboo sky suite open to the lush jungle breeze and birdsong. Crafted from natural materials with sacred geometry, these serene rooms offer a grounded, deeply restful space between ceremonies. Shared bathrooms are steps away, thoughtfully maintained.',
+            amenities: ['Private Room', '7 Nights', 'Jungle View', 'Shared Bathroom', '3 Meals Daily'],
+            price:    'IDR 24,210,000',
+            eur:      'approx. €1,385 · $1,515',
+            regular:  'IDR 27,900,000',
+            saving:   'Save IDR 3,690,000',
+            select:   'Open Bamboo Room — IDR 24,210,000 (Early Bird)'
+        },
+        ensuite: {
+            name:     'Private Luxury Ensuite Room',
+            img:      'Luxury ensuite room/luxury room.jpeg',
+            desc:     'An elevated private sanctuary with your own ensuite bathroom — the pinnacle of comfort within the eco-village. Beautifully appointed with natural finishes, these rooms offer complete privacy and a seamless connection to the surrounding jungle.',
+            amenities: ['Private Room', '7 Nights', 'Ensuite Bathroom', 'Jungle View', '3 Meals Daily'],
+            price:    'IDR 30,032,100',
+            eur:      'approx. €1,720 · $1,880',
+            regular:  'IDR 33,369,000',
+            saving:   'Save IDR 3,336,900',
+            select:   'Luxury Ensuite Room — IDR 30,032,100 (Early Bird)'
+        },
+        retreat: {
+            name:     'Retreat Only (No Accommodation)',
+            img:      'Naya Veda Vastu Outdoor/sky_villa_pool.jpeg',
+            desc:     'Join the full retreat experience — all ceremonies, practices, and meals included — while arranging your own accommodation in or around Ubud. Ideal for those staying with friends, family, or in a nearby space of their choice.',
+            amenities: ['Full Program', 'All Ceremonies', '3 Meals Daily', 'Own Accommodation'],
+            price:    'IDR 19,980,000',
+            eur:      'approx. €1,140 · $1,250',
+            regular:  'IDR 22,200,000',
+            saving:   'Save IDR 2,220,000',
+            select:   'Retreat Only (No Accommodation) — IDR 19,980,000 (Early Bird)'
+        }
+    };
+
+    // Read ?room= param and populate summary panel
+    const param = new URLSearchParams(window.location.search).get('room') || 'ensuite';
+    const room  = rooms[param] || rooms.ensuite;
+
+    document.getElementById('summaryImg').src        = room.img;
+    document.getElementById('summaryImg').alt        = room.name;
+    document.getElementById('summaryName').textContent = room.name;
+    document.getElementById('summaryDesc').textContent = room.desc;
+    document.getElementById('summaryPrice').textContent  = room.price;
+    document.getElementById('summaryEur').textContent    = room.eur;
+    document.getElementById('summaryRegular').innerHTML  = 'Regular: <s>' + room.regular + '</s>';
+    document.getElementById('summarySaving').textContent = room.saving;
+    document.getElementById('hiddenRoom').value          = room.name;
+
+    const amenitiesEl = document.getElementById('summaryAmenities');
+    room.amenities.forEach(a => {
+        const span = document.createElement('span');
+        span.className = 'room-amenity-tag';
+        span.textContent = a;
+        amenitiesEl.appendChild(span);
+    });
+
+    // Pre-select matching option in the dropdown
+    const select = document.getElementById('roomSelect');
+    for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].value === room.select) { select.selectedIndex = i; break; }
+    }
+
+    // Form submit via Formspree; falls back to mailto if not yet configured
+    function bookingMailtoFallback(form) {
+        const data = new FormData(form);
+        let body = '';
+        data.forEach((value, key) => { if (value) body += key + ': ' + value + '\n'; });
+        window.location.href = 'mailto:admin@erdkinder-bali.com?subject=' + encodeURIComponent('Paititi Retreat Booking Request') + '&body=' + encodeURIComponent(body);
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        const FORM_ID = 'YOUR_FORM_ID';
+        if (FORM_ID === 'YOUR_FORM_ID') { bookingMailtoFallback(this); return; }
+        try {
+            const res = await fetch('https://formspree.io/f/' + FORM_ID, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json' },
+                body: new FormData(this)
+            });
+            if (res.ok) {
+                btn.textContent = 'Booking Request Sent — We Will Be In Touch Within 48 Hours';
+                btn.style.background = 'var(--lavender)';
+                this.reset();
+            } else {
+                bookingMailtoFallback(this);
+            }
+        } catch {
+            bookingMailtoFallback(this);
+        }
+    });
+</script>
+</body>
+</html>

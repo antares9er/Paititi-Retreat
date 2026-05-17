@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paititi Retreats — Sacred Luxury Wellness</title>
+    <title>Paititi Retreats — Sacred Journey · Ubud, Bali · 12–19 July 2026</title>
+    <link rel="icon" type="image/jpeg" href="brand_assets/Paititi-Logo.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -215,9 +216,9 @@
         .hero-content { position: relative; z-index: 2; max-width: 860px; padding: 2rem; }
         .hero-label { font-size: 0.62rem; letter-spacing: 0.5em; text-transform: uppercase; color: var(--brown-subtle); margin-bottom: 1.5rem; display: block; animation: heroReveal 1s ease 0.2s both; }
         .hero-title { font-weight: 300; color: var(--gold); text-transform: uppercase; line-height: 1.0; margin-bottom: 0.75rem; animation: heroReveal 1.2s ease 0.5s both; }
-        .hero-subtitle { font-family: var(--font-heading); font-size: clamp(1.1rem,2.5vw,1.8rem); font-weight: 300; font-style: italic; color: var(--lavender); letter-spacing: 0.06em; margin-bottom: 1.5rem; animation: heroReveal 1s ease 0.85s both; }
+        .hero-subtitle { font-family: var(--font-heading); font-size: clamp(1.5rem,3.5vw,2.8rem); font-weight: 500; font-style: italic; color: var(--lavender); letter-spacing: 0.12em; margin-bottom: 1.5rem; animation: heroReveal 1s ease 0.85s both; text-shadow: 0 0 32px rgba(185,161,201,0.45); }
         #hero .divider { animation: heroReveal 1s ease 1.0s both; }
-        .hero-description { font-size: 1rem; color: var(--brown-subtle); max-width: 540px; margin: 0 auto 3rem; line-height: 1.9; animation: heroReveal 1s ease 1.15s both; }
+        .hero-description { font-size: clamp(1.05rem, 1.8vw, 1.25rem); color: var(--brown); font-weight: 400; max-width: 600px; margin: 0 auto 3rem; line-height: 1.9; letter-spacing: 0.02em; animation: heroReveal 1s ease 1.15s both; }
         .hero-buttons { animation: heroReveal 1s ease 1.4s both; }
         @keyframes heroReveal {
             from { opacity: 0; transform: translateY(36px); }
@@ -414,21 +415,154 @@
         .stars { display: flex; gap: 3px; margin-bottom: 1rem; }
         .star { color: var(--gold); font-size: 0.8rem; }
 
+        /* Inclusions */
+        #inclusions { background: var(--ivory); }
+        .inclusions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        .inclusion-item {
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+            padding: 1.8rem;
+            background: var(--white);
+            border-radius: 4px;
+            border: 1px solid rgba(197,138,42,0.1);
+            transition: var(--transition);
+        }
+        .inclusion-item:hover {
+            border-color: rgba(197,138,42,0.3);
+            box-shadow: var(--shadow-soft);
+            transform: translateY(-3px);
+        }
+        .inclusion-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(197,138,42,0.1), rgba(185,161,201,0.15));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .inclusion-icon svg { width: 18px; height: 18px; stroke: var(--gold); }
+        .inclusion-item h4 { font-size: 1rem; margin-bottom: 0.4rem; color: var(--gold); }
+        .inclusion-item p { font-size: 0.88rem; color: var(--brown-subtle); line-height: 1.7; margin: 0; }
+        /* Pricing */
+        .early-bird-banner {
+            display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+            margin-top: 3.5rem; padding: 0.9rem 2rem;
+            background: linear-gradient(90deg, rgba(185,161,201,0.18), rgba(197,138,42,0.12), rgba(185,161,201,0.18));
+            border: 1px solid rgba(197,138,42,0.3); border-radius: 4px; text-align: center;
+        }
+        .early-bird-banner p { margin: 0; font-size: 0.82rem; color: var(--brown); }
+        .early-bird-banner strong { color: var(--gold); }
+        .pricing-tiers { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 2rem; align-items: start; }
+        .pricing-tier {
+            background: var(--white); border: 1px solid rgba(197,138,42,0.15);
+            border-radius: 6px; overflow: hidden; transition: var(--transition); position: relative;
+        }
+        .pricing-tier:hover { border-color: rgba(197,138,42,0.4); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(197,138,42,0.12); }
+        .pricing-tier.featured { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold), 0 8px 32px rgba(197,138,42,0.15); }
+        .pricing-tier-badge {
+            position: absolute; top: 14px; right: 14px; z-index: 3;
+            background: var(--gold); color: var(--white); font-size: 0.55rem;
+            letter-spacing: 0.2em; text-transform: uppercase; padding: 0.28rem 0.8rem; border-radius: 50px;
+        }
+        /* Room photo gallery */
+        .room-gallery { position: relative; overflow: hidden; }
+        .room-gallery-main {
+            width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+            transition: transform 0.6s ease;
+            box-shadow: 0 0 0 0 transparent;
+        }
+        .pricing-tier:hover .room-gallery-main { transform: scale(1.03); }
+        .room-carousel:hover .room-gallery-main { transform: none; }
+        .pricing-tier.featured .room-gallery-main {
+            box-shadow: 0 0 30px rgba(197,138,42,0.35), inset 0 0 30px rgba(197,138,42,0.1);
+        }
+        .room-glow-frame {
+            position: absolute; inset: 0; pointer-events: none;
+            box-shadow: inset 0 0 0 3px rgba(197,138,42,0.25), inset 0 -60px 40px rgba(94,75,75,0.3);
+            transition: var(--transition);
+        }
+        .pricing-tier.featured .room-glow-frame {
+            box-shadow: inset 0 0 0 3px rgba(197,138,42,0.6), inset 0 -60px 40px rgba(94,75,75,0.35), 0 0 40px rgba(197,138,42,0.2);
+        }
+        /* Room info block */
+        .room-info { padding: 1.6rem 1.5rem 1.8rem; text-align: center; }
+        .pricing-tier h4 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--gold); margin-bottom: 0.3rem; font-weight: 400; letter-spacing: 0.04em; }
+        .room-description { font-size: 0.82rem; color: var(--brown-subtle); line-height: 1.7; margin-bottom: 1.2rem; }
+        .room-amenities { display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center; margin-bottom: 1.4rem; }
+        .room-amenity { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brown-subtle); padding: 0.2rem 0.65rem; border: 1px solid rgba(197,138,42,0.2); border-radius: 50px; }
+        .pricing-tier-earlybird { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--lavender); margin-bottom: 0.2rem; }
+        .pricing-tier-price { font-family: var(--font-heading); font-size: clamp(1.4rem,2vw,1.9rem); color: var(--gold); font-weight: 300; margin-bottom: 0.15rem; }
+        .pricing-tier-regular { font-size: 0.76rem; color: var(--brown-subtle); }
+        .pricing-tier-regular s { opacity: 0.55; }
+        .pricing-tier-saving { display: inline-block; margin-top: 0.6rem; font-size: 0.62rem; letter-spacing: 0.08em; color: var(--white); background: var(--lavender); padding: 0.2rem 0.75rem; border-radius: 50px; }
+        .pricing-tier-eur { display: block; font-family: var(--font-body); font-size: 0.75rem; font-weight: 300; color: var(--brown-subtle); letter-spacing: 0; margin-top: 0.15rem; }
+        .room-book-btn { display: block; margin: 1.4rem auto 0; width: fit-content; padding: 0.85rem 2rem; background: var(--gold); color: var(--white); font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; border-radius: 50px; transition: var(--transition); }
+        .room-book-btn:hover { background: var(--brown); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(197,138,42,0.25); }
+
+        /* Room photo carousel */
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; background: rgba(247,243,238,0.88); border: none; cursor: pointer; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--brown); font-size: 1.15rem; line-height: 1; transition: var(--transition); backdrop-filter: blur(4px); }
+        .carousel-btn:hover { background: var(--gold); color: var(--white); }
+        .carousel-prev { left: 8px; }
+        .carousel-next { right: 8px; }
+        .carousel-dots { position: absolute; bottom: 9px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 5; }
+        .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(247,243,238,0.45); border: 1px solid rgba(197,138,42,0.5); cursor: pointer; transition: var(--transition); }
+        .carousel-dot.active { background: var(--gold); border-color: var(--gold); }
+
+        /* Mobile nav drawer */
+        .nav-mobile-toggle span { transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center; }
+        .nav-mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+        .nav-mobile-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .nav-mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+        .nav-mobile-menu { display: none; position: fixed; inset: 0; z-index: 900; }
+        .nav-mobile-menu.open { display: block; }
+        .nav-mobile-overlay { position: absolute; inset: 0; background: rgba(94,75,75,0.38); backdrop-filter: blur(5px); }
+        .nav-mobile-drawer { position: absolute; top: 0; right: 0; bottom: 0; width: min(300px, 82vw); background: var(--ivory); padding: 5.5rem 2rem 2.5rem; display: flex; flex-direction: column; box-shadow: -8px 0 40px rgba(94,75,75,0.12); transform: translateX(100%); transition: transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94); }
+        .nav-mobile-menu.open .nav-mobile-drawer { transform: translateX(0); }
+        .nav-mobile-links { list-style: none; display: flex; flex-direction: column; flex: 1; }
+        .nav-mobile-links li a { display: block; padding: 0.9rem 0; font-size: 0.95rem; color: var(--brown); text-decoration: none; border-bottom: 1px solid rgba(197,138,42,0.1); letter-spacing: 0.04em; transition: var(--transition); }
+        .nav-mobile-links li a:hover { color: var(--gold); padding-left: 0.4rem; }
+        .nav-mobile-cta { display: block; margin-top: 1.8rem; padding: 0.9rem 1.5rem; background: var(--gold); color: var(--white); text-align: center; text-decoration: none; border-radius: 50px; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; transition: var(--transition); }
+        .nav-mobile-cta:hover { background: var(--brown); }
+
+        /* Audio tooltip */
+        #audio-btn-wrap { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; display: flex; align-items: center; gap: 0.6rem; }
+        #audio-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--brown-subtle); background: rgba(247,243,238,0.9); padding: 0.3rem 0.7rem; border-radius: 50px; white-space: nowrap; opacity: 0; transform: translateX(6px); transition: opacity 0.3s ease, transform 0.3s ease; pointer-events: none; backdrop-filter: blur(6px); border: 1px solid rgba(197,138,42,0.15); }
+        #audio-btn-wrap:hover #audio-label { opacity: 1; transform: translateX(0); }
+        @media (max-width: 960px) { .pricing-tiers { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; } }
+        .pricing-payment { margin-top: 2.5rem; padding: 2rem; background: rgba(197,138,42,0.04); border: 1px solid rgba(197,138,42,0.12); border-radius: 4px; }
+        .pricing-payment h4 { font-family: var(--font-heading); font-size: 1.1rem; color: var(--gold); font-weight: 400; margin-bottom: 1.2rem; letter-spacing: 0.06em; }
+        .pricing-payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .pricing-methods { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+        .payment-method { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--brown); padding: 0.4rem 0.9rem; border: 1px solid rgba(197,138,42,0.2); border-radius: 50px; background: var(--white); }
+        .payment-method svg { width: 14px; height: 14px; stroke: var(--gold); flex-shrink: 0; }
+        .bank-details { font-size: 0.8rem; color: var(--brown-subtle); line-height: 2; }
+        .bank-details strong { color: var(--brown); display: block; margin-bottom: 0.3rem; font-family: var(--font-heading); font-size: 0.95rem; color: var(--gold); font-weight: 400; letter-spacing: 0.04em; }
+        .bank-details code { font-family: monospace; font-size: 0.85rem; background: rgba(197,138,42,0.06); padding: 0.1rem 0.4rem; border-radius: 3px; color: var(--brown); }
+        .pricing-deposit-note { margin-top: 1.5rem; padding: 1rem 1.5rem; background: rgba(185,161,201,0.08); border-left: 3px solid var(--lavender); font-size: 0.82rem; color: var(--brown-subtle); line-height: 1.7; }
+        .pricing-deposit-note strong { color: var(--brown); }
+        @media (max-width: 900px) { .pricing-tiers { grid-template-columns: 1fr; } .pricing-payment-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) { .pricing-methods { flex-direction: column; } }
+        @media (max-width: 900px) { .inclusions-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px) { .inclusions-grid { grid-template-columns: 1fr; } }
+
         /* Gallery */
         #gallery { background: var(--white); }
         .gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 4rem; }
         .gallery-item { overflow: hidden; position: relative; aspect-ratio: 1; cursor: pointer; }
         .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+        .gallery-item:nth-child(1) img { height: 100%; min-height: 400px; }
         .gallery-placeholder { width: 100%; height: 200px; transition: transform 0.6s ease; }
         .gallery-item:nth-child(1) .gallery-placeholder { height: 100%; min-height: 400px; }
-        .gallery-item:hover .gallery-placeholder { transform: scale(1.05); }
-        .gallery-placeholder.g1 { background: linear-gradient(135deg, #DCCEE5, #B9A1C9); }
-        .gallery-placeholder.g2 { background: linear-gradient(135deg, #E7C98F, rgba(197,138,42,0.2)); }
-        .gallery-placeholder.g3 { background: linear-gradient(135deg, #E8B7BE, #DCCEE5); }
-        .gallery-placeholder.g4 { background: linear-gradient(135deg, #B9A1C9, #E8B7BE); }
-        .gallery-placeholder.g5 { background: linear-gradient(135deg, rgba(197,138,42,0.15), #E7C98F); }
-        .gallery-placeholder.g6 { background: linear-gradient(135deg, #DCCEE5, #E8B7BE); }
-        .gallery-placeholder.g7 { background: linear-gradient(135deg, #E8B7BE, #B9A1C9); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
         .gallery-item-overlay { position:absolute; inset:0; background: linear-gradient(to top, rgba(94,75,75,0.35), transparent); opacity:0; transition: var(--transition); display:flex; align-items:flex-end; padding:1.2rem; }
         .gallery-item:hover .gallery-item-overlay { opacity:1; }
         .gallery-item-label { font-size:0.62rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--white); }
@@ -566,11 +700,30 @@
         <li><a href="#practices">Practices</a></li>
         <li><a href="#accommodation">Sanctuary</a></li>
         <li><a href="#program">Program</a></li>
+        <li><a href="#inclusions">Inclusions</a></li>
         <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Reserve Your Place</a>
-    <div class="nav-mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></div>
+    <a href="booking.html" class="nav-cta">Reserve Your Place</a>
+    <div class="nav-mobile-toggle" id="mobileToggle" aria-label="Open menu"><span></span><span></span><span></span></div>
 </nav>
+
+<!-- Mobile navigation drawer -->
+<div class="nav-mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="nav-mobile-overlay" id="mobileOverlay"></div>
+    <div class="nav-mobile-drawer" role="dialog" aria-label="Navigation">
+        <ul class="nav-mobile-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">The Retreat</a></li>
+            <li><a href="#guides">Guides</a></li>
+            <li><a href="#practices">Practices</a></li>
+            <li><a href="#accommodation">Sanctuary</a></li>
+            <li><a href="#program">Program</a></li>
+            <li><a href="#inclusions">Inclusions</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href="booking.html" class="nav-mobile-cta">Reserve Your Place</a>
+    </div>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -632,7 +785,6 @@
     </svg>
 
     <div class="hero-content">
-        <span class="hero-label">Sacred Luxury Wellness</span>
         <h1 class="hero-title">Paititi<br>Retreats</h1>
         <p class="hero-subtitle">Awaken &middot; Connect &middot; Remember</p>
         <div class="divider">
@@ -644,7 +796,7 @@
         </div>
         <p class="hero-description">An 8-day sacred journey in Ubud, Bali — where ancestral Inka wisdom and ancient Balinese spiritual traditions unite for the very first time. 12–19 July 2026.</p>
         <div class="hero-buttons">
-            <a href="#contact" class="btn-primary">Reserve Your Place</a>
+            <a href="booking.html" class="btn-primary">Reserve Your Place</a>
             <a href="#experience" class="btn-secondary">Explore the Retreat</a>
         </div>
     </div>
@@ -958,7 +1110,7 @@
             <div class="journey-step fade-in delay-1">
                 <div class="step-number">I</div>
                 <h4>The Calling</h4>
-                <p>You feel the pull toward something deeper. We hold a sacred discovery call to meet you where you are and explore the retreat together.</p>
+                <p>You feel the pull toward something deeper. Reach out by email and we will personally respond to meet you where you are and explore the retreat together.</p>
             </div>
             <div class="journey-step fade-in delay-2">
                 <div class="step-number">II</div>
@@ -974,192 +1126,6 @@
                 <div class="step-number">IV</div>
                 <h4>The Integration</h4>
                 <p>Return home with a 30-day integration support programme — anchoring your transformation into lasting, embodied change in everyday life.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery">
-    <div class="container">
-        <div class="section-header fade-in">
-            <span class="section-label">Sacred Spaces</span>
-            <h2>A Glimpse Within</h2>
-            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
-        </div>
-    </div>
-    <div class="gallery-grid fade-in" style="margin-top:4rem;">
-        <div class="gallery-item">
-            <div class="gallery-placeholder g1" style="min-height:400px;display:flex;align-items:center;justify-content:center;">
-                <svg viewBox="0 0 100 100" width="55" xmlns="http://www.w3.org/2000/svg">
-                    <g fill="none" stroke="rgba(197,138,42,0.3)" stroke-width="1">
-                        <circle cx="50" cy="50" r="44"/><circle cx="50" cy="50" r="28"/>
-                        <path d="M50,8 Q74,30 50,50 Q26,30 50,8 Z"/>
-                        <path d="M50,92 Q74,70 50,50 Q26,70 50,92 Z"/>
-                        <path d="M8,50 Q30,74 50,50 Q30,26 8,50 Z"/>
-                        <path d="M92,50 Q70,26 50,50 Q70,74 92,50 Z"/>
-                    </g>
-                </svg>
-            </div>
-            <div class="gallery-item-overlay"><span class="gallery-item-label">Sacred Ceremony Space</span></div>
-        </div>
-        <div class="gallery-item">
-            <div class="gallery-placeholder g2"></div>
-            <div class="gallery-item-overlay"><span class="gallery-item-label">Jungle Eco Village</span></div>
-        </div>
-        <div class="gallery-item">
-            <div class="gallery-placeholder g3"></div>
-            <div class="gallery-item-overlay"><span class="gallery-item-label">SKY Villa Suites</span></div>
-        </div>
-        <div class="gallery-item">
-            <div class="gallery-placeholder g4"></div>
-            <div class="gallery-item-overlay"><span class="gallery-item-label">Infinity Pool</span></div>
-        </div>
-        <div class="gallery-item">
-            <div class="gallery-placeholder g5"></div>
-            <div class="gallery-item-overlay"><span class="gallery-item-label">Sacred Temple Waters</span></div>
-        </div>
-        <div class="gallery-item">
-            <div class="gallery-placeholder g6"></div>
-            <div class="gallery-item-overlay"><span class="gallery-item-label">Yoga Shala &amp; Sound Dome</span></div>
-        </div>
-        <div class="gallery-item">
-            <div class="gallery-placeholder g7"></div>
-            <div class="gallery-item-overlay"><span class="gallery-item-label">East Bali Ceremony Beach</span></div>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-    <div class="container-narrow">
-        <div class="section-header fade-in">
-            <span class="section-label">Questions</span>
-            <h2>Frequently Asked</h2>
-            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
-        </div>
-        <div class="faq-list fade-in">
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h4>Who is this retreat for?</h4>
-                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-                </div>
-                <div class="faq-answer"><p>This retreat is for souls who feel called toward authentic transformation — whether you are at the beginning of your spiritual path or have walked this journey for many years. No previous spiritual experience is needed. Only an open heart and the genuine willingness to meet yourself fully.</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h4>Where is the retreat held?</h4>
-                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-                </div>
-                <div class="faq-answer"><p>The retreat takes place at a Jungle Eco Village in Pejeng, just outside Ubud, Bali — 15 to 20 minutes from central Ubud. Participants stay in the breathtaking SKY Villa, a bamboo architectural masterpiece with a 12-metre infinity pool and panoramic jungle views. The eco-village spans two hectares and includes organic gardens, a yoga shala, a sound dome, and walking meditation paths.</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h4>What does the investment include?</h4>
-                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-                </div>
-                <div class="faq-answer"><p>Your investment includes all accommodation in the SKY Villa, all plant-based meals and ceremonial teas, all guided ceremonies and healing sessions, a visit to an organic cacao plantation and chocolate factory, a traditional Balinese silver workshop, one individual healing massage with Ibu Jero Baba, the sacred Otonan Ceremony, pre-retreat preparation materials, and 30 days of post-retreat integration support. International flights are not included.</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h4>How do I know if this retreat is right for me?</h4>
-                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-                </div>
-                <div class="faq-answer"><p>We offer a complimentary sacred discovery call for all prospective participants. This is a beautiful space for us to connect, understand your intentions, answer questions, and discern together whether this retreat is your next step. There is no pressure — only genuine care for your highest good.</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h4>Are payment plans available?</h4>
-                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-                </div>
-                <div class="faq-answer"><p>Yes. We believe a genuine calling should never be limited by financial constraint alone. We offer flexible, interest-free payment plans. Please mention this during your discovery call and we will create something that works beautifully for you.</p></div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h4>What is your cancellation policy?</h4>
-                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-                </div>
-                <div class="faq-answer"><p>Deposits are non-refundable and secure your place. Full payments made more than 60 days in advance are 75% refundable. Within 60 days we offer a credit to a future retreat. In cases of genuine emergency, each situation is handled with compassion and care.</p></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-    <div class="container">
-        <div class="contact-wrapper">
-            <div class="contact-info fade-in">
-                <span class="section-label">Reach Us</span>
-                <h2>Begin Your Sacred Journey</h2>
-                <div class="divider" style="justify-content:flex-start;margin:1.5rem 0;">
-                    <div class="divider-line" style="width:50px;"></div>
-                    <div class="divider-diamond"></div>
-                </div>
-                <p>Whether you are ready to book, have questions, or simply feel the calling — we would love to hear from you. Every conversation begins with a listening heart.</p>
-                <div class="contact-details">
-                    <div class="contact-detail">
-                        <div class="contact-detail-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        </div>
-                        <div class="contact-detail-text">
-                            <span>Email</span>
-                            <a href="mailto:admin@erdkinder-bali.com">admin@erdkinder-bali.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-detail-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        </div>
-                        <div class="contact-detail-text">
-                            <span>Location</span>
-                            <p style="margin:0;">Jungle Eco Village, Pejeng<br>Ubud, Bali &mdash; 12&ndash;19 July 2026</p>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-detail-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                        </div>
-                        <div class="contact-detail-text">
-                            <span>Discovery Calls</span>
-                            <p style="margin:0;">Available by appointment<br>Mon &ndash; Fri, 9am &ndash; 5pm GMT</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="contact-form fade-in delay-2">
-                <h3 style="margin-bottom:0.5rem;">Reserve Your Place</h3>
-                <p style="margin-bottom:2rem;font-size:0.85rem;color:var(--brown-subtle);">Complete the form below and we will be in touch within 48 hours to schedule your complimentary discovery call.</p>
-                <form id="enquiryForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">First Name</label>
-                            <input type="text" class="form-input" placeholder="Your first name">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Last Name</label>
-                            <input type="text" class="form-input" placeholder="Your last name">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Email Address</label>
-                        <input type="email" class="form-input" placeholder="your@email.com">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Which Experience Calls to You?</label>
-                        <select class="form-select">
-                            <option value="" disabled selected>Select an experience</option>
-                            <option>The Paititi Retreat &mdash; Full 8-Day Program</option>
-                            <option>I would love guidance on what is right for me</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Tell Us About Your Journey</label>
-                        <textarea class="form-textarea" placeholder="What brings you to Paititi? What are you seeking?"></textarea>
-                    </div>
-                    <button type="submit" class="form-submit" id="submitBtn">Send My Enquiry</button>
-                </form>
             </div>
         </div>
     </div>
@@ -1335,6 +1301,410 @@
     </div>
 </section>
 
+<!-- GALLERY -->
+<section id="gallery">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">Sacred Spaces</span>
+            <h2>A Glimpse Within</h2>
+            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
+        </div>
+    </div>
+    <div class="gallery-grid fade-in" style="margin-top:4rem;">
+        <div class="gallery-item">
+            <img src="photos_videos_Paititi%20Retreat_Antares/skyyoga_.webp" alt="SKY Villa & Jungle Sanctuary">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">SKY Villa &amp; Jungle Sanctuary</span></div>
+        </div>
+        <div class="gallery-item">
+            <img src="photos_videos_Paititi%20Retreat_Antares/Sacred-Water%20Ceremonies.jpg" alt="Sacred Water Ceremonies" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Sacred Water Ceremonies</span></div>
+        </div>
+        <div class="gallery-item">
+            <img src="Naya%20Veda%20Vastu%20Outdoor/Naya-Luftaufnahme.webp" alt="Naya Eco-Village Aerial" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Naya Eco-Village</span></div>
+        </div>
+        <div class="gallery-item">
+            <img src="photos_videos_Paititi%20Retreat_Antares/Sound-Dome_Day.webp" alt="Sound Dome" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Sacred Sound Dome</span></div>
+        </div>
+        <div class="gallery-item">
+            <img src="photos_videos_Paititi%20Retreat_Antares/tirta%20empul.jpeg" alt="Tirta Empul Water Temple" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Tirta Empul Water Temple</span></div>
+        </div>
+        <div class="gallery-item">
+            <img src="photos_videos_Paititi%20Retreat_Antares/Self-Love%20Marriage%20Ceremony.jpeg" alt="Self-Love Marriage Ceremony" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Self-Love Marriage Ceremony</span></div>
+        </div>
+        <div class="gallery-item">
+            <img src="photos_videos_Paititi%20Retreat_Antares/Silver%20Class.webp" alt="Balinese Silver Workshop" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Balinese Silver Workshop</span></div>
+        </div>
+        <div class="gallery-item">
+            <img src="photos_videos_Paititi%20Retreat_Antares/SoundDome_inside.webp" alt="Sound Dome Interior" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Sound Dome Interior</span></div>
+        </div>
+        <div class="gallery-item">
+            <img src="photos_videos_Paititi%20Retreat_Antares/melukat-bali-water-purificatio.jpg" alt="Melukat Purification" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Melukat Purification</span></div>
+        </div>
+        <div class="gallery-item">
+            <img src="photos_videos_Paititi%20Retreat_Antares/Sacred%20Cacao%20Journey.webp" alt="Cacao Journey" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Cacao Journey</span></div>
+        </div>
+        <div class="gallery-item">
+            <img src="photos_videos_Paititi%20Retreat_Antares/hang-out-netz.jpeg" alt="Jungle Sanctuary" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Jungle Sanctuary</span></div>
+        </div>
+        <div class="gallery-item">
+            <img src="photos_videos_Paititi%20Retreat_Antares/taman-pecampuhan-sala.jpg" alt="Sacred Temple" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Sacred Temple</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- INCLUSIONS -->
+<section id="inclusions">
+    <div class="container">
+        <div class="section-header fade-in">
+            <span class="section-label">Your Investment</span>
+            <h2>Everything That Is Included</h2>
+            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
+            <p>Every detail of your sacred journey is taken care of — so you can arrive fully and be completely present.</p>
+        </div>
+        <div class="inclusions-grid fade-in">
+            <div class="inclusion-item">
+                <div class="inclusion-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <div>
+                    <h4>All Accommodation</h4>
+                    <p>7 nights in the breathtaking SKY Villa at the Jungle Eco Village — a bamboo architectural masterpiece surrounded by tropical jungle.</p>
+                </div>
+            </div>
+            <div class="inclusion-item">
+                <div class="inclusion-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                </div>
+                <div>
+                    <h4>All Meals &amp; Ceremonial Teas</h4>
+                    <p>Nourishing plant-based meals prepared fresh daily, plus sacred ceremonial teas throughout the retreat.</p>
+                </div>
+            </div>
+            <div class="inclusion-item">
+                <div class="inclusion-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                </div>
+                <div>
+                    <h4>All Guided Ceremonies &amp; Healing Sessions</h4>
+                    <p>Every ceremony, ritual, meditation, yoga session, and healing practice led by your three sacred guides throughout all 8 days.</p>
+                </div>
+            </div>
+            <div class="inclusion-item">
+                <div class="inclusion-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                    <h4>Individual Healing Massage</h4>
+                    <p>One private 1-hour healing massage with Ibu Jero Baba, Bali's revered traditional healer — included for every participant.</p>
+                </div>
+            </div>
+            <div class="inclusion-item">
+                <div class="inclusion-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
+                <div>
+                    <h4>Sacred Otonan Ceremony</h4>
+                    <p>A rare and deeply personal Balinese birthday-of-the-soul ceremony performed by Ibu Jero Baba — a profound gift for your spirit.</p>
+                </div>
+            </div>
+            <div class="inclusion-item">
+                <div class="inclusion-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                </div>
+                <div>
+                    <h4>Organic Cacao Plantation Visit</h4>
+                    <p>A guided journey to an organic cacao plantation and chocolate factory in Tabanan — from sacred bean to ceremonial cacao.</p>
+                </div>
+            </div>
+            <div class="inclusion-item">
+                <div class="inclusion-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <div>
+                    <h4>Traditional Balinese Silver Workshop</h4>
+                    <p>Create your own sacred Self-Love Ring by hand in a traditional Balinese silver workshop in the heart of Ubud — yours to keep forever.</p>
+                </div>
+            </div>
+            <div class="inclusion-item">
+                <div class="inclusion-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </div>
+                <div>
+                    <h4>Pre-Retreat Preparation Materials</h4>
+                    <p>A curated preparation guide to help you arrive open, grounded, and ready to receive the full depth of this sacred journey.</p>
+                </div>
+            </div>
+            <div class="inclusion-item">
+                <div class="inclusion-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div>
+                    <h4>30 Days Post-Retreat Integration Support</h4>
+                    <p>A full month of guided integration support after the retreat — so the transformation continues and anchors deeply into your daily life.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Early Bird Banner -->
+        <div class="early-bird-banner fade-in">
+            <svg viewBox="0 0 24 24" width="16" fill="none" stroke="#C58A2A" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <p><strong>Early Bird — 10% OFF</strong> &nbsp;·&nbsp; Valid until <strong>11 June 2026</strong> &nbsp;·&nbsp; May close earlier if the retreat becomes fully booked</p>
+        </div>
+
+        <!-- Pricing Tiers -->
+        <div class="pricing-tiers fade-in">
+
+            <!-- Open Bamboo Room -->
+            <div class="pricing-tier">
+                <div class="room-gallery room-carousel" data-slides='["Open-bamboo-rooms/open-bamboo.jpg","Open-bamboo-rooms/open-bamboo-room.jpg","Open-bamboo-rooms/Chill-sky.jpeg","Open-bamboo-rooms/sky_bathrooms.jpeg"]'>
+                    <img class="room-gallery-main" src="Open-bamboo-rooms/open-bamboo.jpg" alt="Open Bamboo Room" loading="eager">
+                    <div class="room-glow-frame"></div>
+                    <button class="carousel-btn carousel-prev" aria-label="Previous photo">&#8249;</button>
+                    <button class="carousel-btn carousel-next" aria-label="Next photo">&#8250;</button>
+                    <div class="carousel-dots"><span class="carousel-dot active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span></div>
+                </div>
+                <div class="room-info">
+                    <h4>Open Bamboo Room</h4>
+                    <p class="room-description">A private bamboo sky suite open to the lush jungle breeze and birdsong. Crafted from natural materials with sacred geometry, these serene rooms offer a grounded, deeply restful space between ceremonies. Shared bathrooms are steps away, thoughtfully maintained.</p>
+                    <div class="room-amenities">
+                        <span class="room-amenity">Private Room</span>
+                        <span class="room-amenity">7 Nights</span>
+                        <span class="room-amenity">Jungle View</span>
+                        <span class="room-amenity">Shared Bathroom</span>
+                        <span class="room-amenity">3 Meals Daily</span>
+                    </div>
+                    <p class="pricing-tier-earlybird">Early Bird Price</p>
+                    <p class="pricing-tier-price">IDR 24,210,000<span class="pricing-tier-eur">approx. €1,385 · $1,515</span></p>
+                    <p class="pricing-tier-regular">Regular: <s>IDR 27,900,000</s></p>
+                    <span class="pricing-tier-saving">Save IDR 3,690,000</span>
+                    <a href="booking.html?room=bamboo" class="room-book-btn">Reserve This Room</a>
+                </div>
+            </div>
+
+            <!-- Luxury Ensuite Room -->
+            <div class="pricing-tier featured">
+                <div class="pricing-tier-badge">Most Popular</div>
+                <div class="room-gallery room-carousel" data-slides='["Luxury ensuite room/luxury room.jpeg","Luxury ensuite room/ensuite.jpg","Luxury ensuite room/ensuite-room.jpg","Luxury ensuite room/ensuite-bathroom.jpg"]'>
+                    <img class="room-gallery-main" src="Luxury ensuite room/luxury room.jpeg" alt="Luxury Ensuite Room" loading="eager">
+                    <div class="room-glow-frame"></div>
+                    <button class="carousel-btn carousel-prev" aria-label="Previous photo">&#8249;</button>
+                    <button class="carousel-btn carousel-next" aria-label="Next photo">&#8250;</button>
+                    <div class="carousel-dots"><span class="carousel-dot active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span></div>
+                </div>
+                <div class="room-info">
+                    <h4>Luxury Ensuite Room</h4>
+                    <p class="room-description">An elevated private sanctuary with your own ensuite bathroom — the pinnacle of comfort within the eco-village. Beautifully appointed with natural finishes, these rooms offer complete privacy and a seamless connection to the surrounding jungle, perfect for those who value extra space alongside deep transformation.</p>
+                    <div class="room-amenities">
+                        <span class="room-amenity">Private Room</span>
+                        <span class="room-amenity">7 Nights</span>
+                        <span class="room-amenity">Ensuite Bathroom</span>
+                        <span class="room-amenity">Jungle View</span>
+                        <span class="room-amenity">3 Meals Daily</span>
+                    </div>
+                    <p class="pricing-tier-earlybird">Early Bird Price</p>
+                    <p class="pricing-tier-price">IDR 30,032,100<span class="pricing-tier-eur">approx. €1,720 · $1,880</span></p>
+                    <p class="pricing-tier-regular">Regular: <s>IDR 33,369,000</s></p>
+                    <span class="pricing-tier-saving">Save IDR 3,336,900</span>
+                    <a href="booking.html?room=ensuite" class="room-book-btn">Reserve This Room</a>
+                </div>
+            </div>
+
+            <!-- Retreat Only -->
+            <div class="pricing-tier">
+                <div class="room-gallery room-carousel" data-slides='["Naya Veda Vastu Outdoor/sky_villa_pool.jpeg","Naya Veda Vastu Outdoor/Naya.webp","Naya Veda Vastu Outdoor/Naya_Gardens.webp","Naya Veda Vastu Outdoor/Naya_Mandala_garden.webp"]'>
+                    <img class="room-gallery-main" src="Naya Veda Vastu Outdoor/sky_villa_pool.jpeg" alt="Eco-Village Grounds" loading="eager">
+                    <div class="room-glow-frame"></div>
+                    <button class="carousel-btn carousel-prev" aria-label="Previous photo">&#8249;</button>
+                    <button class="carousel-btn carousel-next" aria-label="Next photo">&#8250;</button>
+                    <div class="carousel-dots"><span class="carousel-dot active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span></div>
+                </div>
+                <div class="room-info">
+                    <h4>Retreat Only</h4>
+                    <p class="room-description">Join the full retreat experience — all ceremonies, practices, and meals included — while arranging your own accommodation in or around Ubud. Ideal for those staying with friends, family, or in a nearby space of their choice. Daily arrival and departure from the eco-village is your own responsibility.</p>
+                    <div class="room-amenities">
+                        <span class="room-amenity">Full Program</span>
+                        <span class="room-amenity">All Ceremonies</span>
+                        <span class="room-amenity">3 Meals Daily</span>
+                        <span class="room-amenity">Own Accommodation</span>
+                    </div>
+                    <p class="pricing-tier-earlybird">Early Bird Price</p>
+                    <p class="pricing-tier-price">IDR 19,980,000<span class="pricing-tier-eur">approx. €1,140 · $1,250</span></p>
+                    <p class="pricing-tier-regular">Regular: <s>IDR 22,200,000</s></p>
+                    <span class="pricing-tier-saving">Save IDR 2,220,000</span>
+                    <a href="booking.html?room=retreat" class="room-book-btn">Reserve My Place</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Deposit Note -->
+        <div class="pricing-deposit-note fade-in">
+            <strong>Booking &amp; Deposit</strong>
+            A <strong>30% non-refundable deposit</strong> is required to secure your place. The remaining balance is due no later than <strong>30 days before the retreat begins</strong>. Your booking is confirmed once the deposit is received. Booking transfers to another person are possible upon prior agreement.
+        </div>
+
+        <!-- Payment Methods & Bank Details -->
+        <div class="pricing-payment fade-in">
+            <h4>How to Pay</h4>
+            <div class="pricing-payment-grid">
+                <div>
+                    <p style="font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--brown-subtle);margin-bottom:0.8rem;">Accepted Methods</p>
+                    <div class="pricing-methods">
+                        <div class="payment-method">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                            Credit Card (Stripe)
+                        </div>
+                        <div class="payment-method">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 11l5-5 5 5M7 17l5-5 5 5" stroke-linecap="round"/></svg>
+                            PayPal
+                        </div>
+                        <div class="payment-method">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M7 15h2m4 0h4"/></svg>
+                            Bank Transfer
+                        </div>
+                    </div>
+                </div>
+                <div class="bank-details">
+                    <strong>Bank Transfer Details</strong>
+                    Bank: Danamon Bank Ubud<br>
+                    Swift Code: <code>BDINIDJA</code><br>
+                    Account Name: PT. Montessori ERDKINDER Bali<br>
+                    Account Number: <code>0036-5499-9261</code><br><br>
+                    <em style="font-size:0.75rem;">Reference: Paititi Retreat – [Deposit / Rest Payment / Full Payment] – Your Full Name</em>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container">
+        <div class="contact-wrapper">
+            <div class="contact-info fade-in">
+                <span class="section-label">Reach Us</span>
+                <h2>Begin Your Sacred Journey</h2>
+                <div class="divider" style="justify-content:flex-start;margin:1.5rem 0;">
+                    <div class="divider-line" style="width:50px;"></div>
+                    <div class="divider-diamond"></div>
+                </div>
+                <p>Whether you are ready to book or simply feel the calling — reach out by email and we will get back to you with everything you need.</p>
+                <div class="contact-details">
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div class="contact-detail-text">
+                            <span>Email</span>
+                            <a href="mailto:admin@erdkinder-bali.com">admin@erdkinder-bali.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div class="contact-detail-text">
+                            <span>Location</span>
+                            <p style="margin:0;">Jungle Eco Village, Pejeng<br>Ubud, Bali &mdash; 12&ndash;19 July 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form fade-in delay-2">
+                <h3 style="margin-bottom:0.5rem;">Reserve Your Place</h3>
+                <p style="margin-bottom:2rem;font-size:0.85rem;color:var(--brown-subtle);">Complete the form below and we will reply by email within 48 hours.</p>
+                <form id="enquiryForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-input" placeholder="Your first name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-input" placeholder="Your last name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tell Us About Your Journey</label>
+                        <textarea class="form-textarea" placeholder="What brings you to Paititi? What are you seeking?"></textarea>
+                    </div>
+                    <button type="submit" class="form-submit" id="submitBtn">Send My Enquiry</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+    <div class="container-narrow">
+        <div class="section-header fade-in">
+            <span class="section-label">Questions</span>
+            <h2>Frequently Asked</h2>
+            <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
+        </div>
+        <div class="faq-list fade-in">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Who is this retreat for?</h4>
+                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-answer"><p>This retreat is for souls who feel called toward authentic transformation — whether you are at the beginning of your spiritual path or have walked this journey for many years. No previous spiritual experience is needed. Only an open heart and the genuine willingness to meet yourself fully.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Where is the retreat held?</h4>
+                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-answer"><p>The retreat takes place at a Jungle Eco Village in Pejeng, just outside Ubud, Bali — 15 to 20 minutes from central Ubud. Participants stay in the breathtaking SKY Villa, a bamboo architectural masterpiece with a 12-metre infinity pool and panoramic jungle views. The eco-village spans two hectares and includes organic gardens, a yoga shala, a sound dome, and walking meditation paths.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>What does the investment include?</h4>
+                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-answer"><p>Your investment includes all accommodation in the SKY Villa, all plant-based meals and ceremonial teas, all guided ceremonies and healing sessions, a visit to an organic cacao plantation and chocolate factory, a traditional Balinese silver workshop, one individual healing massage with Ibu Jero Baba, the sacred Otonan Ceremony, pre-retreat preparation materials, and 30 days of post-retreat integration support. International flights are not included.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>How do I know if this retreat is right for me?</h4>
+                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-answer"><p>Simply send us an email and we will personally write back to you. We take the time to understand your intentions, answer your questions, and help you discern whether this retreat is your next step. There is no pressure — only genuine care for your highest good.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Are payment plans available?</h4>
+                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-answer"><p>A 30% non-refundable deposit secures your place, with the remaining balance due no later than 30 days before the retreat begins. We accept payment by Credit Card (Stripe), PayPal, or Bank Transfer. If you need a different arrangement due to financial circumstances, mention this in your email enquiry and we will do our best to support you.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>What is your cancellation policy?</h4>
+                    <div class="faq-icon"><svg viewBox="0 0 24 24" width="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                </div>
+                <div class="faq-answer"><p>The 30% deposit is non-refundable in all cases. Beyond that: cancellation more than 30 days before the retreat — any payments beyond the deposit are refunded in full; cancellation between 14 and 30 days — 50% of the total price is refunded; cancellation less than 14 days — no refund can be issued. You may transfer your booking to another person with prior agreement. If the retreat does not reach the minimum of 8 participants, all payments made are fully refunded. We strongly recommend comprehensive travel insurance.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
     <div class="container">
@@ -1343,13 +1713,7 @@
                 <a href="#hero" class="nav-logo">Paititi Retreats</a>
                 <p>A sacred 8-day journey in Ubud, Bali — where ancestral Inka wisdom and ancient Balinese traditions unite. 12–19 July 2026.</p>
                 <div class="footer-social">
-                    <a href="#" class="social-link" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Email">
+                    <a href="mailto:admin@erdkinder-bali.com" class="social-link" aria-label="Email">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     </a>
                 </div>
@@ -1374,7 +1738,7 @@
             <div class="footer-col">
                 <h5>Connect</h5>
                 <ul class="footer-links">
-                    <li><a href="#contact">Book a Discovery Call</a></li>
+                    <li><a href="#contact">Send an Enquiry</a></li>
                     <li><a href="#contact">Send an Enquiry</a></li>
                     <li><a href="#">Newsletter</a></li>
                     <li><a href="#">Affiliate Programme</a></li>
@@ -1599,14 +1963,152 @@
         card.addEventListener('click', () => openLightbox(card.dataset.gallery));
     });
 
-    // Form submit
-    document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+    // Mobile nav
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu   = document.getElementById('mobileMenu');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    function openMobileMenu() { mobileMenu.classList.add('open'); mobileToggle.classList.add('open'); mobileMenu.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; }
+    function closeMobileMenu() { mobileMenu.classList.remove('open'); mobileToggle.classList.remove('open'); mobileMenu.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; }
+    mobileToggle.addEventListener('click', () => mobileMenu.classList.contains('open') ? closeMobileMenu() : openMobileMenu());
+    mobileOverlay.addEventListener('click', closeMobileMenu);
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
+
+    // Room photo carousels
+    document.querySelectorAll('.room-carousel').forEach(carousel => {
+        const slides = JSON.parse(carousel.dataset.slides);
+        const img    = carousel.querySelector('.room-gallery-main');
+        const dots   = carousel.querySelectorAll('.carousel-dot');
+        let current  = 0;
+        function goTo(i) {
+            current = (i + slides.length) % slides.length;
+            img.src = slides[current];
+            dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
+        }
+        carousel.querySelector('.carousel-prev').addEventListener('click', e => { e.stopPropagation(); goTo(current - 1); });
+        carousel.querySelector('.carousel-next').addEventListener('click', e => { e.stopPropagation(); goTo(current + 1); });
+        dots.forEach((d, i) => d.addEventListener('click', e => { e.stopPropagation(); goTo(i); }));
+    });
+
+    // Form submit — posts to Formspree; falls back to mailto if not yet configured
+    function formMailtoFallback(form, subject) {
+        const data = new FormData(form);
+        let body = '';
+        data.forEach((value, key) => { if (value && key !== '_gotcha') body += key + ': ' + value + '\n'; });
+        window.location.href = 'mailto:admin@erdkinder-bali.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    }
+
+    document.getElementById('enquiryForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
-        btn.textContent = 'Thank You — We Will Be In Touch';
-        btn.style.background = 'var(--gold)';
+        const form = e.target;
+        btn.textContent = 'Sending…';
         btn.disabled = true;
+        const FORM_ID = 'YOUR_FORM_ID';
+        if (FORM_ID === 'YOUR_FORM_ID') { formMailtoFallback(form, 'Paititi Retreat Enquiry'); return; }
+        try {
+            const res = await fetch('https://formspree.io/f/' + FORM_ID, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json' },
+                body: new FormData(form)
+            });
+            if (res.ok) {
+                btn.textContent = 'Thank You — We Will Be In Touch';
+                btn.style.background = 'var(--gold)';
+                form.reset();
+            } else {
+                formMailtoFallback(form, 'Paititi Retreat Enquiry');
+            }
+        } catch {
+            formMailtoFallback(form, 'Paititi Retreat Enquiry');
+        }
     });
+</script>
+
+<!-- Background audio -->
+<audio id="bg-audio" loop preload="none">
+    <source src="brand_assets/Humanity.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Fixed audio toggle button -->
+<div id="audio-btn-wrap">
+    <span id="audio-label">Ambient music</span>
+    <button id="audio-btn" aria-label="Toggle ambient music" title="Toggle ambient music">
+        <svg id="icon-muted" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <line x1="23" y1="9" x2="17" y2="15"/>
+            <line x1="17" y1="9" x2="23" y2="15"/>
+        </svg>
+        <svg id="icon-playing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+        </svg>
+    </button>
+</div>
+
+<style>
+#audio-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid rgba(197,138,42,0.4);
+    background: rgba(247,243,238,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--gold);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+    box-shadow: 0 4px 20px rgba(197,138,42,0.15);
+}
+#audio-btn:hover {
+    background: var(--gold);
+    color: #fff;
+    border-color: var(--gold);
+    transform: scale(1.1);
+    box-shadow: 0 8px 28px rgba(197,138,42,0.3);
+}
+#audio-btn svg { width: 18px; height: 18px; }
+#audio-btn.is-playing {
+    border-color: var(--lavender);
+    animation: audioRipple 2.4s ease-out infinite;
+}
+@keyframes audioRipple {
+    0%   { box-shadow: 0 4px 20px rgba(185,161,201,0.25), 0 0 0 0 rgba(185,161,201,0.45); }
+    70%  { box-shadow: 0 4px 20px rgba(185,161,201,0.25), 0 0 0 14px rgba(185,161,201,0); }
+    100% { box-shadow: 0 4px 20px rgba(185,161,201,0.25), 0 0 0 0 rgba(185,161,201,0); }
+}
+</style>
+
+<script>
+(function () {
+    var audio     = document.getElementById('bg-audio');
+    var btn       = document.getElementById('audio-btn');
+    var iconMuted = document.getElementById('icon-muted');
+    var iconOn    = document.getElementById('icon-playing');
+
+    audio.volume = 0.6;
+
+    function setUI(on) {
+        btn.classList.toggle('is-playing', on);
+        iconMuted.style.display = on ? 'none'  : 'block';
+        iconOn.style.display    = on ? 'block' : 'none';
+        btn.setAttribute('aria-label', on ? 'Pause music' : 'Play music');
+    }
+
+    btn.addEventListener('click', function () {
+        if (audio.paused) {
+            audio.play();
+            setUI(true);
+        } else {
+            audio.pause();
+            setUI(false);
+        }
+    });
+}());
 </script>
 </body>
 </html>
