@@ -8,8 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- EmailJS — sends confirmation email to the customer on booking -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         :root {
             --gold: #C58A2A;
@@ -121,6 +119,23 @@
         .form-submit:hover:not(:disabled) { background: var(--brown); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(197,138,42,0.25); }
         .form-submit:disabled { opacity: 0.7; cursor: not-allowed; }
 
+        /* Payment buttons (shown in success state) */
+        .payment-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.2rem; }
+        @media (max-width: 500px) { .payment-options { grid-template-columns: 1fr; } }
+        .pay-option { border: 1px solid rgba(197,138,42,0.22); border-radius: 8px; padding: 1.4rem 1rem 1.2rem; display: flex; flex-direction: column; align-items: center; gap: 0.65rem; }
+        .pay-option-logo { height: 28px; display: flex; align-items: center; justify-content: center; margin-bottom: 0.2rem; }
+        .pay-option-label { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--brown-subtle); }
+        .payment-action-btn {
+            display: inline-block; padding: 0.75rem 1.4rem; border-radius: 50px; width: 100%; text-align: center;
+            font-family: var(--font-body); font-size: 0.72rem; font-weight: 500;
+            letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+            transition: var(--transition); cursor: pointer; white-space: nowrap;
+        }
+        .pay-primary { background: var(--gold); color: var(--white); border: 1px solid var(--gold); }
+        .pay-primary:hover { background: var(--brown); border-color: var(--brown); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(197,138,42,0.25); }
+        .pay-secondary { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+        .pay-secondary:hover { background: rgba(197,138,42,0.07); transform: translateY(-2px); }
+
         /* Responsive */
         @media (max-width: 860px) {
             .booking-layout { grid-template-columns: 1fr; }
@@ -181,7 +196,7 @@
     <!-- Booking Form (right) -->
     <div class="booking-form-wrap">
         <h2>Your Booking Details</h2>
-        <p>We will reply within 48 hours to confirm your place and share payment instructions.</p>
+        <p>Complete your details below. After submitting you'll choose to pay your 30% deposit via PayPal or Bank Transfer.</p>
 
         <form id="bookingForm">
             <!-- Hidden field passes selected room to Formspree -->
@@ -423,16 +438,7 @@
                 <textarea name="Message" class="form-textarea" placeholder="Share a little about what you are seeking or what called you to this retreat…" required></textarea>
             </div>
 
-            <span class="form-section-title">Payment Method</span>
-            <div class="form-group">
-                <label class="form-label">Preferred Payment Method</label>
-                <select name="Payment Method" class="form-select" required>
-                    <option value="">Select a method</option>
-                    <option value="Credit Card (Stripe)">Credit Card (Stripe)</option>
-                    <option value="PayPal">PayPal</option>
-                    <option value="Bank Transfer">Bank Transfer</option>
-                </select>
-            </div>
+
 
             <span class="form-section-title">Confirmation</span>
             <div class="form-checkbox-group">
@@ -448,17 +454,120 @@
                 <label for="agreeInsurance">I understand that travel insurance is strongly recommended and that the organizers are not responsible for flights, visas, or personal travel arrangements.</label>
             </div>
 
-            <button type="submit" class="form-submit" id="submitBtn">Send My Booking Request</button>
+            <button type="submit" class="form-submit" id="submitBtn">Continue to Payment →</button>
+
+            <!-- Payment trust badges -->
+            <div style="display:flex;align-items:center;justify-content:center;gap:0.55rem;margin-top:1rem;flex-wrap:wrap;">
+                <!-- PayPal badge -->
+                <svg viewBox="0 0 60 38" style="width:46px;height:30px;border-radius:4px;" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="60" height="38" rx="4" fill="#003087"/>
+                    <text x="10" y="24" font-family="Arial,sans-serif" font-weight="900" font-size="13" fill="#009CDE">Pay</text>
+                    <text x="33" y="24" font-family="Arial,sans-serif" font-weight="900" font-size="13" fill="#009CDE">Pal</text>
+                </svg>
+                <!-- Bank Transfer badge -->
+                <svg viewBox="0 0 60 38" style="width:46px;height:30px;border-radius:4px;" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="60" height="38" rx="4" fill="#5E4B4B"/>
+                    <text x="50%" y="15" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="7.5" fill="white" letter-spacing="0.3">BANK</text>
+                    <text x="50%" y="27" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="7.5" fill="white" letter-spacing="0.3">TRANSFER</text>
+                </svg>
+                <span style="font-size:0.65rem;color:var(--brown-subtle);opacity:0.65;">PayPal &amp; Bank Transfer accepted</span>
+            </div>
         </form>
-        <div id="bookingSuccess" style="display:none; margin-top:1.5rem; padding:1.4rem 1.6rem; background:rgba(185,161,201,0.12); border:1px solid rgba(185,161,201,0.35); border-radius:6px; text-align:center;">
-            <p style="font-family:'Cormorant Garamond',serif; font-size:1.25rem; color:var(--gold); margin-bottom:0.4rem;">Thank You — Your Request Is On Its Way</p>
-            <p style="font-size:0.82rem; color:var(--brown-subtle); line-height:1.7;">A confirmation has been sent to <strong id="confirmedEmail"></strong>.<br>We will reply within 48 hours to confirm your place and share payment details.</p>
+        <div id="bookingSuccess" style="display:none; margin-top:1.5rem; padding:2rem; background:rgba(185,161,201,0.12); border:1px solid rgba(185,161,201,0.35); border-radius:6px; text-align:center;">
+            <p style="font-size:0.82rem; color:var(--brown-subtle); line-height:1.7; margin-bottom:1.2rem;">Choose your preferred method below to pay your deposit and secure your place.</p>
+            <!-- PayPal — compact horizontal strip -->
+            <div class="pay-option" style="flex-direction:row;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;">
+                <div style="display:flex;align-items:center;gap:0.7rem;flex-shrink:0;">
+                    <svg viewBox="0 0 80 28" style="height:24px;width:auto;" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="22" font-family="Arial,sans-serif" font-weight="900" font-size="20" fill="#003087">Pay</text>
+                        <text x="38" y="22" font-family="Arial,sans-serif" font-weight="900" font-size="20" fill="#009CDE">Pal</text>
+                    </svg>
+                    <span class="pay-option-label" style="margin:0;">via PayPal</span>
+                </div>
+                <div style="display:flex;gap:0.6rem;flex-wrap:wrap;flex:1;justify-content:flex-end;">
+                    <a id="paypalDepositBtn" href="#" target="_blank" rel="noopener noreferrer" class="payment-action-btn pay-primary" style="width:auto;">Deposit — <span class="deposit-amt"></span></a>
+                    <a id="paypalFullBtn" href="#" target="_blank" rel="noopener noreferrer" class="payment-action-btn pay-secondary" style="width:auto;">Pay in Full — <span class="full-amt"></span></a>
+                </div>
+            </div>
+
+            <!-- Bank Transfer — full width -->
+            <div class="pay-option" style="align-items:flex-start;">
+                <div style="display:flex;align-items:center;gap:0.5rem;width:100%;margin-bottom:0.4rem;">
+                    <svg viewBox="0 0 24 24" style="height:20px;width:20px;flex-shrink:0;" fill="none" stroke="var(--gold)" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M7 15h2m4 0h4"/>
+                    </svg>
+                    <span class="pay-option-label" style="margin:0;">Bank Transfer (SWIFT)</span>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;width:100%;">
+                    <!-- Account details -->
+                    <div style="font-size:0.72rem;color:var(--brown);line-height:2;background:rgba(197,138,42,0.06);border-radius:5px;padding:0.7rem 0.9rem;">
+                        <span style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--brown-subtle);">Account Details</span><br>
+                        Bank: <strong>Danamon Bank · Ubud</strong><br>
+                        Name: <strong>PT. Montessori ERDKINDER Bali</strong><br>
+                        Number: <strong>0036-5499-9261</strong><br>
+                        SWIFT: <strong>BDINIDJA</strong><br>
+                        Reference:<br>
+                        &nbsp;· Deposit: <strong>Paititi Retreat – Deposit – <em>Your Name</em></strong><br>
+                        &nbsp;· Full pay: <strong>Paititi Retreat – Full Payment – <em>Your Name</em></strong>
+                    </div>
+
+                    <!-- How-to + proof -->
+                    <div style="display:flex;flex-direction:column;gap:0.6rem;">
+                        <div>
+                            <p style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--brown-subtle);margin-bottom:0.4rem;">How to send</p>
+                            <ol style="font-size:0.71rem;color:var(--brown);line-height:1.8;padding-left:1rem;margin:0;">
+                                <li>Log in to your online banking</li>
+                                <li>Choose <strong>International</strong> or <strong>SWIFT Transfer</strong></li>
+                                <li>Enter the account details on the left</li>
+                                <li>Pay in <strong>any currency</strong> (EUR, USD, GBP…)</li>
+                                <li>Confirm and take a <strong>screenshot</strong></li>
+                            </ol>
+                        </div>
+                        <div style="padding:0.65rem 0.8rem;background:rgba(185,161,201,0.15);border-left:3px solid var(--lavender);border-radius:0 5px 5px 0;">
+                            <p style="font-size:0.71rem;color:var(--brown);line-height:1.7;margin:0;">
+                                Email your screenshot to<br>
+                                <a href="mailto:admin@erdkinder-bali.com" style="color:var(--gold);font-weight:500;">admin@erdkinder-bali.com</a><br>
+                                <span style="font-size:0.66rem;color:var(--brown-subtle);">We confirm your place within 24 hours.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p style="font-size:0.68rem;color:var(--brown-subtle);opacity:0.6;margin-top:1rem;">PayPal &amp; Bank Transfer accepted · Secure international payment</p>
         </div>
     </div>
 
 </div>
 
 <script>
+    // ─── PAYMENT LINKS (PayPal & Wise) ──────────────────────────────────────
+    // PayPal: paypal.com/invoice/create  OR  paypal.me/YourName/416EUR
+    // Wise:   wise.com → Send & receive → Payment links
+    // Create one link per room × method × deposit/full (12 links total)
+    // Replace each placeholder below with the actual URL
+    // ─────────────────────────────────────────────────────────────────────────
+    const PAYMENT = {
+        bamboo: {
+            paypal: {
+                deposit: 'https://paypal.me/PaititiRetreats/416EUR',
+                full:    'https://paypal.me/PaititiRetreats/1385EUR',
+            },
+        },
+        ensuite: {
+            paypal: {
+                deposit: 'https://paypal.me/PaititiRetreats/516EUR',
+                full:    'https://paypal.me/PaititiRetreats/1720EUR',
+            },
+        },
+        retreat: {
+            paypal: {
+                deposit: 'https://paypal.me/PaititiRetreats/342EUR',
+                full:    'https://paypal.me/PaititiRetreats/1140EUR',
+            },
+        },
+    };
+
     const rooms = {
         bamboo: {
             name:     'Private Open Bamboo Room',
@@ -469,7 +578,9 @@
             eur:      'approx. €1,385 · $1,515',
             regular:  'IDR 27,900,000',
             saving:   'Save IDR 3,690,000',
-            select:   'Open Bamboo Room — IDR 24,210,000 (Early Bird)'
+            select:   'Open Bamboo Room — IDR 24,210,000 (Early Bird)',
+            depositAll: '€416 · $455 · IDR 7,263,000',
+            fullAll:    '€1,385 · $1,515 · IDR 24,210,000',
         },
         ensuite: {
             name:     'Private Luxury Ensuite Room',
@@ -480,7 +591,9 @@
             eur:      'approx. €1,720 · $1,880',
             regular:  'IDR 33,369,000',
             saving:   'Save IDR 3,336,900',
-            select:   'Luxury Ensuite Room — IDR 30,032,100 (Early Bird)'
+            select:   'Luxury Ensuite Room — IDR 30,032,100 (Early Bird)',
+            depositAll: '€516 · $564 · IDR 9,009,630',
+            fullAll:    '€1,720 · $1,880 · IDR 30,032,100',
         },
         retreat: {
             name:     'Retreat Only (No Accommodation)',
@@ -491,7 +604,9 @@
             eur:      'approx. €1,140 · $1,250',
             regular:  'IDR 22,200,000',
             saving:   'Save IDR 2,220,000',
-            select:   'Retreat Only (No Accommodation) — IDR 19,980,000 (Early Bird)'
+            select:   'Retreat Only (No Accommodation) — IDR 19,980,000 (Early Bird)',
+            depositAll: '€342 · $374 · IDR 5,994,000',
+            fullAll:    '€1,140 · $1,250 · IDR 19,980,000',
         }
     };
 
@@ -536,89 +651,91 @@
         if (key) populateSummary(rooms[key]);
     });
 
-    // ─── EmailJS configuration ──────────────────────────────────────────────
-    // 1. Sign up free at https://www.emailjs.com
-    // 2. Add an Email Service (connect your Gmail or any SMTP)
-    // 3. Create an Email Template with these variables:
-    //      {{to_name}}   — customer first name
-    //      {{to_email}}  — customer email  (set as "To Email" in template)
-    //      {{room}}      — selected room & price
-    //      {{dates}}     — retreat dates
-    //      {{reply_to}}  — your admin email (set as "Reply To" in template)
-    // 4. Replace the three placeholders below with your real IDs
-    const EMAILJS_PUBLIC_KEY  = 'K1ZgPUB1u5LmMfqrS';
-    const EMAILJS_SERVICE_ID  = 'service_zonk8ho';
-    const EMAILJS_TEMPLATE_ID = 'template_gpqo8hm';
 
-    if (EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY') {
-        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-    }
-
-    async function sendConfirmationEmail(data) {
-        if (EMAILJS_PUBLIC_KEY === 'YOUR_EMAILJS_PUBLIC_KEY') return; // not yet configured
-        return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-            to_name:  data.firstName,
-            to_email: data.email,
-            room:     data.room,
-            dates:    '12 – 19 July 2026 · Ubud, Bali',
-            reply_to: 'admin@erdkinder-bali.com',
-            name:     data.firstName,
-            email:    data.email,
-            message:  data.room
-        });
-    }
-
-    function showSuccess(email) {
+    function showSuccess(email, roomKey) {
         document.getElementById('bookingForm').style.display = 'none';
-        const successEl = document.getElementById('bookingSuccess');
-        document.getElementById('confirmedEmail').textContent = email;
-        successEl.style.display = 'block';
+        const rk = roomKey || 'bamboo';
+        const room = rooms[rk];
+        const links = PAYMENT[rk];
+        document.getElementById('paypalDepositBtn').href = links.paypal.deposit;
+        document.getElementById('paypalFullBtn').href    = links.paypal.full;
+        document.querySelectorAll('#bookingSuccess .deposit-amt').forEach(el => el.textContent = room.depositAll);
+        document.querySelectorAll('#bookingSuccess .full-amt').forEach(el => el.textContent = room.fullAll);
+        document.getElementById('bookingSuccess').style.display = 'block';
     }
 
-    function bookingMailtoFallback(formData) {
-        let body = '';
-        formData.forEach((value, key) => { if (value) body += key + ': ' + value + '\n'; });
-        window.open('mailto:admin@erdkinder-bali.com?subject=' + encodeURIComponent('Paititi Retreat Booking Request') + '&body=' + encodeURIComponent(body));
-    }
-
-    document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+    document.getElementById('bookingForm').addEventListener('submit', async function(e) { // async kept for Formspree await
         e.preventDefault();
         const btn    = document.getElementById('submitBtn');
         const fd     = new FormData(this);
+        const roomSelectVal = fd.get('Room Selection') || '';
+        const roomKey = selectToKey[roomSelectVal] || 'bamboo';
         const customerData = {
             firstName: fd.get('First Name') || '',
             email:     fd.get('Email')      || '',
-            room:      fd.get('Selected Room') || fd.get('Room Selection') || ''
+            room:      fd.get('Selected Room') || roomSelectVal
         };
 
-        btn.textContent = 'Sending…';
+        btn.textContent = 'Processing…';
         btn.disabled = true;
 
-        const FORM_ID = 'YOUR_FORM_ID';
+        // ── Formspree ─────────────────────────────────────────────────────────
+        // 1. Sign up free at https://formspree.io
+        // 2. Create a new form → copy the 8-character ID from the endpoint URL
+        // 3. Replace YOUR_FORM_ID below with that ID
+        // Every submission will be stored in your Formspree dashboard and
+        // emailed to you at admin@erdkinder-bali.com automatically.
+        // ─────────────────────────────────────────────────────────────────────
+        const FORM_ID = 'mykvzqlk';
 
-        // If Formspree is not yet set up, fall back to mailto + send confirmation
-        if (FORM_ID === 'YOUR_FORM_ID') {
-            bookingMailtoFallback(fd);
-            try { await sendConfirmationEmail(customerData); } catch(err) { console.warn('EmailJS:', err); }
-            showSuccess(customerData.email);
-            return;
+        if (FORM_ID !== 'YOUR_FORM_ID') {
+            try {
+                await fetch('https://formspree.io/f/' + FORM_ID, {
+                    method:  'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body:    fd
+                });
+            } catch(err) {
+                console.warn('Formspree:', err);
+            }
         }
 
-        // Formspree submission
-        try {
-            const res = await fetch('https://formspree.io/f/' + FORM_ID, {
-                method:  'POST',
-                headers: { 'Accept': 'application/json' },
-                body:    fd
-            });
-            if (!res.ok) bookingMailtoFallback(fd);
-        } catch {
-            bookingMailtoFallback(fd);
-        } finally {
-            try { await sendConfirmationEmail(customerData); } catch(err) { console.warn('EmailJS:', err); }
-            showSuccess(customerData.email);
-        }
+        showSuccess(customerData.email, roomKey);
     });
 </script>
+
+<!-- WhatsApp floating button -->
+<style>
+    .whatsapp-btn {
+        position: fixed; bottom: 2rem; left: 2rem; z-index: 999;
+        display: flex; align-items: center; gap: 0.6rem;
+        background: #25D366; color: #fff;
+        padding: 0.75rem 1.2rem 0.75rem 0.85rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-family: var(--font-body); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em;
+        box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+        transition: all 0.3s ease;
+    }
+    .whatsapp-btn:hover { background: #1ebe5d; transform: translateY(-3px); box-shadow: 0 8px 28px rgba(37,211,102,0.5); }
+    .whatsapp-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+    @media (max-width: 600px) { .whatsapp-btn span { display: none; } .whatsapp-btn { padding: 0.85rem; } }
+</style>
+<a href="https://wa.me/6282147823913" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+    </svg>
+    <span>Chat with us</span>
+</a>
+
+<footer style="background:var(--ivory);padding:1.5rem 2rem;border-top:1px solid rgba(185,161,201,0.25);text-align:center;">
+    <p style="font-size:0.72rem;color:var(--brown-subtle);">
+        &copy; 2026 Paititi Retreats &nbsp;·&nbsp;
+        <a href="index.html" style="color:var(--brown-subtle);text-decoration:none;">Home</a>
+        &nbsp;·&nbsp;
+        <a href="privacy-policy.html" style="color:var(--brown-subtle);text-decoration:none;">Privacy Policy</a>
+    </p>
+</footer>
+
 </body>
 </html>
