@@ -680,10 +680,16 @@
         .program-day-desc { font-size: 0.875rem; color: var(--brown-subtle); line-height: 1.85; margin-bottom: 1rem; }
         .program-highlights { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem 0.55rem; }
         .program-highlights li { font-size: 0.7rem; letter-spacing: 0.05em; color: var(--brown); padding: 0.28rem 0.85rem; border: 1px solid var(--gold-light); background: rgba(197,138,42,0.05); }
+        .program-schedule { width: 100%; border-collapse: collapse; font-size: 0.76rem; margin: 0.9rem 0 1rem; }
+        .program-schedule td { padding: 0.32rem 0.5rem; border-bottom: 1px solid rgba(197,138,42,0.1); vertical-align: top; }
+        .program-schedule tr:last-child td { border-bottom: none; }
+        .program-schedule .ps-time { color: var(--gold); font-weight: 500; white-space: nowrap; width: 68px; padding-right: 0.8rem; }
+        .program-schedule .ps-loc { color: var(--brown-subtle); font-size: 0.7rem; padding-left: 0.6rem; white-space: nowrap; }
         .program-disclaimer { max-width: 880px; margin: 4rem auto 0; padding: 2rem 2.5rem; border: 1px solid var(--gold-light); background: rgba(197,138,42,0.03); font-size: 0.8rem; color: var(--brown-subtle); line-height: 1.9; }
         .program-disclaimer h4 { font-family: var(--font-heading); font-size: 1rem; font-weight: 400; color: var(--brown); margin-bottom: 1rem; letter-spacing: 0.06em; }
         .program-disclaimer ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
         .program-disclaimer li::before { content: "·"; margin-right: 0.6rem; color: var(--gold); }
+        .gallery-item { cursor: pointer; }
         @media (max-width: 600px) {
             .program-day { grid-template-columns: 58px 1fr; gap: 1.25rem; }
             .program-day-num { font-size: 2.5rem; }
@@ -1116,143 +1122,231 @@
         <p class="program-intro-note fade-in">Each participant receives one individual 1-hour healing massage with Ibu Jero Baba, included in the retreat package. Additional sessions may be available.</p>
         <div class="program-timeline">
 
+            <!-- DAY 1 -->
             <div class="program-day fade-in">
                 <div class="program-day-marker">
                     <span class="program-day-num">01</span>
-                    <span class="program-day-label">Day</span>
+                    <span class="program-day-label">12 July</span>
                 </div>
                 <div>
                     <h3 class="program-day-title">Arrival &amp; Opening the Sacred Space</h3>
-                    <p class="program-day-desc">Your journey begins in the peaceful jungle sanctuary of Naya Veda Vastu eco-village near Ubud. After settling into the beautiful SKY Villa surrounded by lush tropical nature, the group gathers for the official opening circle — entering the sacred field through meditation, introductions, energetic alignment, and an opening transmission for the journey ahead. The evening continues with a nourishing dinner and the first healing Balinese massage by Ibu Jero Baba.</p>
+                    <p class="program-day-desc">Your journey begins in the peaceful jungle sanctuary of Naya Veda Vastu eco-village near Ubud. The group gathers for the official opening circle — entering the sacred field through meditation, introductions, energetic alignment, and an opening transmission for the journey ahead.</p>
+                    <table class="program-schedule">
+                        <tr><td class="ps-time">5:00 PM</td><td>Welcome &amp; Introduction, Structure of the week, Opening Meditation</td><td class="ps-loc">Yoga Shala / Sound Dome</td></tr>
+                        <tr><td class="ps-time">7:00 PM</td><td>Dinner</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">8:00 PM</td><td>Individual Healing Massage with Ibu Jero Baba</td><td class="ps-loc">Naya</td></tr>
+                    </table>
                     <ul class="program-highlights">
                         <li>Welcome Circle &amp; Introduction</li>
                         <li>Opening Meditation</li>
                         <li>Energetic Alignment</li>
                         <li>Jungle Eco Village Experience</li>
-                        <li>Healing Massage Sessions</li>
+                        <li>Healing Massage</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- DAY 2 -->
             <div class="program-day fade-in">
                 <div class="program-day-marker">
                     <span class="program-day-num">02</span>
-                    <span class="program-day-label">Day</span>
+                    <span class="program-day-label">13 July</span>
                 </div>
                 <div>
                     <h3 class="program-day-title">Water Purification &amp; The Spirit of Cacao</h3>
-                    <p class="program-day-desc">Before sunrise, we journey to the sacred water temple of Tirta Empul / Tampaksiring for a powerful Balinese purification (Melukat) and blessing ceremony guided by Ibu Jero Baba — cleansing, renewal, and spiritual rebirth through sacred water. After returning for brunch and rest, the afternoon takes the group to an organic cacao plantation and chocolate factory in Tabanan, revealing the journey from bean to sacred ceremonial chocolate.</p>
+                    <p class="program-day-desc">Before sunrise, we journey to the sacred water temple of Tirta Empul in Tampaksiring for a powerful Balinese purification (Melukat) and blessing ceremony with Ibu Jero Baba. The afternoon takes the group to an organic cacao plantation and chocolate factory in Tabanan — revealing the journey from bean to sacred ceremonial chocolate.</p>
+                    <table class="program-schedule">
+                        <tr><td class="ps-time">6:00 AM</td><td>Departure to Tirta Empul, Tampak Siring</td><td class="ps-loc">Taxis / Cars</td></tr>
+                        <tr><td class="ps-time">7:00 AM</td><td>Water Purification &amp; Balinese Blessings with Ibu Jero Baba</td><td class="ps-loc">Tirta Empul</td></tr>
+                        <tr><td class="ps-time">10:30 AM</td><td>Return to Naya Veda Vastu</td><td class="ps-loc"></td></tr>
+                        <tr><td class="ps-time">11:30 AM</td><td>Brunch</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">1:00 PM</td><td>Departure to Organic Cacao Plantation &amp; Chocolate Factory</td><td class="ps-loc">Tabanan</td></tr>
+                        <tr><td class="ps-time">3:00 PM</td><td>Education: From the Cacao Bean to Chocolate — Plantation &amp; Factory Tour</td><td class="ps-loc">CAU Factory</td></tr>
+                        <tr><td class="ps-time">5:00 PM</td><td>Return to Naya Veda Vastu</td><td class="ps-loc"></td></tr>
+                        <tr><td class="ps-time">7:00 PM</td><td>Dinner</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">8:00 PM</td><td>Individual Healing Massage with Ibu Jero Baba</td><td class="ps-loc">Naya</td></tr>
+                    </table>
                     <ul class="program-highlights">
                         <li>Sacred Water Purification Ceremony</li>
                         <li>Balinese Blessings</li>
-                        <li>Visit to Organic Cacao Plantation</li>
+                        <li>Organic Cacao Plantation Visit</li>
                         <li>Chocolate Factory Tour</li>
-                        <li>Learning about the Sacred Cacao Process</li>
-                        <li>Healing Massage Sessions</li>
+                        <li>Healing Massage</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- DAY 3 -->
             <div class="program-day fade-in">
                 <div class="program-day-marker">
                     <span class="program-day-num">03</span>
-                    <span class="program-day-label">Day</span>
+                    <span class="program-day-label">14 July</span>
                 </div>
                 <div>
                     <h3 class="program-day-title">Sacred Cacao &amp; Heart Opening</h3>
-                    <p class="program-day-desc">Devoted to the spirit of cacao and the awakening of the heart. After morning yoga, meditation, and sound healing, participants enter a meditative ceremonial process with Daniel — learning how cacao beans are traditionally roasted over fire, peeled by hand, and transformed into sacred ceremonial cacao paste. In the afternoon, Daniel guides the group through an original Inka Cacao Ceremony: a profound journey of inner awakening, emotional healing, and expanded consciousness.</p>
+                    <p class="program-day-desc">Devoted to the spirit of cacao and the awakening of the heart. After morning yoga and sound healing, participants learn to roast cacao beans over fire and prepare ceremonial cacao by hand. In the afternoon, Daniel guides a 3-hour original Inka Cacao Ceremony — a profound journey of inner awakening, emotional healing, and expanded consciousness.</p>
+                    <table class="program-schedule">
+                        <tr><td class="ps-time">7:00 AM</td><td>Sky-Yoga Class (1 hour)</td><td class="ps-loc">Yoga Shala</td></tr>
+                        <tr><td class="ps-time">8:00 AM</td><td>Breakfast</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">9:30 AM</td><td>Morning Meditation / Sound Healing</td><td class="ps-loc">Sound Dome</td></tr>
+                        <tr><td class="ps-time">10:00 AM</td><td>Cacao Bean Roastery Process over the fire &amp; peeling</td><td class="ps-loc">Garden Area</td></tr>
+                        <tr><td class="ps-time">12:00 PM</td><td>Lunch</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">2:00 PM</td><td>Cacao Ceremony &amp; Reflection with Daniel (3 hours)</td><td class="ps-loc">Sound Dome</td></tr>
+                        <tr><td class="ps-time">7:00 PM</td><td>Dinner</td><td class="ps-loc">Naya</td></tr>
+                        <tr><td class="ps-time">8:00 PM</td><td>Individual Healing Massage with Ibu Jero Baba</td><td class="ps-loc">Naya</td></tr>
+                    </table>
                     <ul class="program-highlights">
-                        <li>Morning Yoga</li>
+                        <li>Morning Sky-Yoga</li>
                         <li>Meditation &amp; Sound Healing</li>
                         <li>Traditional Cacao Roasting Ritual</li>
-                        <li>Sacred Preparation of Ceremonial Cacao</li>
                         <li>Inka Cacao Ceremony with Daniel</li>
                         <li>Heart Opening &amp; Reflection</li>
-                        <li>Healing Massage Sessions</li>
+                        <li>Healing Massage</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- DAY 4 -->
             <div class="program-day fade-in">
                 <div class="program-day-marker">
                     <span class="program-day-num">04</span>
-                    <span class="program-day-label">Day</span>
+                    <span class="program-day-label">15 July</span>
                 </div>
                 <div>
                     <h3 class="program-day-title">Earth Wisdom &amp; Sacred Offerings</h3>
-                    <p class="program-day-desc">This day honours the sacred connection between humanity, nature, spirit, and Mother Earth. Participants learn to create their own traditional Balinese temple offerings and Andean / Peruvian Pacha Mama offerings for sacred ceremonies. In the afternoon, Daniel guides a profound shamanic Earth Ritual rooted in ancient Andean traditions — reconnecting participants with grounding, stability, ancestral wisdom, and the spirit of the Earth.</p>
+                    <p class="program-day-desc">This day honours the sacred connection between humanity, nature, and Mother Earth. Participants learn to create their own traditional Balinese temple offerings and Andean Pacha Mama offerings. In the afternoon, Daniel guides a profound shamanic Earth Ritual rooted in ancient Andean traditions — reconnecting participants with grounding, ancestral wisdom, and the spirit of the Earth.</p>
+                    <table class="program-schedule">
+                        <tr><td class="ps-time">7:00 AM</td><td>Sky-Yoga Class (1 hour)</td><td class="ps-loc">Yoga Shala</td></tr>
+                        <tr><td class="ps-time">8:00 AM</td><td>Breakfast</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">9:30 AM</td><td>Morning Meditation / Sound Healing</td><td class="ps-loc">Sound Dome</td></tr>
+                        <tr><td class="ps-time">10:15 AM</td><td>Create your own Balinese &amp; Andean Pacha Mama Offerings</td><td class="ps-loc">Garden Area</td></tr>
+                        <tr><td class="ps-time">12:00 PM</td><td>Lunch</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">2:00 PM</td><td>Earth Ritual with Daniel</td><td class="ps-loc">Ceremony Space</td></tr>
+                        <tr><td class="ps-time">7:00 PM</td><td>Dinner</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">8:00 PM</td><td>Individual Healing Massage with Ibu Jero Baba</td><td class="ps-loc">Naya</td></tr>
+                    </table>
                     <ul class="program-highlights">
-                        <li>Create your own Balinese Offerings</li>
-                        <li>Create Andean / Pacha Mama Offerings</li>
+                        <li>Morning Sky-Yoga</li>
+                        <li>Create Balinese Temple Offerings</li>
+                        <li>Create Andean Pacha Mama Offerings</li>
                         <li>Earth Ritual with Daniel</li>
-                        <li>Healing Massage Sessions</li>
+                        <li>Healing Massage</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- DAY 5 -->
             <div class="program-day fade-in">
                 <div class="program-day-marker">
                     <span class="program-day-num">05</span>
-                    <span class="program-day-label">Day</span>
+                    <span class="program-day-label">16 July</span>
                 </div>
                 <div>
-                    <h3 class="program-day-title">Sacred Rebirth &amp; Inner Union</h3>
-                    <p class="program-day-desc">A deeply transformative day at the hidden water temple of Tirta Taman Pechampuhan — a jungle canyon sanctuary of flowing waterfalls and ancient stone formations. Guided by Ibu Jero Baba, a sacred rebirth ceremony invites participants into a profound process of cleansing, renewal, and energetic rebalancing of the inner masculine and feminine. Later in Ubud, each participant creates their own sacred Self-Love Ring in a traditional silver workshop — in preparation for the ceremony at the ocean the following day.</p>
+                    <h3 class="program-day-title">Sacred Rebirth &amp; The Self-Love Ring</h3>
+                    <p class="program-day-desc">A deeply transformative day at the hidden water temple of Tirta Taman Pechampuhan in Bangli — guided by Ibu Jero Baba through a sacred Re-Birth Ceremony including healing and the balance of the inner masculine and feminine. Later in Ubud, each participant creates their own sacred Self-Love Ring in a traditional silver workshop — in preparation for the ceremony at the ocean the following day.</p>
+                    <table class="program-schedule">
+                        <tr><td class="ps-time">7:00 AM</td><td>Breakfast</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">8:00 AM</td><td>Departure to Tirta Taman Pechampuhan</td><td class="ps-loc">Bangli · Taxis</td></tr>
+                        <tr><td class="ps-time">9:00 AM</td><td>Sacred Balinese Re-Birth Ceremony — Healing &amp; Balance of the inner Male / Female</td><td class="ps-loc">Sacred Water Temple</td></tr>
+                        <tr><td class="ps-time">12:00 PM</td><td>Return to Naya Veda Vastu</td><td class="ps-loc"></td></tr>
+                        <tr><td class="ps-time">1:00 PM</td><td>Lunch</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">2:30 PM</td><td>Departure to Ubud</td><td class="ps-loc"></td></tr>
+                        <tr><td class="ps-time">3:00 PM</td><td>Silver Workshop: Create your Self-Love Ring</td><td class="ps-loc">Lucky Silver Studio · Ubud</td></tr>
+                        <tr><td class="ps-time">5:30 PM</td><td>Return to Naya Veda Vastu</td><td class="ps-loc"></td></tr>
+                        <tr><td class="ps-time">6:00 PM</td><td>Group Reflection &amp; Meditation</td><td class="ps-loc">Sound Dome</td></tr>
+                        <tr><td class="ps-time">7:00 PM</td><td>Dinner</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">8:00 PM</td><td>Individual Healing Massage with Ibu Jero Baba</td><td class="ps-loc">Naya</td></tr>
+                    </table>
                     <ul class="program-highlights">
-                        <li>Sacred Rebirth Ceremony</li>
+                        <li>Sacred Re-Birth Ceremony</li>
+                        <li>Healing &amp; Inner Balance</li>
                         <li>Silver Workshop in Ubud</li>
-                        <li>Create your own Self-Love Ring</li>
+                        <li>Create your Self-Love Ring</li>
                         <li>Group Reflection &amp; Meditation</li>
+                        <li>Healing Massage</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- DAY 6 -->
             <div class="program-day fade-in">
                 <div class="program-day-marker">
                     <span class="program-day-num">06</span>
-                    <span class="program-day-label">Day</span>
+                    <span class="program-day-label">17 July</span>
                 </div>
                 <div>
                     <h3 class="program-day-title">The Self-Love Marriage Ceremony</h3>
-                    <p class="program-day-desc">One of the most intimate and unforgettable moments of the retreat. Before sunrise, the group journeys to a breathtaking beach in East Bali. Together with all three guides, participants co-create a sacred altar by the ocean before entering the deeply moving Self-Love Marriage Ceremony — a sacred commitment to yourself, your soul, your heart, and your authentic path in life. Guided by G. Serina Neuner, Daniel, and Ibu Jero Baba. After the ceremony, the afternoon is given to celebration, swimming, and joy at the ocean.</p>
+                    <p class="program-day-desc">One of the most intimate and unforgettable moments of the retreat. Before sunrise, the group journeys to the stunning Bias Tugel Beach in East Bali. Together, participants co-create a sacred altar by the ocean and enter the deeply moving Self-Love Marriage Ceremony — a sacred commitment to yourself, your soul, and your authentic path. After the ceremony, the afternoon is given to celebration, swimming, coconuts, and joy at the ocean.</p>
+                    <table class="program-schedule">
+                        <tr><td class="ps-time">6:00 AM</td><td>Departure to Bias Tugel Beach (Breakfast to Go)</td><td class="ps-loc">East Bali</td></tr>
+                        <tr><td class="ps-time">7:30 AM</td><td>Set up Sacred Altar together on the beach</td><td class="ps-loc">Beach</td></tr>
+                        <tr><td class="ps-time">8:00 AM</td><td>Self-Love Marriage Ceremony</td><td class="ps-loc">Beach Ceremony</td></tr>
+                        <tr><td class="ps-time">9:15 AM</td><td>Celebrate your life — beach, swimming, coconuts &amp; relaxation</td><td class="ps-loc">Beach</td></tr>
+                        <tr><td class="ps-time">11:30 AM</td><td>Return to Naya Veda Vastu</td><td class="ps-loc"></td></tr>
+                        <tr><td class="ps-time">1:00 PM</td><td>Lunch</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">2:00 PM</td><td>Free time &amp; Individual Healing Massage with Ibu Jero Baba</td><td class="ps-loc">Naya</td></tr>
+                        <tr><td class="ps-time">5:00 PM</td><td>Group Reflection, questions &amp; Sound Healing</td><td class="ps-loc">Sound Dome</td></tr>
+                        <tr><td class="ps-time">7:00 PM</td><td>Dinner</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">8:00 PM</td><td>Individual Healing Massage with Ibu Jero Baba</td><td class="ps-loc">Naya</td></tr>
+                    </table>
                     <ul class="program-highlights">
-                        <li>Sunrise Beach Ceremony · East Bali</li>
+                        <li>Sunrise at Bias Tugel Beach</li>
                         <li>Sacred Ocean Altar Creation</li>
                         <li>Self-Love Marriage Ceremony</li>
                         <li>Celebration of Life &amp; Self</li>
+                        <li>Sound Healing &amp; Reflection</li>
+                        <li>Healing Massage</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- DAY 7 -->
             <div class="program-day fade-in">
                 <div class="program-day-marker">
                     <span class="program-day-num">07</span>
-                    <span class="program-day-label">Day</span>
+                    <span class="program-day-label">18 July</span>
                 </div>
                 <div>
-                    <h3 class="program-day-title">Crystal Healing &amp; Shamanic Fire Ceremony</h3>
-                    <p class="program-day-desc">A day of transformation, healing, and energetic activation of the Cosmic Human Being. Daniel guides participants through powerful Crystal Healing work and Shamanic practices designed to support emotional release, energetic cleansing, and inner clarity. In the evening, the retreat culminates in a Sacred Shamanic Fire Ritual — a ceremonial space to release old patterns, fears, limitations, and emotional burdens into the transforming power of fire.</p>
+                    <h3 class="program-day-title">Crystal Healing &amp; Sacred Fire Ceremony</h3>
+                    <p class="program-day-desc">A day of deep transformation and energetic activation. Daniel guides participants through powerful Crystal Therapy and Shamanic practices — supporting emotional release, energetic cleansing, and inner clarity. In the evening, the retreat culminates in a Sacred Fire Ritual: a ceremonial space to release old patterns, limitations, and emotional burdens into the transforming power of fire, followed by a farewell party and marigold flower blessings.</p>
+                    <table class="program-schedule">
+                        <tr><td class="ps-time">7:00 AM</td><td>Sky-Yoga Class (1 hour)</td><td class="ps-loc">Yoga Shala</td></tr>
+                        <tr><td class="ps-time">8:00 AM</td><td>Breakfast</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">9:30 AM</td><td>Crystal Therapy: Healing work with the Shaman</td><td class="ps-loc">Sound Dome</td></tr>
+                        <tr><td class="ps-time">12:00 PM</td><td>Lunch</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">2:00 PM</td><td>Shamanic Work with Daniel</td><td class="ps-loc">Ceremony Space</td></tr>
+                        <tr><td class="ps-time">6:00 PM</td><td>Dinner</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">7:00 PM</td><td>Fire Ritual, Farewell Party &amp; Marigold Flower Blessings · Goodbye to Ibu Jero Baba</td><td class="ps-loc">Outdoor Fire Area</td></tr>
+                    </table>
                     <ul class="program-highlights">
-                        <li>Crystal Healing Work with Daniel</li>
+                        <li>Morning Sky-Yoga</li>
+                        <li>Crystal Healing with Daniel</li>
                         <li>Shamanic Healing Practices</li>
                         <li>Sacred Fire Ceremony</li>
-                        <li>Emotional Release &amp; Renewal</li>
+                        <li>Farewell Party &amp; Marigold Blessings</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- DAY 8 -->
             <div class="program-day fade-in">
                 <div class="program-day-marker">
                     <span class="program-day-num">08</span>
-                    <span class="program-day-label">Day</span>
+                    <span class="program-day-label">19 July</span>
                 </div>
                 <div>
                     <h3 class="program-day-title">Integration &amp; Farewell</h3>
-                    <p class="program-day-desc">The final morning is dedicated to reflection, gratitude, integration, meditation, and sharing. Participants are gently guided through the closing process of the retreat — integrating the experiences, insights, healing, and transformations of the past eight days. The retreat concludes with a heartfelt farewell lunch surrounded by the peaceful energy of the jungle sanctuary. Many participants leave not only rested — but deeply transformed, reconnected with themselves, and inspired to walk life with greater clarity, authenticity, love, and inner alignment.</p>
+                    <p class="program-day-desc">The final morning is dedicated to reflection, gratitude, integration, and sharing. Participants are gently guided through the closing process — integrating the experiences, healing, and transformations of the past eight days. The retreat concludes with a heartfelt farewell lunch in the peaceful energy of the jungle sanctuary.</p>
+                    <table class="program-schedule">
+                        <tr><td class="ps-time">7:00 AM</td><td>Sky-Yoga Class (1 hour)</td><td class="ps-loc">Yoga Shala</td></tr>
+                        <tr><td class="ps-time">8:00 AM</td><td>Breakfast</td><td class="ps-loc">Naya Restaurant</td></tr>
+                        <tr><td class="ps-time">9:30 AM</td><td>Group Reflection, final questions, Meditation / Sound Healing &amp; Farewell Circle</td><td class="ps-loc">Sound Dome</td></tr>
+                        <tr><td class="ps-time">12:00 PM</td><td>Farewell Lunch</td><td class="ps-loc">Naya Restaurant</td></tr>
+                    </table>
                     <ul class="program-highlights">
-                        <li>Final Meditation &amp; Sound Healing</li>
-                        <li>Group Reflection</li>
-                        <li>Integration &amp; Closing Circle</li>
+                        <li>Final Sky-Yoga</li>
+                        <li>Meditation &amp; Sound Healing</li>
+                        <li>Group Reflection &amp; Closing Circle</li>
                         <li>Farewell Lunch</li>
                     </ul>
                 </div>
@@ -1284,53 +1378,85 @@
         </div>
     </div>
     <div class="gallery-grid fade-in" style="margin-top:4rem;">
-        <div class="gallery-item">
+        <div class="gallery-item" data-gallery="glimpse" data-index="0">
             <img src="photos_videos_Paititi%20Retreat_Antares/skyyoga_.webp" alt="SKY Villa & Jungle Sanctuary">
             <div class="gallery-item-overlay"><span class="gallery-item-label">SKY Villa &amp; Jungle Sanctuary</span></div>
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" data-gallery="glimpse" data-index="1">
             <img src="photos_videos_Paititi%20Retreat_Antares/Sacred-Water%20Ceremonies.jpg" alt="Sacred Water Ceremonies" loading="lazy">
             <div class="gallery-item-overlay"><span class="gallery-item-label">Sacred Water Ceremonies</span></div>
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" data-gallery="glimpse" data-index="2">
             <img src="Naya%20Veda%20Vastu%20Outdoor/Naya-Luftaufnahme.webp" alt="Naya Eco-Village Aerial" loading="lazy">
             <div class="gallery-item-overlay"><span class="gallery-item-label">Naya Eco-Village</span></div>
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" data-gallery="glimpse" data-index="3">
             <img src="photos_videos_Paititi%20Retreat_Antares/Sound-Dome_Day.webp" alt="Sound Dome" loading="lazy">
             <div class="gallery-item-overlay"><span class="gallery-item-label">Sacred Sound Dome</span></div>
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" data-gallery="glimpse" data-index="4">
             <img src="photos_videos_Paititi%20Retreat_Antares/tirta%20empul.jpeg" alt="Tirta Empul Water Temple" loading="lazy">
             <div class="gallery-item-overlay"><span class="gallery-item-label">Tirta Empul Water Temple</span></div>
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" data-gallery="glimpse" data-index="5">
             <img src="photos_videos_Paititi%20Retreat_Antares/Self-Love%20Marriage%20Ceremony.jpeg" alt="Self-Love Marriage Ceremony" loading="lazy">
             <div class="gallery-item-overlay"><span class="gallery-item-label">Self-Love Marriage Ceremony</span></div>
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" data-gallery="glimpse" data-index="6">
             <img src="photos_videos_Paititi%20Retreat_Antares/Silver%20Class.webp" alt="Balinese Silver Workshop" loading="lazy">
             <div class="gallery-item-overlay"><span class="gallery-item-label">Balinese Silver Workshop</span></div>
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" data-gallery="glimpse" data-index="7">
             <img src="photos_videos_Paititi%20Retreat_Antares/SoundDome_inside.webp" alt="Sound Dome Interior" loading="lazy">
             <div class="gallery-item-overlay"><span class="gallery-item-label">Sound Dome Interior</span></div>
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" data-gallery="glimpse" data-index="8">
             <img src="photos_videos_Paititi%20Retreat_Antares/melukat-bali-water-purificatio.jpg" alt="Melukat Purification" loading="lazy">
             <div class="gallery-item-overlay"><span class="gallery-item-label">Melukat Purification</span></div>
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" data-gallery="glimpse" data-index="9">
             <img src="photos_videos_Paititi%20Retreat_Antares/Sacred%20Cacao%20Journey.webp" alt="Cacao Journey" loading="lazy">
-            <div class="gallery-item-overlay"><span class="gallery-item-label">Cacao Journey</span></div>
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Sacred Cacao Journey</span></div>
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" data-gallery="glimpse" data-index="10">
             <img src="photos_videos_Paititi%20Retreat_Antares/hang-out-netz.jpeg" alt="Jungle Sanctuary" loading="lazy">
             <div class="gallery-item-overlay"><span class="gallery-item-label">Jungle Sanctuary</span></div>
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item" data-gallery="glimpse" data-index="11">
             <img src="photos_videos_Paititi%20Retreat_Antares/taman-pecampuhan-sala.jpg" alt="Sacred Temple" loading="lazy">
             <div class="gallery-item-overlay"><span class="gallery-item-label">Sacred Temple</span></div>
+        </div>
+        <div class="gallery-item" data-gallery="glimpse" data-index="12">
+            <img src="photos_videos_Paititi%20Retreat_Antares/cau.jpg" alt="Organic Cacao Factory" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Organic Cacao Factory</span></div>
+        </div>
+        <div class="gallery-item" data-gallery="glimpse" data-index="13">
+            <img src="photos_videos_Paititi%20Retreat_Antares/foto_people_cacao.webp" alt="Sacred Cacao Circle" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Sacred Cacao Circle</span></div>
+        </div>
+        <div class="gallery-item" data-gallery="glimpse" data-index="14">
+            <img src="photos_videos_Paititi%20Retreat_Antares/Sound%20Dome.webp" alt="Sound Dome at Night" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Sound Dome at Night</span></div>
+        </div>
+        <div class="gallery-item" data-gallery="glimpse" data-index="15">
+            <img src="photos_videos_Paititi%20Retreat_Antares/Ubud-Silver-Art.jpg" alt="Ubud Silver Art" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Ubud Silver Art</span></div>
+        </div>
+        <div class="gallery-item" data-gallery="glimpse" data-index="16">
+            <img src="photos_videos_Paititi%20Retreat_Antares/Ibu%20jero%20baba.jpeg" alt="Ibu Jero Baba" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Ibu Jero Baba</span></div>
+        </div>
+        <div class="gallery-item" data-gallery="glimpse" data-index="17">
+            <img src="photos_videos_Paititi%20Retreat_Antares/Daniel.jpeg" alt="Daniel — Shamanic Guide" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Daniel — Shamanic Guide</span></div>
+        </div>
+        <div class="gallery-item" data-gallery="glimpse" data-index="18">
+            <img src="photos_videos_Paititi%20Retreat_Antares/Paititi-Retreat-photo.jpeg" alt="Paititi Retreat" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Paititi Retreat</span></div>
+        </div>
+        <div class="gallery-item" data-gallery="glimpse" data-index="19">
+            <img src="photos_videos_Paititi%20Retreat_Antares/Ayarmanco1.JPG" alt="Ayarmanco" loading="lazy">
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Ayarmanco</span></div>
         </div>
     </div>
 </section>
@@ -1888,6 +2014,32 @@
         }
     };
 
+    galleries.glimpse = {
+        title: 'A Glimpse Within',
+        images: [
+            'photos_videos_Paititi Retreat_Antares/skyyoga_.webp',
+            'photos_videos_Paititi Retreat_Antares/Sacred-Water Ceremonies.jpg',
+            'Naya Veda Vastu Outdoor/Naya-Luftaufnahme.webp',
+            'photos_videos_Paititi Retreat_Antares/Sound-Dome_Day.webp',
+            'photos_videos_Paititi Retreat_Antares/tirta empul.jpeg',
+            'photos_videos_Paititi Retreat_Antares/Self-Love Marriage Ceremony.jpeg',
+            'photos_videos_Paititi Retreat_Antares/Silver Class.webp',
+            'photos_videos_Paititi Retreat_Antares/SoundDome_inside.webp',
+            'photos_videos_Paititi Retreat_Antares/melukat-bali-water-purificatio.jpg',
+            'photos_videos_Paititi Retreat_Antares/Sacred Cacao Journey.webp',
+            'photos_videos_Paititi Retreat_Antares/hang-out-netz.jpeg',
+            'photos_videos_Paititi Retreat_Antares/taman-pecampuhan-sala.jpg',
+            'photos_videos_Paititi Retreat_Antares/cau.jpg',
+            'photos_videos_Paititi Retreat_Antares/foto_people_cacao.webp',
+            'photos_videos_Paititi Retreat_Antares/Sound Dome.webp',
+            'photos_videos_Paititi Retreat_Antares/Ubud-Silver-Art.jpg',
+            'photos_videos_Paititi Retreat_Antares/Ibu jero baba.jpeg',
+            'photos_videos_Paititi Retreat_Antares/Daniel.jpeg',
+            'photos_videos_Paititi Retreat_Antares/Paititi-Retreat-photo.jpeg',
+            'photos_videos_Paititi Retreat_Antares/Ayarmanco1.JPG',
+        ]
+    };
+
     let currentGallery = null;
     let currentIndex = 0;
     const lightbox = document.getElementById('lightbox');
@@ -1913,9 +2065,9 @@
         if (active) active.scrollIntoView({ inline: 'center', behavior: 'smooth' });
     }
 
-    function openLightbox(key) {
+    function openLightbox(key, startIndex) {
         currentGallery = galleries[key];
-        currentIndex = 0;
+        currentIndex = startIndex || 0;
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
         renderLightbox();
@@ -1944,6 +2096,9 @@
     });
     document.querySelectorAll('.accommodation-card[data-gallery]').forEach(card => {
         card.addEventListener('click', () => openLightbox(card.dataset.gallery));
+    });
+    document.querySelectorAll('.gallery-item[data-gallery]').forEach(item => {
+        item.addEventListener('click', () => openLightbox(item.dataset.gallery, parseInt(item.dataset.index || 0)));
     });
 
     // Early bird countdown to 11 June 2026
