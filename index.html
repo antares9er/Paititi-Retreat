@@ -374,6 +374,13 @@
         .lightbox-thumb { width:56px; height:56px; object-fit:cover; border-radius:4px; cursor:pointer; opacity:0.4; border:2px solid transparent; transition:all 0.25s; flex-shrink:0; }
         .lightbox-thumb.active { opacity:1; border-color:var(--gold); }
         .lightbox-thumb:hover { opacity:0.75; }
+        .lightbox-thumb-video { width:56px; height:56px; border-radius:4px; cursor:pointer; opacity:0.4; border:2px solid transparent; transition:all 0.25s; flex-shrink:0; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; }
+        .lightbox-thumb-video.active { opacity:1; border-color:var(--gold); }
+        .lightbox-thumb-video:hover { opacity:0.75; }
+        .lightbox-img-wrap video { max-width:88vw; max-height:68vh; border-radius:4px; outline:none; }
+        .gallery-item video { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.6s ease; pointer-events:none; }
+        .gallery-item:hover video { transform:scale(1.05); }
+        .gallery-play-icon { position:absolute; top:50%; left:50%; transform:translate(-50%,-60%); width:44px; height:44px; border-radius:50%; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; pointer-events:none; }
 
         /* Journey (removed) */
         #journey {
@@ -503,6 +510,9 @@
         .room-description { font-size: 0.82rem; color: var(--brown-subtle); line-height: 1.7; margin-bottom: 1.2rem; }
         .room-amenities { display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center; margin-bottom: 1.4rem; }
         .room-amenity { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brown-subtle); padding: 0.2rem 0.65rem; border: 1px solid rgba(197,138,42,0.2); border-radius: 50px; }
+        .room-amenity--highlight { color: var(--gold); border-color: var(--gold); font-weight: 600; }
+        .room-heading-sub { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin: 0.25rem 0 0.9rem; }
+        .pricing-tiers-note { text-align: center; max-width: 600px; margin: 0 auto 2rem; font-size: 0.85rem; color: var(--brown-subtle); line-height: 1.7; }
         .pricing-tier-earlybird { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--lavender); margin-bottom: 0.2rem; }
         .pricing-tier-price { font-family: var(--font-heading); font-size: clamp(1.4rem,2vw,1.9rem); color: var(--gold); font-weight: 300; margin-bottom: 0.15rem; }
         .pricing-tier-regular { font-size: 0.76rem; color: var(--brown-subtle); }
@@ -715,7 +725,7 @@
         <li><a href="#location">Location</a></li>
         <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="booking.html" class="nav-cta">Book Now</a>
+    <a href="#rooms" class="nav-cta">Book Now</a>
     <div class="nav-mobile-toggle" id="mobileToggle" aria-label="Open menu"><span></span><span></span><span></span></div>
 </nav>
 
@@ -734,7 +744,7 @@
             <li><a href="#location">Location</a></li>
             <li><a href="#faq">FAQ</a></li>
         </ul>
-        <a href="booking.html" class="nav-mobile-cta">Book Now</a>
+        <a href="#rooms" class="nav-mobile-cta">Book Now</a>
     </div>
 </div>
 
@@ -809,7 +819,7 @@
         </div>
         <p class="hero-description">An 8-day sacred journey in Ubud, Bali — where ancestral Inka wisdom and ancient Balinese spiritual traditions unite for the very first time. 12–19 July 2026.</p>
         <div class="hero-buttons">
-            <a href="booking.html" class="btn-primary">Book Now</a>
+            <a href="#rooms" class="btn-primary">Book Now</a>
         </div>
     </div>
 
@@ -930,7 +940,7 @@
             <span class="section-label">Where You Will Stay</span>
             <h2>The Sacred Sanctuary</h2>
             <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
-            <p>Hidden within two hectares of sacred Balinese jungle — the Naya Veda Vastu eco-village is your home for transformation, rest, and deep reconnection.</p>
+            <p>Hidden within two hectares of sacred Balinese jungle — your home for transformation, rest, and deep reconnection.</p>
         </div>
         <div class="accommodation-grid">
             <div class="accommodation-card fade-in delay-1" data-gallery="ensuite">
@@ -958,10 +968,10 @@
                 </div>
             </div>
             <div class="accommodation-card fade-in delay-4" data-gallery="restaurant">
-                <img src="Maleika%20Restaurant/This%20picture.jpg" alt="Maleika Restaurant">
+                <img src="Maleika%20Restaurant/This%20picture.jpg" alt="Restaurant">
                 <div class="accommodation-overlay">
                     <span class="section-label">Sacred Nourishment</span>
-                    <h3>Maleika Restaurant</h3>
+                    <h3>The Restaurant</h3>
                     <p>Plant-based meals and ceremonial teas crafted with love and organic ingredients — nourishment for body, soul, and transformation, included in your retreat.</p>
                 </div>
             </div>
@@ -1129,7 +1139,7 @@
                 </div>
                 <div>
                     <h3 class="program-day-title">Arrival &amp; Opening the Sacred Space</h3>
-                    <p class="program-day-desc">Your journey begins in the peaceful jungle sanctuary of Naya Veda Vastu eco-village near Ubud. The group gathers for the official opening circle — entering the sacred field through meditation, introductions, energetic alignment, and an opening transmission for the journey ahead.</p>
+                    <p class="program-day-desc">Your journey begins in the peaceful jungle sanctuary near Ubud. The group gathers for the official opening circle — entering the sacred field through meditation, introductions, energetic alignment, and an opening transmission for the journey ahead.</p>
                     <table class="program-schedule">
                         <tr><td class="ps-time">5:00 PM</td><td>Welcome &amp; Introduction, Structure of the week, Opening Meditation</td><td class="ps-loc">Yoga Shala / Sound Dome</td></tr>
                         <tr><td class="ps-time">7:00 PM</td><td>Dinner</td><td class="ps-loc">Naya Restaurant</td></tr>
@@ -1157,11 +1167,11 @@
                     <table class="program-schedule">
                         <tr><td class="ps-time">6:00 AM</td><td>Departure to Tirta Empul, Tampak Siring</td><td class="ps-loc">Taxis / Cars</td></tr>
                         <tr><td class="ps-time">7:00 AM</td><td>Water Purification &amp; Balinese Blessings with Ibu Jero Baba</td><td class="ps-loc">Tirta Empul</td></tr>
-                        <tr><td class="ps-time">10:30 AM</td><td>Return to Naya Veda Vastu</td><td class="ps-loc"></td></tr>
+                        <tr><td class="ps-time">10:30 AM</td><td>Return to retreat</td><td class="ps-loc"></td></tr>
                         <tr><td class="ps-time">11:30 AM</td><td>Brunch</td><td class="ps-loc">Naya Restaurant</td></tr>
                         <tr><td class="ps-time">1:00 PM</td><td>Departure to Organic Cacao Plantation &amp; Chocolate Factory</td><td class="ps-loc">Tabanan</td></tr>
                         <tr><td class="ps-time">3:00 PM</td><td>Education: From the Cacao Bean to Chocolate — Plantation &amp; Factory Tour</td><td class="ps-loc">CAU Factory</td></tr>
-                        <tr><td class="ps-time">5:00 PM</td><td>Return to Naya Veda Vastu</td><td class="ps-loc"></td></tr>
+                        <tr><td class="ps-time">5:00 PM</td><td>Return to retreat</td><td class="ps-loc"></td></tr>
                         <tr><td class="ps-time">7:00 PM</td><td>Dinner</td><td class="ps-loc">Naya Restaurant</td></tr>
                         <tr><td class="ps-time">8:00 PM</td><td>Individual Healing Massage with Ibu Jero Baba</td><td class="ps-loc">Naya</td></tr>
                     </table>
@@ -1247,11 +1257,11 @@
                         <tr><td class="ps-time">7:00 AM</td><td>Breakfast</td><td class="ps-loc">Naya Restaurant</td></tr>
                         <tr><td class="ps-time">8:00 AM</td><td>Departure to Tirta Taman Pechampuhan</td><td class="ps-loc">Bangli · Taxis</td></tr>
                         <tr><td class="ps-time">9:00 AM</td><td>Sacred Balinese Re-Birth Ceremony — Healing &amp; Balance of the inner Male / Female</td><td class="ps-loc">Sacred Water Temple</td></tr>
-                        <tr><td class="ps-time">12:00 PM</td><td>Return to Naya Veda Vastu</td><td class="ps-loc"></td></tr>
+                        <tr><td class="ps-time">12:00 PM</td><td>Return to retreat</td><td class="ps-loc"></td></tr>
                         <tr><td class="ps-time">1:00 PM</td><td>Lunch</td><td class="ps-loc">Naya Restaurant</td></tr>
                         <tr><td class="ps-time">2:30 PM</td><td>Departure to Ubud</td><td class="ps-loc"></td></tr>
                         <tr><td class="ps-time">3:00 PM</td><td>Silver Workshop: Create your Self-Love Ring</td><td class="ps-loc">Lucky Silver Studio · Ubud</td></tr>
-                        <tr><td class="ps-time">5:30 PM</td><td>Return to Naya Veda Vastu</td><td class="ps-loc"></td></tr>
+                        <tr><td class="ps-time">5:30 PM</td><td>Return to retreat</td><td class="ps-loc"></td></tr>
                         <tr><td class="ps-time">6:00 PM</td><td>Group Reflection &amp; Meditation</td><td class="ps-loc">Sound Dome</td></tr>
                         <tr><td class="ps-time">7:00 PM</td><td>Dinner</td><td class="ps-loc">Naya Restaurant</td></tr>
                         <tr><td class="ps-time">8:00 PM</td><td>Individual Healing Massage with Ibu Jero Baba</td><td class="ps-loc">Naya</td></tr>
@@ -1281,7 +1291,7 @@
                         <tr><td class="ps-time">7:30 AM</td><td>Set up Sacred Altar together on the beach</td><td class="ps-loc">Beach</td></tr>
                         <tr><td class="ps-time">8:00 AM</td><td>Self-Love Marriage Ceremony</td><td class="ps-loc">Beach Ceremony</td></tr>
                         <tr><td class="ps-time">9:15 AM</td><td>Celebrate your life — beach, swimming, coconuts &amp; relaxation</td><td class="ps-loc">Beach</td></tr>
-                        <tr><td class="ps-time">11:30 AM</td><td>Return to Naya Veda Vastu</td><td class="ps-loc"></td></tr>
+                        <tr><td class="ps-time">11:30 AM</td><td>Return to retreat</td><td class="ps-loc"></td></tr>
                         <tr><td class="ps-time">1:00 PM</td><td>Lunch</td><td class="ps-loc">Naya Restaurant</td></tr>
                         <tr><td class="ps-time">2:00 PM</td><td>Free time &amp; Individual Healing Massage with Ibu Jero Baba</td><td class="ps-loc">Naya</td></tr>
                         <tr><td class="ps-time">5:00 PM</td><td>Group Reflection, questions &amp; Sound Healing</td><td class="ps-loc">Sound Dome</td></tr>
@@ -1449,6 +1459,27 @@
             <img src="photos_videos_Paititi%20Retreat_Antares/Ayarmanco1.JPG" alt="Ayarmanco" loading="lazy">
             <div class="gallery-item-overlay"><span class="gallery-item-label">Ayarmanco</span></div>
         </div>
+        <div class="gallery-item" data-gallery="glimpse" data-index="18">
+            <video src="photos_videos_Paititi%20Retreat_Antares/Daniel%20_cacao.mp4" preload="metadata" muted playsinline></video>
+            <div class="gallery-item-overlay">
+                <div class="gallery-play-icon"><svg viewBox="0 0 24 24" fill="white" width="18" height="18"><polygon points="6,3 20,12 6,21"/></svg></div>
+                <span class="gallery-item-label">Daniel &amp; Cacao</span>
+            </div>
+        </div>
+        <div class="gallery-item" data-gallery="glimpse" data-index="19">
+            <video src="photos_videos_Paititi%20Retreat_Antares/Jero%20Baba_Melukat%202026-05-13%20at%2000.05.41.mp4" preload="metadata" muted playsinline></video>
+            <div class="gallery-item-overlay">
+                <div class="gallery-play-icon"><svg viewBox="0 0 24 24" fill="white" width="18" height="18"><polygon points="6,3 20,12 6,21"/></svg></div>
+                <span class="gallery-item-label">Jero Baba – Melukat</span>
+            </div>
+        </div>
+        <div class="gallery-item" data-gallery="glimpse" data-index="20">
+            <video src="photos_videos_Paititi%20Retreat_Antares/Jero%20Baba_Tirta_Empul_2026-05-13%20at%2000.03.22.mp4" preload="metadata" muted playsinline></video>
+            <div class="gallery-item-overlay">
+                <div class="gallery-play-icon"><svg viewBox="0 0 24 24" fill="white" width="18" height="18"><polygon points="6,3 20,12 6,21"/></svg></div>
+                <span class="gallery-item-label">Jero Baba – Tirta Empul</span>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -1563,7 +1594,8 @@
         </div>
 
         <!-- Pricing Tiers -->
-        <div class="pricing-tiers fade-in">
+        <p class="pricing-tiers-note fade-in">All prices include the <strong>complete 8-day retreat program</strong> — every ceremony, healing session, meal, and activity listed above. The only difference between the options below is your accommodation type.</p>
+        <div class="pricing-tiers fade-in" id="rooms">
 
             <!-- Open Bamboo Room -->
             <div class="pricing-tier">
@@ -1576,6 +1608,7 @@
                 </div>
                 <div class="room-info">
                     <h4>Open Bamboo Room</h4>
+                    <p class="room-heading-sub">Incl. full retreat program &amp; 7 nights accommodation</p>
                     <p class="room-description">A private bamboo sky suite open to the lush jungle breeze and birdsong. Crafted from natural materials with sacred geometry, these serene rooms offer a grounded, deeply restful space between ceremonies. Shared bathrooms are steps away, thoughtfully maintained.</p>
                     <div class="room-amenities">
                         <span class="room-amenity">Private Room</span>
@@ -1583,6 +1616,7 @@
                         <span class="room-amenity">Jungle View</span>
                         <span class="room-amenity">Shared Bathroom</span>
                         <span class="room-amenity">3 Meals Daily</span>
+                        <span class="room-amenity room-amenity--highlight">Full Retreat Included</span>
                     </div>
                     <p class="pricing-tier-earlybird">Early Bird Price</p>
                     <p class="pricing-tier-price">IDR 24,210,000<span class="pricing-tier-eur">approx. €1,385 · $1,515</span></p>
@@ -1604,6 +1638,7 @@
                 </div>
                 <div class="room-info">
                     <h4>Luxury Ensuite Room</h4>
+                    <p class="room-heading-sub">Incl. full retreat program &amp; 7 nights accommodation</p>
                     <p class="room-description">An elevated private sanctuary with your own ensuite bathroom — the pinnacle of comfort within the eco-village. Beautifully appointed with natural finishes, these rooms offer complete privacy and a seamless connection to the surrounding jungle, perfect for those who value extra space alongside deep transformation.</p>
                     <div class="room-amenities">
                         <span class="room-amenity">Private Room</span>
@@ -1611,6 +1646,7 @@
                         <span class="room-amenity">Ensuite Bathroom</span>
                         <span class="room-amenity">Jungle View</span>
                         <span class="room-amenity">3 Meals Daily</span>
+                        <span class="room-amenity room-amenity--highlight">Full Retreat Included</span>
                     </div>
                     <p class="pricing-tier-earlybird">Early Bird Price</p>
                     <p class="pricing-tier-price">IDR 30,032,100<span class="pricing-tier-eur">approx. €1,720 · $1,880</span></p>
@@ -1631,6 +1667,7 @@
                 </div>
                 <div class="room-info">
                     <h4>Retreat Only</h4>
+                    <p class="room-heading-sub">Incl. full retreat program · own accommodation not included</p>
                     <p class="room-description">Join the full retreat experience — all ceremonies, practices, and meals included — while arranging your own accommodation in or around Ubud. Ideal for those staying with friends, family, or in a nearby space of their choice. Daily arrival and departure from the eco-village is your own responsibility.</p>
                     <div class="room-amenities">
                         <span class="room-amenity">Full Program</span>
@@ -1695,20 +1732,11 @@
             <span class="section-label">Where We Gather</span>
             <h2>Find the Sanctuary</h2>
             <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line right"></div></div>
-            <p>Nestled in the sacred highlands of Ubud — Bali's spiritual heart — within the living grounds of the Naya Veda Vastu eco-village.</p>
+            <p>Nestled in the sacred highlands of Ubud — Bali's spiritual heart — within a living eco-village.</p>
         </div>
         <div class="location-wrapper">
             <div class="location-info fade-in">
                 <div class="location-details">
-                    <div class="location-detail">
-                        <div class="location-detail-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        </div>
-                        <div class="location-detail-text">
-                            <span>Address</span>
-                            <p>Naya Veda Vastu Eco-Village<br>Pejeng, Ubud, Bali, Indonesia</p>
-                        </div>
-                    </div>
                     <div class="location-detail">
                         <div class="location-detail-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -1737,17 +1765,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="booking.html" class="btn-primary" style="margin-top:0.5rem;">Book Now</a>
-            </div>
-
-            <div class="location-map fade-in delay-2">
-                <iframe
-                    src="https://maps.google.com/maps?q=Naya+Veda+Vastu,+Pejeng,+Ubud,+Bali,+Indonesia&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                    allowfullscreen
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    title="Retreat location — Naya Veda Vastu, Ubud, Bali">
-                </iframe>
+                <a href="#rooms" class="btn-primary" style="margin-top:0.5rem;">Book Now</a>
             </div>
         </div>
     </div>
@@ -1840,7 +1858,7 @@
             <div class="footer-col">
                 <h5>Connect</h5>
                 <ul class="footer-links">
-                    <li><a href="booking.html">Book Now</a></li>
+                    <li><a href="#rooms">Book Now</a></li>
                     <li><a href="mailto:admin@erdkinder-bali.com">Email Us</a></li>
                     <li><a href="#location">Location</a></li>
                 </ul>
@@ -1881,6 +1899,7 @@
     <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8250;</button>
     <div class="lightbox-img-wrap">
         <img id="lightboxImg" src="" alt="">
+        <video id="lightboxVideo" controls style="display:none;"></video>
     </div>
     <div class="lightbox-caption">
         <span class="lightbox-caption-title" id="lightboxTitle"></span>
@@ -1982,7 +2001,7 @@
             ]
         },
         restaurant: {
-            title: 'Maleika Restaurant',
+            title: 'The Restaurant',
             images: [
                 'Maleika Restaurant/This picture.jpg',
                 'Maleika Restaurant/Naya-Restaurant.webp',
@@ -2026,6 +2045,9 @@
             'photos_videos_Paititi Retreat_Antares/Ibu jero baba.jpeg',
             'photos_videos_Paititi Retreat_Antares/Paititi-Retreat-photo.jpeg',
             'photos_videos_Paititi Retreat_Antares/Ayarmanco1.JPG',
+            'photos_videos_Paititi Retreat_Antares/Daniel _cacao.mp4',
+            'photos_videos_Paititi Retreat_Antares/Jero Baba_Melukat 2026-05-13 at 00.05.41.mp4',
+            'photos_videos_Paititi Retreat_Antares/Jero Baba_Tirta_Empul_2026-05-13 at 00.03.22.mp4',
         ]
     };
 
@@ -2033,20 +2055,42 @@
     let currentIndex = 0;
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxVideo = document.getElementById('lightboxVideo');
     const lightboxTitle = document.getElementById('lightboxTitle');
     const lightboxCounter = document.getElementById('lightboxCounter');
     const lightboxThumbs = document.getElementById('lightboxThumbs');
 
+    function isVideo(src) { return src.toLowerCase().endsWith('.mp4'); }
+
     function renderLightbox() {
         const images = currentGallery.images;
-        lightboxImg.src = images[currentIndex];
+        const src = images[currentIndex];
         lightboxTitle.textContent = currentGallery.title;
         lightboxCounter.textContent = (currentIndex + 1) + ' / ' + images.length;
+        if (isVideo(src)) {
+            lightboxImg.style.display = 'none';
+            lightboxVideo.style.display = '';
+            lightboxVideo.src = src;
+            lightboxVideo.load();
+        } else {
+            lightboxVideo.pause();
+            lightboxVideo.src = '';
+            lightboxVideo.style.display = 'none';
+            lightboxImg.style.display = '';
+            lightboxImg.src = src;
+        }
         lightboxThumbs.innerHTML = '';
-        images.forEach((src, i) => {
-            const thumb = document.createElement('img');
-            thumb.src = src;
-            thumb.className = 'lightbox-thumb' + (i === currentIndex ? ' active' : '');
+        images.forEach((s, i) => {
+            let thumb;
+            if (isVideo(s)) {
+                thumb = document.createElement('div');
+                thumb.className = 'lightbox-thumb-video' + (i === currentIndex ? ' active' : '');
+                thumb.innerHTML = '<svg viewBox="0 0 24 24" fill="white" width="20" height="20"><polygon points="6,3 20,12 6,21"/></svg>';
+            } else {
+                thumb = document.createElement('img');
+                thumb.src = s;
+                thumb.className = 'lightbox-thumb' + (i === currentIndex ? ' active' : '');
+            }
             thumb.onclick = () => { currentIndex = i; renderLightbox(); };
             lightboxThumbs.appendChild(thumb);
         });
@@ -2065,14 +2109,18 @@
     function closeLightbox() {
         lightbox.classList.remove('active');
         document.body.style.overflow = '';
+        lightboxVideo.pause();
+        lightboxVideo.src = '';
     }
 
     document.getElementById('lightboxClose').onclick = closeLightbox;
     document.getElementById('lightboxPrev').onclick = () => {
+        lightboxVideo.pause();
         currentIndex = (currentIndex - 1 + currentGallery.images.length) % currentGallery.images.length;
         renderLightbox();
     };
     document.getElementById('lightboxNext').onclick = () => {
+        lightboxVideo.pause();
         currentIndex = (currentIndex + 1) % currentGallery.images.length;
         renderLightbox();
     };

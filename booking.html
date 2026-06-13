@@ -87,6 +87,11 @@
         .room-summary-saving { display: inline-block; margin-top: 0.5rem; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--white); background: var(--lavender); padding: 0.18rem 0.7rem; border-radius: 50px; }
         .room-summary-deposit { margin-top: 1rem; padding: 0.8rem 1rem; background: rgba(197,138,42,0.05); border-left: 2px solid var(--gold-light); font-size: 0.78rem; color: var(--brown-subtle); line-height: 1.6; }
         .room-summary-deposit strong { color: var(--brown); }
+        .room-summary-includes { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid rgba(197,138,42,0.1); }
+        .room-summary-includes-title { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--brown-subtle); margin-bottom: 0.75rem; }
+        .room-summary-includes ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+        .room-summary-includes li { font-size: 0.78rem; color: var(--brown-subtle); display: flex; align-items: baseline; gap: 0.5rem; line-height: 1.5; }
+        .room-summary-includes li::before { content: '✦'; font-size: 0.45rem; color: var(--gold); flex-shrink: 0; position: relative; top: -1px; }
         .change-room { display: block; text-align: center; margin-top: 1rem; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--brown-subtle); text-decoration: none; transition: var(--transition); }
         .change-room:hover { color: var(--gold); }
 
@@ -150,7 +155,7 @@
     <a href="index.html" class="nav-logo">
         <img src="brand_assets/Paititi-Logo.jpeg" alt="Paititi Retreats">
     </a>
-    <a href="index.html#inclusions" class="nav-back">
+    <a href="index.html#rooms" class="nav-back">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
         Back to Retreat
     </a>
@@ -189,7 +194,22 @@
             <div class="room-summary-deposit">
                 <strong>To confirm:</strong> A 30% non-refundable deposit is due at booking. The remaining balance is due 30 days before the retreat begins.
             </div>
-            <a href="index.html#inclusions" class="change-room">← Change room selection</a>
+            <div class="room-summary-includes">
+                <p class="room-summary-includes-title">Everything included in your retreat</p>
+                <ul>
+                    <li>8 days / 7 nights · 12 – 19 July 2026</li>
+                    <li>All guided ceremonies &amp; healing sessions</li>
+                    <li>Individual healing massage with Ibu Jero Baba</li>
+                    <li>Sacred Otonan Ceremony</li>
+                    <li>Melukat water purification at Tirta Empul</li>
+                    <li>Organic Cacao Plantation visit</li>
+                    <li>Traditional Balinese Silver Workshop</li>
+                    <li>All meals &amp; ceremonial teas daily</li>
+                    <li>Pre-retreat preparation materials</li>
+                    <li>30 days post-retreat integration support</li>
+                </ul>
+            </div>
+            <a href="index.html#rooms" class="change-room">← Change room selection</a>
         </div>
     </div>
 
