@@ -1,0 +1,67 @@
+﻿/* Paititi Retreats — privacy policy page styles */
+
+        body { background: var(--ivory); color: var(--brown); font-family: var(--font-body); font-weight: 300; line-height: 1.75; }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 1.2rem 2.5rem; display: flex; align-items: center; justify-content: space-between;
+            background: rgba(247,243,238,0.96); backdrop-filter: blur(12px);
+            box-shadow: 0 2px 20px rgba(94,75,75,0.06);
+        }
+        .nav-logo img { height: 42px; width: auto; display: block; }
+        .nav-back { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brown-subtle); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: var(--transition); }
+        .nav-back:hover { color: var(--gold); }
+        .nav-back svg { width: 14px; height: 14px; stroke: currentColor; }
+
+        .page-header {
+            padding: 9rem 2rem 4rem;
+            text-align: center;
+            background: radial-gradient(ellipse at 60% 40%, #DCCEE5 0%, #F7F3EE 55%);
+        }
+        .page-header .section-label { font-size: 0.62rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--brown-subtle); display: block; margin-bottom: 1rem; }
+        .page-header h1 { font-family: var(--font-heading); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 300; color: var(--gold); letter-spacing: 0.12em; line-height: 1.1; margin-bottom: 1rem; }
+        .page-header p { color: var(--brown-subtle); max-width: 480px; margin: 0 auto; font-size: 0.9rem; }
+
+        .divider { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 1.5rem auto; }
+        .divider-line { height: 1px; width: 60px; background: linear-gradient(90deg, transparent, var(--gold-light)); }
+        .divider-line.right { background: linear-gradient(90deg, var(--gold-light), transparent); }
+        .divider-diamond { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); }
+
+        .content {
+            max-width: 780px; margin: 0 auto; padding: 4rem 2rem 7rem;
+        }
+
+        .content h2 {
+            font-family: var(--font-heading); font-size: 1.5rem; font-weight: 400;
+            color: var(--gold); letter-spacing: 0.06em; margin: 2.5rem 0 0.75rem;
+        }
+        .content h2:first-child { margin-top: 0; }
+
+        .content p {
+            font-size: 0.9rem; color: var(--brown); line-height: 1.9; margin-bottom: 0.9rem;
+        }
+
+        .content ul {
+            margin: 0.5rem 0 1rem 1.2rem;
+            font-size: 0.9rem; color: var(--brown); line-height: 1.9;
+        }
+        .content ul li { margin-bottom: 0.3rem; }
+
+        .content a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(197,138,42,0.3); transition: var(--transition); }
+        .content a:hover { border-color: var(--gold); }
+
+        .meta-box {
+            background: rgba(185,161,201,0.12); border: 1px solid rgba(185,161,201,0.35);
+            border-radius: 6px; padding: 1.4rem 1.6rem; margin-bottom: 2.5rem;
+            font-size: 0.85rem; color: var(--brown-subtle); line-height: 1.8;
+        }
+        .meta-box strong { color: var(--brown); }
+
+        .section-divider {
+            height: 1px; background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+            margin: 2rem 0;
+        }
+
+        footer { background: var(--ivory); padding: 2.5rem 0; border-top: 1px solid var(--lavender-light); text-align: center; }
+        footer p { font-size: 0.75rem; color: var(--brown-subtle); }
+        footer a { color: var(--gold-light); text-decoration: none; }

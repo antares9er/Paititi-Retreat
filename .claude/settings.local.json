@@ -4,7 +4,8 @@
       "PowerShell(Remove-Item -Path \"c:\\\\Users\\\\PC\\\\Documents\\\\GitHub\\\\Paititi-Retreat\\\\brand_assets\\\\Revelation.mp3\" -Confirm:$false)",
       "PowerShell(Get-ChildItem \"c:\\\\Users\\\\PC\\\\Documents\\\\GitHub\\\\Paititi-Retreat\\\\photos_videos_Paititi Retreat_Antares\\\\\" | Where-Object { $_.Extension -match '\\\\.\\(jpg|jpeg|png|webp|gif\\)' } | Select-Object Name | Sort-Object Name)",
       "PowerShell(Get-ChildItem \"c:\\\\Users\\\\PC\\\\Documents\\\\GitHub\\\\Paititi-Retreat\\\\photos_videos_Paititi Retreat_Antares\\\\\" | Where-Object { $_.Extension -match '\\\\.\\(jpg|jpeg|png|webp\\)' } | Select-Object Name)",
-      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\PC\\\\Documents\\\\GitHub\\\\Paititi-Retreat\\\\photos_videos_Paititi Retreat_Antares\\\\\" -Recurse -File | Where-Object { $_.Extension -match '\\\\.\\(jpg|jpeg|png|webp|JPG|JPEG|PNG\\)' } | Select-Object Name, DirectoryName)"
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\PC\\\\Documents\\\\GitHub\\\\Paititi-Retreat\\\\photos_videos_Paititi Retreat_Antares\\\\\" -Recurse -File | Where-Object { $_.Extension -match '\\\\.\\(jpg|jpeg|png|webp|JPG|JPEG|PNG\\)' } | Select-Object Name, DirectoryName)",
+      "PowerShell(Write-Host \"=== index.html ===\"; \\(Get-Content \"index.html\" | Measure-Object -Line\\).Lines; Write-Host \"=== booking.html ===\"; \\(Get-Content \"booking.html\" | Measure-Object -Line\\).Lines; Write-Host \"=== privacy-policy.html ===\"; \\(Get-Content \"privacy-policy.html\" | Measure-Object -Line\\).Lines)"
     ]
   }
 }

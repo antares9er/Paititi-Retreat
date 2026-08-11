@@ -1,0 +1,18 @@
+﻿        :root {
+            --gold: #C58A2A;
+            --gold-light: #E7C98F;
+            --lavender: #B9A1C9;
+            --lavender-light: #DCCEE5;
+            --pink: #E8B7BE;
+            --ivory: #F7F3EE;
+            --brown: #5E4B4B;
+            --brown-subtle: #8A7A7A;
+            --white: #FFFFFF;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow-soft: 0 8px 40px rgba(197, 138, 42, 0.08);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
