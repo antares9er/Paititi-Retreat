@@ -1,0 +1,10 @@
+# Secrets
+.env
+credentials.json
+token.json
+
+# Dependencies
+node_modules/
+
+# Temporary files
+.tmp/

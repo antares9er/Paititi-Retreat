@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Now — Paititi Retreats</title>
+    <title data-cms="booking.metaTitle">Book Now — Paititi Retreats</title>
     <link rel="icon" type="image/jpeg" href="brand_assets/Paititi-Logo.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
 
 <nav>
     <a href="index.html" class="nav-logo">
-        <img src="brand_assets/Paititi-Logo.jpeg" alt="Paititi Retreats">
+        <img data-cms-img="brand.logo" src="brand_assets/Paititi-Logo.jpeg" alt="Paititi Retreats">
     </a>
     <a href="index.html#rooms" class="nav-back">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
@@ -25,14 +25,14 @@
 </nav>
 
 <div class="page-header">
-    <span class="section-label">12 – 19 July 2026 · Ubud, Bali</span>
-    <h1>Book Your<br>Sacred Journey</h1>
+    <span class="section-label" data-cms="booking.label">12 – 19 July 2026 · Ubud, Bali</span>
+    <h1 data-cms="booking.heading">Book Your<br>Sacred Journey</h1>
     <div class="divider">
         <div class="divider-line"></div>
         <div class="divider-diamond"></div>
         <div class="divider-line right"></div>
     </div>
-    <p>Complete the form below and we will confirm your booking by email within 48 hours.</p>
+    <p data-cms="booking.intro">Complete the form below and we will confirm your booking by email within 48 hours.</p>
 </div>
 
 <div class="booking-layout">
@@ -48,28 +48,28 @@
             <p class="room-summary-desc" id="summaryDesc"></p>
             <div class="room-summary-amenities" id="summaryAmenities"></div>
             <div class="room-summary-pricing">
-                <p class="room-summary-earlybird">Early Bird Price (valid until 11 June 2026)</p>
+                <p class="room-summary-earlybird" data-cms="booking.earlybirdNote">Early Bird Price (valid until 11 June 2026)</p>
                 <p class="room-summary-price" id="summaryPrice"></p>
                 <p class="room-summary-eur" id="summaryEur" style="font-size:0.76rem;color:var(--brown-subtle);margin-bottom:0.15rem;"></p>
                 <p class="room-summary-regular" id="summaryRegular"></p>
                 <span class="room-summary-saving" id="summarySaving"></span>
             </div>
-            <div class="room-summary-deposit">
+            <div class="room-summary-deposit" data-cms="booking.depositNote">
                 <strong>To confirm:</strong> A 30% non-refundable deposit is due at booking. The remaining balance is due 30 days before the retreat begins.
             </div>
             <div class="room-summary-includes">
-                <p class="room-summary-includes-title">Everything included in your retreat</p>
+                <p class="room-summary-includes-title" data-cms="booking.includesTitle">Everything included in your retreat</p>
                 <ul>
-                    <li>8 days / 7 nights · 12 – 19 July 2026</li>
-                    <li>All guided ceremonies &amp; healing sessions</li>
-                    <li>Individual healing massage with Ibu Jero Baba</li>
-                    <li>Sacred Otonan Ceremony</li>
-                    <li>Melukat water purification at Tirta Empul</li>
-                    <li>Organic Cacao Plantation visit</li>
-                    <li>Traditional Balinese Silver Workshop</li>
-                    <li>All meals &amp; ceremonial teas daily</li>
-                    <li>Pre-retreat preparation materials</li>
-                    <li>30 days post-retreat integration support</li>
+                    <li data-cms="booking.include1">8 days / 7 nights · 12 – 19 July 2026</li>
+                    <li data-cms="booking.include2">All guided ceremonies &amp; healing sessions</li>
+                    <li data-cms="booking.include3">Individual healing massage with Ibu Jero Baba</li>
+                    <li data-cms="booking.include4">Sacred Otonan Ceremony</li>
+                    <li data-cms="booking.include5">Melukat water purification at Tirta Empul</li>
+                    <li data-cms="booking.include6">Organic Cacao Plantation visit</li>
+                    <li data-cms="booking.include7">Traditional Balinese Silver Workshop</li>
+                    <li data-cms="booking.include8">All meals &amp; ceremonial teas daily</li>
+                    <li data-cms="booking.include9">Pre-retreat preparation materials</li>
+                    <li data-cms="booking.include10">30 days post-retreat integration support</li>
                 </ul>
             </div>
             <a href="index.html#rooms" class="change-room">← Change room selection</a>
@@ -78,8 +78,8 @@
 
     <!-- Booking Form (right) -->
     <div class="booking-form-wrap">
-        <h2>Your Booking Details</h2>
-        <p>Complete your details below. After submitting you'll choose to pay your 30% deposit via PayPal or Bank Transfer.</p>
+        <h2 data-cms="booking.formHeading">Your Booking Details</h2>
+        <p data-cms="booking.formIntro">Complete your details below. After submitting you'll choose to pay your 30% deposit via PayPal or Bank Transfer.</p>
 
         <form id="bookingForm">
             <!-- Hidden field passes selected room to Formspree -->
@@ -326,18 +326,18 @@
             <span class="form-section-title">Confirmation</span>
             <div class="form-checkbox-group">
                 <input type="checkbox" id="agreeDeposit" name="Agrees to Deposit Terms" value="Yes" required>
-                <label for="agreeDeposit">I understand that a <strong>30% non-refundable deposit</strong> is required to secure my place and that the remaining balance is due 30 days before the retreat begins.</label>
+                <label for="agreeDeposit" data-cms="booking.consent1">I understand that a <strong>30% non-refundable deposit</strong> is required to secure my place and that the remaining balance is due 30 days before the retreat begins.</label>
             </div>
             <div class="form-checkbox-group">
                 <input type="checkbox" id="agreeCancel" name="Agrees to Cancellation Policy" value="Yes" required>
-                <label for="agreeCancel">I have read and accept the <strong>cancellation policy</strong>: cancellation &gt;30 days — balance refunded; 14–30 days — 50% refund; &lt;14 days — no refund. Bookings may be transferred to another person.</label>
+                <label for="agreeCancel" data-cms="booking.consent2">I have read and accept the <strong>cancellation policy</strong>: cancellation &gt;30 days — balance refunded; 14–30 days — 50% refund; &lt;14 days — no refund. Bookings may be transferred to another person.</label>
             </div>
             <div class="form-checkbox-group">
                 <input type="checkbox" id="agreeInsurance" name="Acknowledges Travel Insurance" value="Yes" required>
-                <label for="agreeInsurance">I understand that travel insurance is strongly recommended and that the organizers are not responsible for flights, visas, or personal travel arrangements.</label>
+                <label for="agreeInsurance" data-cms="booking.consent3">I understand that travel insurance is strongly recommended and that the organizers are not responsible for flights, visas, or personal travel arrangements.</label>
             </div>
 
-            <button type="submit" class="form-submit" id="submitBtn">Continue to Payment →</button>
+            <button type="submit" class="form-submit" id="submitBtn" data-cms="booking.submitButton">Continue to Payment →</button>
 
             <!-- Payment trust badges -->
             <div style="display:flex;align-items:center;justify-content:center;gap:0.55rem;margin-top:1rem;flex-wrap:wrap;">
@@ -357,7 +357,7 @@
             </div>
         </form>
         <div id="bookingSuccess" style="display:none; margin-top:1.5rem; padding:2rem; background:rgba(185,161,201,0.12); border:1px solid rgba(185,161,201,0.35); border-radius:6px; text-align:center;">
-            <p style="font-size:0.82rem; color:var(--brown-subtle); line-height:1.7; margin-bottom:1.2rem;">Choose your preferred method below to pay your deposit and secure your place.</p>
+            <p style="font-size:0.82rem; color:var(--brown-subtle); line-height:1.7; margin-bottom:1.2rem;" data-cms="booking.successIntro">Choose your preferred method below to pay your deposit and secure your place.</p>
             <!-- PayPal — compact horizontal strip -->
             <div class="pay-option" style="flex-direction:row;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;">
                 <div style="display:flex;align-items:center;gap:0.7rem;flex-shrink:0;">

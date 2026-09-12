@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin — Paititi Retreats</title>
+    <link rel="icon" type="image/jpeg" href="/brand_assets/Paititi-Logo.jpeg">
+    <link rel="stylesheet" href="/admin/assets/admin.css">
+</head>
+<body>
+    <header class="topbar">
+        <a href="#dashboard" class="brand">
+            <img src="/brand_assets/Paititi-Logo.jpeg" alt="">
+            <span>Paititi Retreats <small>Admin</small></span>
+        </a>
+        <nav class="topnav">
+            <a href="#dashboard" data-nav="dashboard">Dashboard</a>
+            <a href="#texte" data-nav="texte">Texte</a>
+            <a href="#bilder" data-nav="bilder">Bilder</a>
+            <a href="/" target="_blank" rel="noopener">Website ↗</a>
+            <form method="post" action="/admin/logout" class="inline-form">
+                <button type="submit" class="btn btn-ghost">Abmelden</button>
+            </form>
+        </nav>
+    </header>
+
+    <main id="app" class="container">
+        <p class="muted">Lade Inhalte …</p>
+    </main>
+
+    <div id="savebar" class="savebar" hidden>
+        <span id="savebar-text">Ungespeicherte Änderungen</span>
+        <button id="savebar-discard" class="btn btn-ghost" type="button">Verwerfen</button>
+        <button id="savebar-save" class="btn btn-primary" type="button">Speichern</button>
+    </div>
+
+    <div id="toast" class="toast" hidden></div>
+
+    <script src="/admin/assets/admin.js"></script>
+</body>
+</html>

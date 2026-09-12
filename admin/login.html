@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin-Login — Paititi Retreats</title>
+    <link rel="icon" type="image/jpeg" href="/brand_assets/Paititi-Logo.jpeg">
+    <link rel="stylesheet" href="/admin/assets/admin.css">
+</head>
+<body class="login-body">
+    <main class="login-box">
+        <img class="login-logo" src="/brand_assets/Paititi-Logo.jpeg" alt="Paititi Retreats">
+        <h1>Admin-Bereich</h1>
+        <p class="muted">Bitte mit dem Admin-Passwort anmelden.</p>
+        <p class="login-message">{{message}}</p>
+        <form method="post" action="/admin/login">
+            <label for="password">Passwort</label>
+            <input type="password" id="password" name="password" autocomplete="current-password" required autofocus>
+            <button type="submit" class="btn btn-primary btn-block">Anmelden</button>
+        </form>
+        <p class="muted small"><a href="/">← Zur Website</a></p>
+    </main>
+</body>
+</html>
