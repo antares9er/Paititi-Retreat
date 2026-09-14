@@ -1,7 +1,20 @@
 .git
 .gitignore
 .assetsignore
+.node-version
+.dev.vars
+.env
+.claude
 node_modules
-wrangler.jsonc
 .wrangler
+wrangler.jsonc
+_routes.json
+src
+functions
+scripts
+package.json
+package-lock.json
+ADMIN.md
+CLAUDE.md
 README.md
+Retreat structure

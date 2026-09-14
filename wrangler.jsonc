@@ -1,0 +1,41 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "paititi-retreat",
+	"main": "src/index.js",
+	"compatibility_date": "2026-09-11",
+
+	// The whole repo is the static site; .assetsignore keeps source and
+	// private folders out of the upload. run_worker_first lets the Worker
+	// see every request, so it can guard /admin and inject the CMS texts.
+	"assets": {
+		"directory": ".",
+		"binding": "ASSETS",
+		"html_handling": "auto-trailing-slash",
+		"not_found_handling": "none",
+		"run_worker_first": true
+	},
+
+	// Texts/images overrides + failed-login counters
+	"kv_namespaces": [
+		{
+			"binding": "CONTENT",
+			"id": "29539ae4d163457eb3ff5ed872ddd15c"
+		}
+	],
+
+	// Images uploaded through the admin panel
+	"r2_buckets": [
+		{
+			"binding": "UPLOADS",
+			"bucket_name": "paititi-uploads"
+		}
+	],
+
+	"observability": {
+		"enabled": true
+	}
+
+	// Secrets are NOT set here. Create them in the dashboard under
+	// Settings -> Variables and Secrets (type: Secret):
+	//   ADMIN_PASSWORD_HASH, SESSION_SECRET   -> npm run set-password
+}
