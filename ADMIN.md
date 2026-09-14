@@ -1,53 +1,70 @@
-# Admin-Backend — Paititi Retreats
+# Admin-Backend — Paititi Retreats (Cloudflare Pages)
 
 Kleines Admin-Panel, mit dem Texte und Bilder der Website ohne Code-Änderungen
-gepflegt werden können.
+gepflegt werden können. Läuft komplett auf Cloudflare Pages, kein eigener Server.
 
-## Wie es funktioniert
+- Admin-Panel: `https://deine-domain/admin` · Login: `/admin/login`
+- Website bleibt statisches HTML. Die Pages Functions in `functions/` setzen beim
+  Ausliefern die im Panel geänderten Texte und Bilder ein.
+- Speicher: Texte in einem **KV Namespace** (`CONTENT`), Bilder in einem **R2 Bucket** (`UPLOADS`).
+  Diese beiden sind die einzigen Daten, die gesichert werden müssen.
 
-- Die Website bleibt statisches HTML (`index.html`, `booking.html`, `privacy-policy.html`).
-  Ohne Server funktioniert sie weiterhin wie bisher, nur ohne die Admin-Änderungen.
-- Ein kleiner Node.js-Server (`server/`) liefert die Seiten aus und setzt dabei die
-  im Admin-Panel geänderten Texte und Bilder ein.
-- Überschreibungen liegen in `data/content.json`, hochgeladene Bilder in `uploads/`.
-  Diese beiden Orte sind die einzigen Daten, die gesichert werden müssen.
-- Admin-Panel: `/admin` · Login: `/admin/login`
+## Einmalige Einrichtung im Cloudflare-Dashboard
 
-## Einrichten
+1. **KV Namespace anlegen:** Storage & Databases → KV → Create namespace, Name z. B. `paititi-content`.
+2. **R2 Bucket anlegen:** Storage & Databases → R2 → Create bucket, Name z. B. `paititi-uploads`
+   (R2 muss einmalig aktiviert werden, Free-Kontingent reicht).
+3. **Bindings setzen:** Workers & Pages → dein Pages-Projekt → Settings → Bindings → Add:
+   - Typ *KV namespace*, Variable name **`CONTENT`**, Namespace: der aus Schritt 1
+   - Typ *R2 bucket*, Variable name **`UPLOADS`**, Bucket: der aus Schritt 2
 
-```bash
-npm install                      # einmalig
-cp .env.example .env             # Windows: copy .env.example .env
-npm run set-password             # fragt das Admin-Passwort ab und schreibt den Hash in .env
-npm start                        # http://localhost:3000  bzw.  /admin
-```
+   Die Variablennamen müssen exakt `CONTENT` und `UPLOADS` heißen. Für „Production“ setzen
+   (und optional für „Preview“).
+4. **Secrets setzen:** lokal ausführen
 
-Passwort ändern: erneut `npm run set-password` ausführen und den Server neu starten.
-Das Passwort selbst wird nirgends gespeichert, nur ein scrypt-Hash in `.env`.
+   ```bash
+   npm install
+   npm run set-password
+   ```
+
+   Das Skript fragt das Passwort ab und gibt zwei Zeilen aus:
+   `ADMIN_PASSWORD_HASH=…` und `SESSION_SECRET=…`.
+   Beide unter Settings → Variables and Secrets als **Secret** anlegen (Name = Teil vor dem `=`,
+   Wert = Teil danach). Das Passwort selbst wird nirgends gespeichert.
+5. **Build-Einstellungen prüfen:** Settings → Build: Build command leer, Build output directory `/`.
+   Die Datei `.node-version` sorgt dafür, dass der Build Node 22 verwendet.
+6. **Deployen:** Änderungen committen und pushen. Nach neuen Bindings oder Secrets einmal
+   „Retry deployment“ klicken oder erneut pushen, damit sie wirksam werden.
+
+Danach: `https://deine-domain/admin/login` öffnen und mit dem Passwort anmelden.
+
+Passwort ändern: `npm run set-password` erneut ausführen, das neue `ADMIN_PASSWORD_HASH`
+im Dashboard aktualisieren, Deployment neu auslösen.
 
 ## Texte ändern
 
 1. Unter `/admin` anmelden → **Texte**.
 2. Die Texte sind nach Website-Bereich gruppiert (Hero, Über uns, Programm, FAQ, …).
    Der Schlüssel neben jedem Feld (z. B. `program.day3.title`) sagt, wo der Text sitzt.
-3. Text ändern → unten rechts **Speichern**. Die Änderung ist sofort live.
+3. Text ändern → unten rechts **Speichern**. Für dich sofort sichtbar, weltweit innerhalb
+   von etwa einer Minute (Cloudflare verteilt KV-Daten mit kurzer Verzögerung).
 4. **Original wiederherstellen** setzt den Text auf den Stand aus der HTML-Datei zurück.
 
 Erlaubte Formatierung (alles andere wird als Text angezeigt, HTML wird nie ausgeführt):
 
-| Eingabe                      | Ergebnis         |
-|------------------------------|------------------|
-| Enter                        | Zeilenumbruch    |
-| `*kursiv*`                   | *kursiv*         |
-| `**fett**`                   | **fett**         |
+| Eingabe                      | Ergebnis            |
+|------------------------------|---------------------|
+| Enter                        | Zeilenumbruch       |
+| `*kursiv*`                   | *kursiv*            |
+| `**fett**`                   | **fett**            |
 | `~~durchgestrichen~~`        | ~~durchgestrichen~~ |
-| `[Linktext](https://…)`      | Link             |
+| `[Linktext](https://…)`      | Link                |
 
 ## Bilder ändern
 
 1. `/admin` → **Bilder**. Jedes Bild zeigt, wo es auf der Website steht.
 2. **Bild ersetzen** → Datei wählen (JPG, PNG, WEBP, GIF; max. 8 MB). Sofort live.
-3. **Original** stellt das ursprüngliche Bild wieder her und löscht den Upload.
+3. **Original** stellt das ursprüngliche Bild wieder her und löscht den Upload aus R2.
 
 Nicht über das Panel änderbar (bewusst einfach gehalten): die Bilderlisten der
 Galerien/Lightbox und Zimmer-Karussells (`js/index.js`, `data-slides` in `index.html`)
@@ -72,40 +89,46 @@ Regeln:
 - Enthält das Element HTML (Links, `<br>`, `<strong>`), wird das beim Bearbeiten in
   die Formatierung oben übersetzt. Andere Tags (Icons, verschachtelte Elemente)
   gehen beim Überschreiben verloren, solche Elemente also nicht markieren.
+- Neue HTML-Seiten zusätzlich in `functions/_lib/cms.js` unter `PAGES` und in
+  `_routes.json` eintragen.
 
-## Produktivbetrieb
+## Lokal testen
 
-Voraussetzung: ein Server mit Node.js ≥ 20 (kleiner VPS, Hetzner, Render, Railway,
-Fly.io o. ä.). GitHub Pages reicht nicht, da dort kein Server läuft.
+```bash
+npm install
+npm run set-password      # schreibt .dev.vars (nur lokal, nicht im Git)
+npm run dev               # http://localhost:3000  und  /admin
+```
 
-1. Repository auf den Server holen, `npm install --omit=dev`.
-2. `.env` anlegen: `NODE_ENV=production`, `PORT=3000`, Passwort per `npm run set-password`.
-   Bei Betrieb hinter einem Reverse-Proxy zusätzlich `TRUST_PROXY=1`.
-3. HTTPS ist Pflicht: mit `NODE_ENV=production` bekommt das Session-Cookie das
-   `Secure`-Flag und funktioniert nur über HTTPS. Empfohlen: Caddy oder nginx als
-   Reverse-Proxy mit Let's-Encrypt-Zertifikat vor `localhost:3000`.
-4. Prozess dauerhaft laufen lassen, z. B. als systemd-Dienst oder mit `pm2 start server/server.js`.
-5. `data/content.json` und `uploads/` regelmäßig sichern. Bei Hostern mit flüchtigem
-   Dateisystem (z. B. Render Free) muss dafür ein persistentes Volume eingebunden werden.
+`npm run dev` startet Cloudflare's lokale Umgebung (wrangler) mit lokalem KV und R2.
+Lokale Änderungen im Panel landen nur in `.wrangler/state`, nicht auf der Live-Seite.
 
-Minimales Caddyfile-Beispiel:
+## Dateien
 
 ```
-retreat.example.com {
-    reverse_proxy localhost:3000
-}
+functions/_middleware.js        setzt Überschreibungen in die HTML-Seiten ein, sperrt private Pfade
+functions/_lib/cms.js           Inhaltslogik (Markierungen finden, Markup, Rendering)
+functions/_lib/auth.js          Passwort-Hash (PBKDF2), Session-Cookie, Login-Sperre
+functions/_lib/store.js         KV-Zugriff und Registry aus den HTML-Seiten
+functions/_lib/admin.js         Admin-Seiten und API (/admin/*)
+functions/uploads/[[path]].js   liefert hochgeladene Bilder aus R2 aus
+admin/                          Oberfläche des Panels (HTML, CSS, JS)
+_routes.json                    welche Pfade durch die Functions laufen (Rest = statisch)
+scripts/set-password.js         erzeugt Passwort-Hash und Session-Secret
 ```
 
 ## Sicherheit (Kurzfassung)
 
-- Nur `/`, die drei HTML-Seiten und die in `server/server.js` unter `PUBLIC_DIRS`
-  gelisteten Ordner werden öffentlich ausgeliefert. `.env`, `server/`, `data/`,
-  `node_modules/` sind nicht erreichbar.
-- Ein Admin-Account, Passwort als scrypt-Hash, Session-Token nur im Server-Speicher,
-  Cookie `HttpOnly` + `SameSite=Strict` (+ `Secure` in Produktion), 12 h Gültigkeit.
-- Login-Sperre nach 8 Fehlversuchen pro IP für 15 Minuten.
+- Ein Admin-Account. Passwort als PBKDF2-SHA256-Hash (100.000 Iterationen, Cloudflares
+  Maximum) nur als Secret im Dashboard, nie im Code oder Git.
+- Session: signiertes Cookie (HMAC mit `SESSION_SECRET`), `HttpOnly`, `SameSite=Strict`,
+  `Secure`, 12 h gültig. Abmelden löscht das Cookie; ein Wechsel von `SESSION_SECRET`
+  macht alle Sessions ungültig.
+- Login-Sperre nach 8 Fehlversuchen pro IP für 15 Minuten (Zähler in KV).
 - Alle Eingaben werden serverseitig geprüft; Texte werden beim Ausliefern HTML-escaped
   (kein XSS). Uploads werden anhand der Dateisignatur geprüft, nicht der Dateiendung,
-  und unter einem vom Server vergebenen Namen gespeichert.
+  und unter einem vom Server vergebenen Namen in R2 gespeichert.
 - Admin-Seiten mit strikter Content-Security-Policy, `noindex`, kein Framing.
-- Neustart des Servers beendet alle Sessions (bewusst einfach gehalten).
+- `package.json`, `ADMIN.md`, `CLAUDE.md`, `functions/`, `scripts/` und
+  `Retreat structure/` werden nicht öffentlich ausgeliefert (siehe `_routes.json`
+  und `functions/_middleware.js`).

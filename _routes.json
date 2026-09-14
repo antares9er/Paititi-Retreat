@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "include": [
+    "/",
+    "/index.html",
+    "/booking",
+    "/booking.html",
+    "/privacy-policy",
+    "/privacy-policy.html",
+    "/admin",
+    "/admin/*",
+    "/uploads/*",
+    "/server/*",
+    "/data/*",
+    "/functions/*",
+    "/scripts/*",
+    "/Retreat structure/*",
+    "/Retreat%20structure/*",
+    "/package.json",
+    "/package-lock.json",
+    "/ADMIN.md",
+    "/CLAUDE.md",
+    "/_routes.json"
+  ],
+  "exclude": []
+}

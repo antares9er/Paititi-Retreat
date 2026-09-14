@@ -1,19 +1,17 @@
 {
   "name": "paititi-retreat",
   "version": "1.0.0",
-  "description": "Paititi Retreats website with a small admin backend",
+  "description": "Paititi Retreats website with a small admin backend (Cloudflare Pages Functions)",
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node server/server.js",
-    "dev": "node --watch server/server.js",
-    "set-password": "node server/set-password.js"
+    "dev": "wrangler pages dev . --port 3000 --kv CONTENT --r2 UPLOADS",
+    "set-password": "node scripts/set-password.js"
   },
   "engines": {
-    "node": ">=20.12"
+    "node": ">=20"
   },
-  "dependencies": {
-    "express": "^5.2.1",
-    "multer": "^2.3.0"
+  "devDependencies": {
+    "wrangler": "^4"
   }
 }
