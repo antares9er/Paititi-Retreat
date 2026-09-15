@@ -19,9 +19,18 @@ export async function hashPassword(password, iterations = PBKDF2_ITERATIONS) {
     return `pbkdf2$${iterations}$${toHex(salt)}$${toHex(hash)}`;
 }
 
+// A hash pasted into a dashboard field easily picks up a stray space or a
+// newline. Everything below trims first, and isValidHashFormat lets the caller
+// tell "the stored hash is broken" apart from "the password is wrong".
+const HASH_RE = /^pbkdf2\$\d+\$[0-9a-f]+\$[0-9a-f]+$/i;
+
+export function isValidHashFormat(stored) {
+    return typeof stored === 'string' && HASH_RE.test(stored.trim());
+}
+
 export async function verifyPassword(password, stored) {
     if (typeof stored !== 'string') return false;
-    const [algo, iter, saltHex, hashHex] = stored.split('$');
+    const [algo, iter, saltHex, hashHex] = stored.trim().split('$');
     const iterations = Number(iter);
     if (algo !== 'pbkdf2' || !Number.isInteger(iterations) || !saltHex || !hashHex) return false;
     const expected = fromHex(hashHex);

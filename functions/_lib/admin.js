@@ -23,6 +23,7 @@ const LOGIN_MESSAGES = {
     '1': 'Passwort falsch.',
     'locked': 'Zu viele Fehlversuche. Bitte in 15 Minuten erneut versuchen.',
     'nopw': 'Admin-Login nicht konfiguriert: ADMIN_PASSWORD_HASH und SESSION_SECRET als Secrets im Cloudflare-Dashboard setzen.',
+    'badhash': 'Der gespeicherte ADMIN_PASSWORD_HASH hat nicht das erwartete Format. Vermutlich ist beim Einfuegen ins Dashboard ein Zeichen verloren gegangen oder etwas zu viel mitkopiert worden.',
     'out': 'Du wurdest abgemeldet.',
 };
 
@@ -58,6 +59,7 @@ export async function onRequest(context) {
 
     if (path === '/admin/login' && method === 'POST') {
         if (!env.ADMIN_PASSWORD_HASH || !env.SESSION_SECRET) return redirect('/admin/login?msg=nopw');
+        if (!auth.isValidHashFormat(env.ADMIN_PASSWORD_HASH)) return redirect('/admin/login?msg=badhash');
         const ip = request.headers.get('cf-connecting-ip') || 'unknown';
         if (await auth.isLockedOut(env.CONTENT, ip)) return redirect('/admin/login?msg=locked');
         const form = await request.formData().catch(() => null);
