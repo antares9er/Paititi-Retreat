@@ -7,6 +7,8 @@
         meta: 'Seitentitel (Browser-Tab)',
         brand: 'Logo',
         hero: 'Startbereich (Hero)',
+        next: 'Bali 2027 (Formular)',
+        moments: 'Moments 2026 (Galerie-Kapitel)',
         about: 'Über uns — "Our Story"',
         experience: 'The Retreat Experience',
         accommodation: 'Unterkunft — "The Sacred Sanctuary"',
@@ -14,7 +16,7 @@
         practices: 'Sacred Practices',
         program: 'Programm (Tag 1–8)',
         gallery: 'Galerie — "A Glimpse Within"',
-        inclusions: 'Inklusivleistungen & Early Bird',
+        inclusions: 'Inklusivleistungen & Hinweis 2027',
         rooms: 'Zimmer & Preise',
         payment: 'Zahlung & Bankverbindung',
         location: 'Location',
@@ -117,6 +119,7 @@
         document.querySelectorAll('.topnav a[data-nav]').forEach(a => a.classList.toggle('active', a.dataset.nav === view));
         if (view === 'texte') renderTexts(target);
         else if (view === 'bilder') renderImages();
+        else if (view === 'anfragen') renderInterest();
         else renderDashboard();
         window.scrollTo(0, 0);
         if (target) {
@@ -143,6 +146,10 @@
                     el('div', { class: 'num', text: String(data.images.length) }),
                     el('div', { class: 'lbl', text: 'Bilder · ' + changedImages + ' ersetzt' }),
                 ]),
+                el('a', { class: 'card stat', href: '#anfragen' }, [
+                    el('div', { class: 'num', id: 'interest-count', text: '…' }),
+                    el('div', { class: 'lbl', text: 'Interessenten 2027' }),
+                ]),
                 el('a', { class: 'card stat', href: '/', target: '_blank', rel: 'noopener' }, [
                     el('div', { class: 'num', text: '↗' }),
                     el('div', { class: 'lbl', text: 'Website in neuem Tab öffnen' }),
@@ -159,9 +166,73 @@
                     el('li', { text: 'Unter „Texte“ jeden Text direkt bearbeiten und unten rechts auf „Speichern“ klicken. Die Änderung ist sofort auf der Website sichtbar.' }),
                     el('li', { text: 'Unter „Bilder“ ein Bild über „Bild ersetzen“ austauschen (JPG, PNG, WEBP oder GIF, max. 8 MB).' }),
                     el('li', { text: '„Original wiederherstellen“ setzt einen Text oder ein Bild auf den ursprünglichen Stand der Website zurück.' }),
+                    el('li', { text: 'Unter „Anfragen“ stehen alle, die sich über das Formular für 2027 interessieren. Als CSV exportierbar.' }),
                 ]),
             ])
         );
+        api('/admin/api/interest')
+            .then(list => { const n = document.getElementById('interest-count'); if (n) n.textContent = String(list.length); })
+            .catch(() => {});
+    }
+
+    // ------------------------------------------------------------ interest (2027 sign-ups)
+
+    function formatDate(iso) {
+        try { return new Date(iso).toLocaleString('de-DE', { dateStyle: 'medium', timeStyle: 'short' }); } catch (e) { return iso; }
+    }
+
+    function downloadCsv(list) {
+        const cell = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+        const rows = [['Datum', 'Name', 'E-Mail', 'Retreat', 'Nachricht']]
+            .concat(list.map(e => [formatDate(e.createdAt), e.name, e.email, e.journeyLabel, e.message]));
+        const csv = '﻿' + rows.map(r => r.map(cell).join(';')).join('\r\n');
+        const a = el('a', { href: URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })), download: 'paititi-interessenten.csv' });
+        document.body.append(a);
+        a.click();
+        a.remove();
+    }
+
+    async function renderInterest() {
+        app.replaceChildren(el('div', { class: 'page-title' }, [el('h1', { text: 'Anfragen 2027' })]), el('p', { class: 'muted', text: 'Lade …' }));
+        let list;
+        try { list = await api('/admin/api/interest'); }
+        catch (err) { app.replaceChildren(el('p', { class: 'muted', text: 'Konnte nicht geladen werden: ' + err.message })); return; }
+
+        const head = el('div', { class: 'page-title' }, [
+            el('h1', { text: 'Anfragen 2027' }),
+            el('span', { class: 'muted small', text: list.length + (list.length === 1 ? ' Eintrag' : ' Einträge') }),
+        ]);
+        const exportBtn = el('button', { class: 'btn btn-primary', type: 'button', text: 'Als CSV herunterladen', disabled: list.length === 0, onclick: () => downloadCsv(list) });
+        const hint = el('div', { class: 'hint', text: 'Menschen, die sich über das Formular „Register Your Interest“ eingetragen haben. Neue Einträge können bis zu einer Minute brauchen, bis sie hier erscheinen.' });
+
+        if (list.length === 0) {
+            app.replaceChildren(head, hint, el('div', { class: 'card' }, [el('p', { class: 'muted', text: 'Noch keine Anfragen.' })]));
+            return;
+        }
+
+        const cards = list.map(e => {
+            const card = el('div', { class: 'card interest-card' });
+            const del = el('button', { class: 'btn btn-danger', type: 'button', text: 'Löschen', onclick: async () => {
+                if (!window.confirm('Eintrag von ' + e.name + ' wirklich löschen?')) return;
+                try {
+                    await api('/admin/api/interest/' + encodeURIComponent(e.id), { method: 'DELETE' });
+                    card.remove();
+                    list = list.filter(x => x.id !== e.id);
+                    toast('Gelöscht.', 'ok');
+                } catch (err) { toast('Fehler: ' + err.message, 'error'); }
+            } });
+            card.append(
+                el('div', { class: 'card-head' }, [
+                    el('h2', { text: e.name }),
+                    el('span', { class: 'muted small', text: formatDate(e.createdAt) }),
+                ]),
+                el('p', {}, [el('a', { href: 'mailto:' + e.email, text: e.email }), ' · ', el('strong', { text: e.journeyLabel })]),
+                e.message ? el('p', { class: 'small interest-message', text: e.message }) : null,
+                el('div', { class: 'actions' }, [del])
+            );
+            return card;
+        });
+        app.replaceChildren(head, hint, el('div', { class: 'actions', style: null }, [exportBtn]), ...cards);
     }
 
     // ------------------------------------------------------------ texts

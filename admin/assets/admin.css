@@ -170,3 +170,7 @@ textarea { resize: vertical; min-height: 2.6rem; line-height: 1.5; display: bloc
     .savebar { flex-wrap: wrap; }
     .savebar span { width: 100%; margin: 0 0 0.3rem; }
 }
+
+/* Anfragen 2027 */
+.interest-card p { margin: 0.3rem 0; }
+.interest-message { white-space: pre-wrap; background: rgba(0,0,0,0.03); padding: 0.6rem 0.8rem; border-radius: 6px; }

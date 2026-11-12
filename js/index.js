@@ -113,33 +113,6 @@
         }
     };
 
-    galleries.glimpse = {
-        title: 'A Glimpse Within',
-        images: [
-            'photos_videos_Paititi Retreat_Antares/skyyoga_.webp',
-            'photos_videos_Paititi Retreat_Antares/Sacred-Water Ceremonies.jpg',
-            'Naya Veda Vastu Outdoor/Naya-Luftaufnahme.webp',
-            'photos_videos_Paititi Retreat_Antares/Sound-Dome_Day.webp',
-            'photos_videos_Paititi Retreat_Antares/tirta empul.jpeg',
-            'photos_videos_Paititi Retreat_Antares/Self-Love Marriage Ceremony.jpeg',
-            'photos_videos_Paititi Retreat_Antares/Silver Class.webp',
-            'photos_videos_Paititi Retreat_Antares/SoundDome_inside.webp',
-            'photos_videos_Paititi Retreat_Antares/melukat-bali-water-purificatio.jpg',
-            'photos_videos_Paititi Retreat_Antares/hang-out-netz.jpeg',
-            'photos_videos_Paititi Retreat_Antares/taman-pecampuhan-sala.jpg',
-            'photos_videos_Paititi Retreat_Antares/cau.jpg',
-            'photos_videos_Paititi Retreat_Antares/foto_people_cacao.webp',
-            'photos_videos_Paititi Retreat_Antares/Sound Dome.webp',
-            'photos_videos_Paititi Retreat_Antares/Ubud-Silver-Art.jpg',
-            'photos_videos_Paititi Retreat_Antares/Ibu jero baba.jpeg',
-            'photos_videos_Paititi Retreat_Antares/Paititi-Retreat-photo.jpeg',
-            'photos_videos_Paititi Retreat_Antares/Ayarmanco1.JPG',
-            'photos_videos_Paititi Retreat_Antares/Daniel _cacao.mp4',
-            'photos_videos_Paititi Retreat_Antares/Jero Baba_Melukat 2026-05-13 at 00.05.41.mp4',
-            'photos_videos_Paititi Retreat_Antares/Jero Baba_Tirta_Empul_2026-05-13 at 00.03.22.mp4',
-        ]
-    };
-
     let currentGallery = null;
     let currentIndex = 0;
     const lightbox = document.getElementById('lightbox');
@@ -227,28 +200,89 @@
         item.addEventListener('click', () => openLightbox(item.dataset.gallery, parseInt(item.dataset.index || 0)));
     });
 
-    // Early bird countdown to 11 June 2026
-    (function() {
-        const deadline = new Date('2026-06-11T23:59:59').getTime();
-        function pad(n) { return String(n).padStart(2, '0'); }
-        function tick() {
-            const diff = deadline - Date.now();
-            if (diff <= 0) {
-                document.getElementById('earlyBirdCountdown').innerHTML = '<p style="color:var(--brown-subtle);font-size:0.8rem;">Early bird pricing has ended.</p>';
-                return;
+    // Moments 2026: each chapter grid becomes its own lightbox gallery (built from the HTML, no list to maintain).
+    // Only the first MOMENTS_PREVIEW items show; a button reveals the rest. The lightbox always holds all of them.
+    const MOMENTS_PREVIEW = 6;
+    document.querySelectorAll('[data-moments]').forEach(grid => {
+        const key = 'moments-' + grid.dataset.moments;
+        const items = Array.from(grid.querySelectorAll('.moment-item'));
+        galleries[key] = { title: grid.dataset.title, images: items.map(i => i.dataset.src) };
+        items.forEach((item, idx) => item.addEventListener('click', () => openLightbox(key, idx)));
+
+        if (items.length <= MOMENTS_PREVIEW) return;
+        const hidden = items.slice(MOMENTS_PREVIEW);
+        hidden.forEach(i => {
+            i.classList.add('is-collapsed');
+            const v = i.querySelector('video');
+            if (v) v.preload = 'none';   // don't download hidden videos until the chapter is opened
+        });
+        let primed = false;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'moments-more';
+        btn.textContent = 'Show all ' + items.length + ' moments';
+        btn.addEventListener('click', () => {
+            const open = grid.classList.toggle('is-open');
+            if (open && !primed) {
+                primed = true;
+                hidden.forEach(i => { const v = i.querySelector('video'); if (v && !v.poster) { v.preload = 'metadata'; v.load(); } });
             }
-            const d = Math.floor(diff / 86400000);
-            const h = Math.floor((diff % 86400000) / 3600000);
-            const m = Math.floor((diff % 3600000) / 60000);
-            const s = Math.floor((diff % 60000) / 1000);
-            document.getElementById('cdDays').textContent  = pad(d);
-            document.getElementById('cdHours').textContent = pad(h);
-            document.getElementById('cdMins').textContent  = pad(m);
-            document.getElementById('cdSecs').textContent  = pad(s);
-        }
-        tick();
-        setInterval(tick, 1000);
-    })();
+            btn.textContent = open ? 'Show less' : 'Show all ' + items.length + ' moments';
+            if (!open) grid.closest('.moments-chapter').scrollIntoView({ behavior: 'smooth' });
+        });
+        grid.after(btn);
+    });
+
+    // Program: day titles always visible, details fold out (first day open)
+    document.querySelectorAll('.program-day').forEach((day, idx) => {
+        const title = day.querySelector('.program-day-title');
+        if (!title) return;
+        const body = document.createElement('div');
+        body.className = 'program-day-body';
+        while (title.nextSibling) body.appendChild(title.nextSibling);
+        title.after(body);
+        title.setAttribute('role', 'button');
+        title.setAttribute('tabindex', '0');
+        const toggle = () => {
+            const open = day.classList.toggle('is-open');
+            title.setAttribute('aria-expanded', String(open));
+        };
+        if (idx === 0) day.classList.add('is-open');
+        title.setAttribute('aria-expanded', String(idx === 0));
+        title.addEventListener('click', toggle);
+        title.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+    });
+
+    // "Register your interest" form -> /api/interest
+    const interestForm = document.getElementById('interestForm');
+    if (interestForm) {
+        const status = interestForm.querySelector('.interest-status');
+        const submitBtn = interestForm.querySelector('button[type="submit"]');
+        interestForm.addEventListener('submit', async e => {
+            e.preventDefault();
+            const fd = new FormData(interestForm);
+            const payload = Object.fromEntries(fd.entries());
+            if (!String(payload.name || '').trim()) { status.textContent = 'Please enter your name.'; status.className = 'interest-status error'; return; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(payload.email || '').trim())) { status.textContent = 'Please enter a valid email address.'; status.className = 'interest-status error'; return; }
+            submitBtn.disabled = true;
+            status.textContent = 'Sending …';
+            status.className = 'interest-status';
+            try {
+                const res = await fetch('/api/interest', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                const body = await res.json().catch(() => ({}));
+                if (!res.ok) throw new Error(body.error || 'Something went wrong.');
+                interestForm.reset();
+                status.textContent = 'Thank you! You are on the list. We will write to you as soon as the dates are set.';
+                status.className = 'interest-status ok';
+            } catch (err) {
+                status.textContent = err.message + ' You can also email us at admin@erdkinder-bali.com.';
+                status.className = 'interest-status error';
+            } finally {
+                submitBtn.disabled = false;
+            }
+        });
+    }
+
 
     // Mobile nav
     const mobileToggle = document.getElementById('mobileToggle');

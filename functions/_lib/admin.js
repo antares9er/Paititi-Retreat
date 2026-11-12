@@ -10,6 +10,7 @@
 import * as auth from './auth.js';
 import { KEY_RE, applyTextUpdates, contentForAdmin } from './cms.js';
 import { fetchAsset, loadRegistry, loadStore, saveStore } from './store.js';
+import { deleteInterest, listInterest } from './interest.js';
 
 const MAX_UPLOAD_BYTES = 8 * 1024 * 1024;
 const IMAGE_SIGNATURES = [
@@ -101,6 +102,16 @@ export async function onRequest(context) {
         if (result.errors.length) return json({ error: result.errors.join(' ') }, 400);
         await saveStore(env, result.store);
         return json({ ok: true });
+    }
+
+    if (path === '/admin/api/interest' && method === 'GET') {
+        return json(await listInterest(env));
+    }
+
+    const interestMatch = /^\/admin\/api\/interest\/([^/]+)$/.exec(path);
+    if (interestMatch && method === 'DELETE') {
+        const ok = await deleteInterest(env, safeDecode(interestMatch[1]));
+        return ok ? json({ ok: true }) : json({ error: 'Unbekannter Eintrag.' }, 400);
     }
 
     const imageMatch = /^\/admin\/api\/images\/([^/]+)$/.exec(path);

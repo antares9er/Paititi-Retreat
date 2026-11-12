@@ -16,6 +16,7 @@
 import { applyOverrides, hasOverrides } from '../functions/_lib/cms.js';
 import { loadStore } from '../functions/_lib/store.js';
 import { onRequest as handleAdmin } from '../functions/_lib/admin.js';
+import { submitInterest } from '../functions/_lib/interest.js';
 
 const PRIVATE_PATHS = [
     /^\/(server|data|functions|scripts|src|node_modules)\//i,
@@ -35,6 +36,10 @@ export default {
 
         if (path === '/admin' || path.startsWith('/admin/')) {
             return handleAdmin({ request, env });
+        }
+
+        if (path === '/api/interest') {
+            return submitInterest(request, env);
         }
 
         if (path.startsWith('/uploads/')) {
